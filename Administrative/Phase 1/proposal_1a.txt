@@ -1,0 +1,13 @@
+Team: HvZ App
+
+Members: Santiago Rodriguez, Alex Hadley, Matthew Waddel, Kyra Clark
+
+Project 1A.1 — Concept
+    Proposal: https://github.com/alexhad6/HvZ-app/blob/master/Administrative/Phase%201/proposal_1a.txt
+    Primary author: Kyra
+
+
+	For our project, we want to make a mobile app for one of Mudd’s favorite games, Humans vs. Zombies (HvZ). HvZ is a school-wide game of tag, in which the two teams, humans and zombies, fight for survival over the course of a week. HvZ is always fun for students and creating an app would help make the game more accessible and user friendly. Because we are invested in the game, making an app for the students and ourselves would be a fun experience.
+	Currently, a website exists for HvZ that is used for user registration and keeping track of player status as well as other statistics. However, we believe this website will soon become outdated. Our app will replace the functionality of the old website and add additional features. We will also write detailed documentation and notes, enabling future HvZ moderators to maintain and update the app.
+	Creating the app would involve researching existing mobile app building platforms and designing relevant features. Although we have minimal experience in building apps, we have prior programming experience and should be able to quickly learn any languages or coding skills that are needed. We will also be able to get user feedback on the app from HvZ’s many players and moderators.
+	We will also build a server to store data and communicate with the app. Keeping track of who is a human and who is a zombie would require integration with a database that can also keep track of zombie ancestry. We want to be able to assign each zombie with a QR code, which will be used for gameplay and statistics. Another feature we are considering for the app would be location tracking during game events so that players would receive helpful notifications and reminders. Location-based notifications can be shown on an interactive map that we plan to integrate into the app. The humans and zombies could mark special locations for each other, and the moderators could mark paths for missions and areas for investigation. Each player would also have their own login to display player-specific information, which we are planning to handle using Google authentication. Moderator logins would allow the option to update app information or to broadcast notifications to players.
