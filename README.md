@@ -8,4 +8,4 @@ CS 121 guidelines: [https://www.cs.hmc.edu/courses/2020/fall/cs121s1/projects.ht
 
 ## Meeting Minutes
 
-Phase 1: [https://drive.google.com/drive/u/0/folders/12PsDbK9nJBQFoe5MLNz-aoig1Cvng3_U](https://drive.google.com/drive/u/0/folders/12PsDbK9nJBQFoe5MLNz-aoig1Cvng3_U)
+Phase 1: [https://drive.google.com/drive/folders/12PsDbK9nJBQFoe5MLNz-aoig1Cvng3_U?usp=sharing](https://drive.google.com/drive/folders/12PsDbK9nJBQFoe5MLNz-aoig1Cvng3_U?usp=sharing)
