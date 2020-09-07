@@ -1,0 +1,96 @@
+﻿Team: HvZ App
+
+
+Members: Santiago Rodriguez, Alex Hadley, Matthew Waddell, Kyra Clark
+
+
+Project 1C.1 — Preliminary Requirements
+        Report: https://github.com/alexhad6/HvZ-app/blob/master/Administrative/Phase%201/reqts_1c.txt
+        Primary author: Matthew, whole team
+1. Types of Users
+* HvZ players
+   * 7C students
+   * 7C faculty
+* Moderators
+2. Goals of Users
+* HvZ players
+   * Be able to play the game
+      * Input feed codes for brains (zombie currency)
+      * Registration
+      * Brain (currency) transfer
+   * Easily access important information
+      * Mission/puzzle/quest info
+      * Rules
+      * Human and zombie populations
+   * Communicate with other players/mods
+* Moderators
+   * Update mission/puzzle/quest info
+   * Start/end/reset game
+   * Easily manage the game
+3. Needs, Abilities, Expectations of Users
+* Players
+   * App is easy and intuitive to use
+   * The common features of the website should be included (or improved) in the app
+      * Log in 
+      * Feedcodes
+      * Zombie eating messages
+      * List of players, who is human/zombie
+      * Population statistics/ancestry (maybe less well known)
+   * Privacy for location services
+* Moderators
+   * App is easy and intuitive to use
+   * Make minor changes to player status, etc.
+   * Access to changing/updating app easily and intuitively
+      * Readable code
+      * Good, clear, thorough documentation
+      * Future mods should be able to update app without our help
+   * Automation - moderators can leave tasks to the app
+      * Updating brain count
+      * Keeping track of attendance
+4. Which users we can respond to best
+* Players who own and can operate a smartphone
+* Moderators
+   * Experienced players (smaller group who is very familiar with the game)
+5. Requirements to Satisfy Users
+* Players
+   * Clear and organized app interface (visual)
+      * Tabs for each type of information
+   * View list of other players
+      * Names
+      * Who is human/zombie
+      * Who is legendary
+      * Zombie brains/upgrades
+      * Human number zombie stuns
+   * Player login system
+      * Ability to make account
+      * Ability to register for particular season
+   * Different Human/Zombie UI
+      * Zombies
+         * Input feedcodes
+         * Brain transfer/upgrade purchase system
+      * Human
+         * Register zombies stun counts
+   * App notifications for updates/announcements/reminders from mods
+   * Other stats/ancestry info
+   * Map feature (location sharing)
+      * Toggle location sharing
+      * Sharing options/restrictions
+      * Anonymity option
+      * Verification system for 7C status (for privacy)
+* Moderators
+   * Separate login with privileges
+   * Player registration
+   * Announcement system
+   * Player information adjustment system
+      * Update legendary status
+      * Resurrect players
+      * Update zombie upgrades
+   * Automated system to keep track of brains (currency)
+   * Should be able to access code, but not raw database
+   * Interface to update mission/puzzle/quest/story information
+   * Update map information
+      * Base camp location
+      * Mission path
+      * Location of important events, items, etc.
+      * Share pawn point location
+      * Toggle location sharing
