@@ -1,4 +1,4 @@
-﻿Team: HvZ App
+Team: HvZ App
 
 
 Members: Santiago Rodriguez, Alex Hadley, Matthew Waddell, Kyra Clark
@@ -49,14 +49,20 @@ WEBSITE (http://claremonthvz.org/)
       * The ancestry tab & search function
       * Overall, the website is relatively fast and provides everything the players require.
    * Done poorly
-      * Game rules and the current mission connected to the website through linked google docs. This means that it takes much longer to reach the information, especially if a user was on mobile, which would happen much more often as players are usually on the move.
+      * Game rules and the current mission connected to the website through linked google docs. 
+        This means that it takes much longer to reach the information, especially if a user was on mobile, which would happen much more often as players are usually on the move.
          * Because these google docs must be rewritten and relinked daily, the missions google doc is sparse, which makes it not intuitive to read
-      * Population features would only load the most recent 20 or so logs. Not fully up-to-date and updated with every kill, or if they even work to begin with (namely, the “Meals per Hour” graph). 
-      * Lastly, when you look up a specific zombie on the Ancestry page, it only shows the graph with the searched zombie at the root and all their kills. I think a more interesting feature would be to show the whole chain that came from and to that zombie. So, it would show the full tree (or stick) from Subject 0, to the searched zombie, and then a tree of all their kills.
+      * Population features would only load the most recent 20 or so logs.
+	Not fully up-to-date and updated with every kill, or if they even work to begin with (namely, the “Meals per Hour” graph). 
+      * Lastly, when you look up a specific zombie on the Ancestry page, it only shows the graph with the searched zombie at the root and all their kills. 
+	I think a more interesting feature would be to show the whole chain that came from and to that zombie. 
+	So, it would show the full tree (or stick) from Subject 0, to the searched zombie, and then a tree of all their kills.
 * Things that our product can improve
    * I think the website will be our most useful tool to learn from in this process.
-   * The main things I think we should take and improve upon are: the login, live-feed, fast website, include rules and mission information, population statistics, and ancestry (problems referenced above)
-   * To improve these current features, I think we should make the live feed into a notification system with customizable options, centralize the rules and mission information in the app, make all the graphs functional and interesting, perfect the ancestry feature, show the full time logs (not just most recent 20). 
+   * The main things I think we should take and improve upon are: the login, live-feed, fast website,
+     include rules and mission information, population statistics, and ancestry (problems referenced above)
+   * To improve these current features, I think we should make the live feed into a notification system with customizable options, 
+     centralize the rules and mission information in the app, make all the graphs functional and interesting, perfect the ancestry feature, show the full time logs (not just most recent 20). 
    * We could add new features like a map with location sharing and notification system.
    * We could also change the data structure to keep track of the zombies so that it can function with zombies getting resurrected back to humans.
    * Overall, more user-friendly and intuitive for new players. 
