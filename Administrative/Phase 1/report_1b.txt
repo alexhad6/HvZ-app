@@ -1,0 +1,163 @@
+﻿Team: HvZ App
+
+
+Members: Santiago Rodriguez, Alex Hadley, Matthew Waddell, Kyra Clark
+
+
+Project 1A.1 — Competitor Research
+        Report: https://github.com/alexhad6/HvZ-app/blob/master/Administrative/Phase%201/report_1b.txt
+        Primary author: WEBSITE (Kyra), EMAIL (Santiago & Alex), CASE WESTERN HVZ (Matthew), DISCORD (all)
+
+
+WEBSITE (http://claremonthvz.org/)
+* Features
+   * Homescreen
+      * Login
+         * Username (through email), Password, Forgot password option
+      * Basic Description of game
+      * Live feed of who-ate-who (and missions?)
+   * Place to enter feed codes if you are zombie
+      * Brain currency
+      * Can trade brains with other zombies
+   * RULES - link to google doc of rules
+   * PLAYERS
+      * List of humans and zombies with population totals
+      * Humans: Name/School/Year/Class(Mod?)
+      * Zombies: Name/School/Year/Tags/Brains/Class
+      * Filter by School/Year
+   * MISSIONS - link to google doc “Live Update Page”
+      * Doc must be rewritten daily
+   * STATS
+      * POPULATION
+         * Graphs of HvZ by School, Year, Dorm
+      * OUTBREAK
+         * Populations over Time
+            * Not flexible to see different times
+         * Meals per Hour
+            * Not intuitive
+      * ANCESTRY
+         * Pretty cool
+         * Find a Zombie search
+      * TAGS
+         * Log of Date/Time/Location/Eater/Eaten/Description
+         * Can only look at most recent ~20 entries
+* How address the user’s needs?
+   * Done well
+      * The website provides users with a centralized place to organize themselves and log their kills. 
+      * The live feed
+      * It’s population and demographic 
+      * The ancestry tab & search function
+      * Overall, the website is relatively fast and provides everything the players require.
+   * Done poorly
+      * Game rules and the current mission connected to the website through linked google docs. This means that it takes much longer to reach the information, especially if a user was on mobile, which would happen much more often as players are usually on the move.
+         * Because these google docs must be rewritten and relinked daily, the missions google doc is sparse, which makes it not intuitive to read
+      * Population features would only load the most recent 20 or so logs. Not fully up-to-date and updated with every kill, or if they even work to begin with (namely, the “Meals per Hour” graph). 
+      * Lastly, when you look up a specific zombie on the Ancestry page, it only shows the graph with the searched zombie at the root and all their kills. I think a more interesting feature would be to show the whole chain that came from and to that zombie. So, it would show the full tree (or stick) from Subject 0, to the searched zombie, and then a tree of all their kills.
+* Things that our product can improve
+   * I think the website will be our most useful tool to learn from in this process.
+   * The main things I think we should take and improve upon are: the login, live-feed, fast website, include rules and mission information, population statistics, and ancestry (problems referenced above)
+   * To improve these current features, I think we should make the live feed into a notification system with customizable options, centralize the rules and mission information in the app, make all the graphs functional and interesting, perfect the ancestry feature, show the full time logs (not just most recent 20). 
+   * We could add new features like a map with location sharing and notification system.
+   * We could also change the data structure to keep track of the zombies so that it can function with zombies getting resurrected back to humans.
+   * Overall, more user-friendly and intuitive for new players. 
+
+
+EMAIL (had been used in the past)
+* Features
+   * Introductory emails welcome players (location of first meeting, rules)
+   * Mission updates (night mission location, day mission mechanics, rewards gained, legendary quests, legendary upgrades, story tidbits)
+   * Game announcements (zombie spawn timer, global ceasefire, base camp location, etc.)
+   * Links to important documents (spreadsheets, rules docs, legendary upgrade descriptions, etc.)
+   * Attachments (pictures/sounds/videos for puzzles, maps for quests, etc.)
+   * Ability to contact moderators about problems in the game
+   * Ability to reply to an email for clarification
+   * Link to anonymous feedback form in every email
+   * Ability to unsubscribe from the email list in every email
+* How does it address user needs?
+   * Done well
+      * Direct communication between users and mod team
+      * Information on the missions and story, logistics, updates to play
+      * Provides access to files/documents needed for play (rules, puzzles, puzzle items, spreadsheets)
+      * Accessible to every student
+      * People check email — easy to see updates
+   * Done poorly
+      * Emails clutter up inbox and can key information can be hard to relocate
+      * Not sure which moderator you are contacting through mod email
+      * Breaks in story because a lot happens at missions (cutscenes)
+      * No way to track of populations and zombie tags through this medium
+      * Not everyone has email notifications on
+* Lessons to be learned from email medium
+   * Our product needs to be able to send out notifications on missions, logistics, and general game information in a well organized manner
+   * Our product needs to allow communication between the moderators and the players in both directions
+   * Our product needs to provide access to important files and documents
+   * Our product should be accessible to all students
+* Things that our product can improve
+   * Make the announcements and important documents more organized and easy to access (separate tabs for each type
+   * Keep track of humans and zombies and zombie brains (game currency)
+   * Live interactive features 
+      * Location sharing for missions
+      * Audio or video chat rooms communication in real time
+   * Story tab that keeps track of the complete story up to that point 
+   * Could be used in conjunction with email (general email list for important announcements, people who don’t have the app, communication with mods, other players via messenger)
+
+
+CASE WESTERN HVZ (https://github.com/cwru-hvz-core/cwru-hvz-source)
+* Features
+   * Done well
+      * Gives separate permissions to mods and users allows admins to edit the info of players and not vice versa in peoplecontroller.rb
+      * Includes a waiver system and checks to verify that waiver has been signed during registration.
+      * Includes generalized ways to update the date of games ie time.now constructing the registration window for a game.
+      * Includes construction for squads of players and the deletion of those squads by admins.
+      * Filled out waiver includes requiring an emergency contact and student id. Has an attendance boolean for missions.
+      * Allows for player infractions to be stored on offending player's data and accessed easily by mods.
+      * App infrastructure already laid out in javascript including ruby files which may be run in order to update the mobile environment.
+   * Done poorly
+      * No ancestry tree or stats given which were available on the mudd website, which prevents players from being able to compare performance at the end/during the game.
+      * Absence of chat capabilities excluding messages by mods.
+* Things we can learn from
+   * Emergency contact
+   * Team registration
+   * Attendance for missions
+   * A way to start and end game period -> to save data from each game 
+      * Reset data for each game(?)
+* Ways our product can significantly improve upon it
+   * Track human and zombie ancestry
+   * Be specific to Harvey Mudd rather than Case Western
+   * An app rather than a website (easier to access, get notifications)
+   * Incognito report infractions to mods
+   * Keep track of story
+   * Maps
+
+
+DISCORD (likely our biggest competitor for the next season of games)
+* Features
+   * Different channels for discussions
+   * Separate channels for announcements
+   * A bot can keep track of humans and zombies (as defined roles)
+      * Access to specific channels by role 
+      * Input feed-code
+      * Could change roles
+   * Pinned important files (rules, etc.)
+* How does it address user needs?
+   * Done well:
+      * Centralized hub for game play
+      * Keeps track of player status using bots
+      * Manages communication among players
+      * Allows communication with mods
+      * Announcement notifications via mobile app
+      * Announcements/messages categorized by channel
+      * Discord is already widely used by students
+   * Done poorly:
+      * Cluttered
+      * Hard to find important information
+      * Bot might not be user friendly for new players or people new to Discord
+      * Primarily text-based
+      * Cannot keep track of zombie ancestry (only current status)
+* Things that our product can improve
+   * Include map feature
+   * Include statistics feature
+   * More visually and graphics based
+      * Particularly in terms of implementing an ancestry graph
+      * Showing story tidbits in a nice way
+   * Could be more organized (separate tabs for story, announcements, etc.)
+   * We don’t want to include a messaging service into our app, so we could make the app function along with Discord
