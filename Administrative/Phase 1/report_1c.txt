@@ -1,0 +1,164 @@
+﻿Team: HvZ App
+
+Members: Santiago Rodriguez, Alex Hadley, Matthew Waddell, Kyra Clark
+
+Project 1C.3 — Elicitation Session Report
+    Report: https://github.com/alexhad6/HvZ-app/blob/master/Administrative/Phase%201/report_1c.txt
+    Primary author: Alex
+
+Requirements Elicitation Report
+
+The meeting took place on Thursday, September 10, 2020 from 1:10 PM to 1:50 PM
+PDT in Prof. Mark Kampe’s Zoom meeting for CS 121. It was attended by Ingrid
+Tsang (itsang@g.hmc.edu), Ilona Kariko (ikariko@g.hmc.edu), and Solomon
+Valore-Caplan (svalorecaplan@g.hmc.edu), all Harvey Mudd students and HvZ
+players. The meeting was run by Santiago Rodriguez, Kyra Clark, Matthew Waddell,
+and Alex Hadley, and was also viewed by Prof. Mark Kampe and the other students
+in the Fall 2020 section of CSCI121 HM-01.
+        
+During the open-ended information gathering session, the following features and
+functionalities were suggested for the app. New requirements are labelled as
+[NEW]. Additional information is included as a sub bullet point.
+* List of current humans and zombies
+   * Important, should be accessible from home screen
+* Display and scan feed code
+   * Users dislike having to remember to carry paper feed code
+* Access important announcements
+   * Users find it hard to go through email to find information
+* View and search Claremont Colleges locations on a map
+   * Especially useful for new students
+* View your current location on the map
+   * Convenient
+* View mission and quest related locations on the map
+   * It is hard to keep track of all the key locations, especially for the final
+     mission
+* Story tab that consolidates the story so far
+   * Users frequently miss parts of the story and are confused
+* [NEW] List of legendary players
+   * Important to know who has legendary upgrades
+* [NEW] Descriptions of active legendary roles
+   * Important to know what abilities each legendary has, especially for new
+     players
+
+
+These users were not very familiar with the current website (claremonthvz.org)
+or its features. They had not heard of the ancestry tree, but thought it was a
+cool idea to have a record of who tagged who. They thought that having a
+statistics tab could be fun, although the most important statistic is who is
+currently human or zombie.
+* Zombie ancestry tree
+   * Since users were not familiar, this feature is low priority
+* Additional statistics tab
+   * Lower priority than we thought
+
+
+The users raised the issue of accessibility, pointing out that some players
+might not have access to a smartphone. They suggested having an optional email
+list to complement the app for sending out important announcements. Solomon said
+he would sign up for the email list and the app, while Ingrid would prefer only
+app notifications. After the session, Spencer Lang, a CS 121 student, suggested
+using Flutter to have a website as well as an app.
+* Optional email list
+   * Announcements are accessible for players without smartphones
+* [NEW] Automatically send emails of certain app announcements
+   * Make it easier for moderators to manage the game
+   * [SIGNIFICANT] The people without the app need to be able to play
+* [NEW] Website component
+   * Allows access to app content without a smartphone
+
+
+When asked, users gave more feedback on the map feature. Ingrid raised the point
+of privacy, and having location sharing turned off by default. The following
+features were suggested:
+* [NEW] Location turned off by default
+   * Important due to privacy concerns
+   * [SIGNIFICANT] Uncomfortable using app if location not turned off by default
+* [NEW] Ability to send location at a particular instant
+   * Useful for people who do not want to share their location live
+   * Important due to privacy concerns
+* Mod location sharing for spawn
+   * Useful during missions
+* Share location with specific people
+   * Useful for quests or missions
+* Mark locations of zombies or humans on map
+   * Users suggested ability to mark general locations (e.g. “Zombies near
+     Kingston”)
+
+
+We also asked users about a messaging feature within the app. The following
+features were suggested:
+* Big group chats for humans and zombies
+   * Ability to add or invite people who get tagged
+* [NEW] Automatically booted from human chat when you are turned
+   * Ensures that zombies cannot access human information
+* [NEW] Send images and other files over the chat
+   * Important to send photos during puzzle quests or missions
+
+The following features were suggested relating to missions:
+* [NEW] Show key information (like maps or story) on home page during mission
+   * Easy to access during the mission
+   * [SIGNIFICANT] For easy gameplay and usable app interface
+* [NEW] Missions listed as particular tasks
+   * Less important, but makes it easier to coordinate
+* [NEW] Ability to pin certain mission tasks
+   * Less important, allows players to organize responsibilities
+* Mission announcements
+   * Players will know when missions are happening
+* [NEW] Countdown banner for mission on home screen
+   * Allows players to see when mission is going to start
+* Ability to contact mods via chat
+   * It is hard or takes longer to contact mods via email
+
+The users thought that around 2 to 3 notifications per day was reasonable to
+send to all players, but that receiving other notifications should be
+customizable.
+* [NEW] Ability to subscribe to notifications for a particular mission
+   * Allows coordination during the mission, but only for those who are
+     attending
+* [NEW] Subscribe to get notified whenever a human is tagged
+   * Lower priority, but could be useful for very active players
+
+The users brought up the issue that during the final mission, feed codes are not
+typically scanned. However, it is important during this mission to know how many
+humans are left.
+* [NEW] Track number of humans left during final mission
+   * Important since the mission ends when there are no humans left
+   * [SIGNIFICANT] For better gameplay experience during final mission
+* [NEW] Humans can self-report that they were tagged during final mission
+   * In the chaos of the mission, it is hard to register feed codes. During the
+     final mission, who is a zombie is more important than who tagged who.
+   * [SIGNIFICANT] To keep the populations active and easy to report for players
+
+A few more features were also suggested relating to registering zombie tags and
+human stuns.
+* Announcements page of zombie tags
+   * Allows players to know who is tagged
+* Track stuns per human
+   * Users suggested that maybe zombies could input stuns since humans might run
+   away
+* [NEW] Zombie stun timer
+   * Important for zombies to know when they are no longer stunned. Could be
+     integrated with registering stuns
+* [NEW] Display current stun time on home screen
+   * Important for all players to know, since this changes throughout the game
+   * [SIGNIFICANT] For clarity during gameplay
+
+The users said that they would probably not use video or audio chatting through
+the app. They were also against the idea of players registering as squads,
+saying groups tend to form in the moment when playing the game. They also
+mentioned that a messaging feature in the app could be nice, but was low
+priority, since current solutions like Facebook Messenger work fine.
+
+At the end of the session, the users identified the following features as high
+priority:
+* Display and scan feed codes
+* List of current humans and zombies
+* Important announcement information
+* Map of Claremont Colleges locations and mission locations
+* View your own location on map
+
+The users identified the following features as very useful, but of lower
+priority:
+* Announcement notifications
+* Ability to mark locations on the map
+* Location sharing
