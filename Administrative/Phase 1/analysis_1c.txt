@@ -1,0 +1,338 @@
+﻿Team: HvZ App
+
+
+Members: Santiago Rodriguez, Alex Hadley, Matthew Waddell, Kyra Clark
+
+
+Project 1C.3 — Elicitation Session Requirements Analysis
+        Report: https://github.com/alexhad6/HvZ-app/blob/master/Administrative/Phase%201/analysis_1c.txt
+        Primary author: Santiago
+Slip days: 1 (Santiago) (Santiago forgot to turn it in, though it was finished on time)
+
+
+Requirements Analysis
+
+
+For a list organized by feature, not priority, see here: https://docs.google.com/document/d/18qHi2_8F6LE2rxlUjYnn3yCerkZcWkR7JRCBPkTmQcE/edit
+
+
+[USERS] = This idea came from a suggestion or idea by the users during our Requirements Elicitation Session. 
+To see further details on which user said what, see the meeting notes here: https://docs.google.com/document/d/1pYI26Ps1jIxizjsSNAF72zXqXW7d-n8bNhIAPheYqrw. 
+All other requirements came from our brainstorming session (https://github.com/alexhad6/HvZ-app/blob/master/Administrative/Phase%201/reqts_1c.txt).
+
+
+Value: [HIGH / MEDIUM / LOW] = The tag for the relative value of the requirement, where HIGH is necessary for gameplay,
+				 MEDIUM is not necessity for gameplay but would make game play slightly less effective, 
+				and LOW is nice to have but not necessary
+Confidence: [HIGH / MEDIUM / LOW] = The tag for the relative confidence of our assessment of the requirement. 
+Difficulty: [HIGH / MEDIUM / LOW] = The tag for the relative difficulty to implement the requirement
+Priority: [MH (must have) / SH (should have) / NH (nice-to-have)] = The tag for the priority of each requirement. 
+									They are also listed in order of priority.  
+
+
+----------- = This line marks the cut off for what we will try to create in the first draft of the product
+
+
+1. Code is clear, readable, and documented so that mods can maintain and change the app in the future.
+   * Value: [HIGH] The app should be usable after we go
+   * Confidence: [HIGH]
+   * Difficulty: [MEDIUM] We should be doing this already, but this can be challenging and time consuming. 
+   * Priority: [MH] This is very critical to creating a good usable product for us, and for future editors.
+2. Mods can start, end, and reset an HvZ game.
+   * Value: [HIGH] Moderators need to manage the game. 
+   * Confidence: [HIGH]
+   * Difficulty: [HIGH] Lots of interfacing with servers and resetting all data in the app 
+   * Priority: [MH] The app should be usable over multiple games. 
+3. Players can register for the game and create an account.
+   * Value: [HIGH] We must be able to keep track of distinct players to play and get them in the system.
+   * Confidence: [HIGH]
+   * Difficulty: [HIGH] None of us have worked with databases before.
+   * Priority: [MH] We can’t run the game or test it without having players registered.
+4. Players can log into their accounts.
+   * Value: [HIGH] They must have access to their distinct account and stats
+   * Confidence: [HIGH]
+   * Difficulty: [MEDIUM] Integrating a verification system might prove to be difficult.
+   * Priority: [MH]: Need to keep track of players and have players access their own data.
+5. There is an admin login for the mods, with a different UI.
+   * Value: [HIGH] Mods need a way to manage the game.
+   * Confidence: [HIGH]
+   * Difficulty: [MEDIUM] There are a lot more options that we need to include for the moderators. 
+   * Priority: [MH] Mods must be able to edit the game in ways that players can’t
+6. Zombie players can scan Human QR feed codes from their phones. 
+   * Value: [HIGH] Brain currency is an essential part of the game, and the alternative to keeping track 
+		   of it on the app is using a complex honor system.
+   * Confidence: [HIGH]
+   * Difficulty: [MEDIUM] We must implement a QR code scanner, interface with a camera, and communicate it with the server.
+   * Priority: [MH] This is crucial to gameplay, and is too complicated to be managed by the mods outside of the app.
+7. Feed codes can be printed for those who don’t have the app.
+   * Value: [HIGH] Those without smartphones need to have feed codes, and some people might want a backup.
+   * Confidence: [HIGH]
+   * Difficulty: [LOW] We would simply need to have a way for players to print their QR code or number, without the app. 
+   * Priority: [MH] This is important to include non-app-using players.
+8. Zombies can purchase upgrades using brains.
+   * Value: [HIGH] Zombies collect brains to purchase upgrades, so this is essential functionality for the game.
+   * Confidence: [HIGH]
+   * Difficulty: [LOW] Implement a system to reduce brain currency and update status (if they are permanent upgrades).
+   * Priority: [MH] This needs to be in place in order to run the game, and would not be too hard to 
+                    implement once the brain transfer system is in place.
+9. There should be a system in place to transfer the brains (zombie currency) between other zombies.
+   * Value: [HIGH] Brain currency is an integral part of the game and would be almost impossible to track outside of the app.
+   * Confidence: [HIGH]
+   * Difficulty: [LOW] Changing the value of two players’ statuses.  
+   * Priority: [MH] This basic functionality needs to be in place for the game and is easy to implement.
+10. There is a list of players, displaying names and status as a human or zombie, accessible from the home screen.
+   * Value: [HIGH] Players like to see the numbers dwindle, and it is currently a main feature of the website that many players look at.
+   * Confidence: [HIGH]
+   * Difficulty: [MEDIUM] This would involve getting data from the server and displaying it in a clear way.
+   * Priority: [MH] This is an essential part of gameplay to know who is which role.
+11. [USERS] The number of humans remaining is displayed on the home screen.
+   * Value: [MEDIUM] An engaging and interesting feature for the home page.
+   * Confidence: [MEDIUM]
+   * Difficulty: [LOW] Take data from the server 
+   * Priority: [MH] It would be nice to summarize the player data, and this should not be too hard to implement after we get the player data.
+12. The visual interface is clear and organized, with tabs for each category of information 
+    (night, day, legendary, story, logistics; the stuff that goes in emails)
+   * Value: [HIGH] Many players would like to see information about the game in a more clear manner than currently implemented.
+   * Confidence: [HIGH]
+   * Difficulty: [HIGH] We must optimize the UI to be elegant and usable. We would have to fully understand the user psychology. 
+			It will probably take a few tries. It could be done simply easily, but done well would take a lot more work.
+   * Priority: [MH] Without this, the app could be unusable regardless of functionality.
+13. Players can easily find and view important information about the game (rules, logistics, mission information)
+   * Value: [HIGH] Users mentioned that this would be easier to navigate than the email. 
+		   It would be a nice way to find information in an uncluttered way.
+   * Confidence: [HIGH]
+   * Difficulty: [MEDIUM] Just need to display text and links, but we would have to make sure it is displayed in an easy manner.
+   * Priority: [MH] This feature would be useful for players, but information could be sent out in emails as it has been in the past
+14. Mods can update night mission, day mission, and legendary quest information.
+   * Value: [HIGH] Moderators need to do this in order to manage the game. 
+   * Confidence: [HIGH]
+   * Difficulty: [HIGH] Need an interface for the moderators, connection to a server, and ability to push these updates to the local apps of players. 
+   * Priority: [MH] Mods should manage the game
+15. The Mods will have access to adjust players status. They should be able to update legendary status for zombies, 
+    resurrect human players, and update zombie upgrades.
+   * Value: [HIGH] Mods need to be able to manage players during the game, especially if something goes wrong or needs to be changed manually. 
+   * Confidence: [HIGH]
+   * Difficulty: [MEDIUM] Provide an interface to change information in the database. 
+   * Priority: [MH] These tools will have and have previously been needed inM gameplay 
+16. There will be a detailed map of the 7Cs in the app.
+   * Value: [HIGH] Easy to locate specific places that are mentioned in the missions, and other important info like safe zones. 
+   * Confidence: [HIGH]
+   * Difficulty: [LOW] Just needs to display an image of a map, with zooming and panning.
+   * Priority: [MH] Gives players (especially new students) a layout of where events will occur.
+________________
+
+
+Cut-off for release 1.0: Everything above this cut-off line is critical to game play and an important feature that was requested by users. 
+These are features that are too valuable not to include, which is why these will be the requirements for the first release.
+
+
+
+
+17. Keep track of player statistics (zombie tags, human stuns, mission activity).
+   * Value: [HIGH] From a mod point of view, this is a good way to organize information about players.
+   * Confidence: [HIGH]
+   * Difficulty: [LOW] Easily to create graphs and counters
+   * Priority: [MH] This is important for gameplay and info that mods wish to have on hand
+18. [USERS] The default setting will be to not share your location, to protect the user’s privacy.
+   * Value: [HIGH] We must respect players’ privacy.  
+   * Confidence: [HIGH]
+   * Difficulty: [LOW] It is just turning location on or off.
+   * Priority: [MH] This is not difficult and critical to respecting their privacy.
+19. There is a tab that contains the story so far.
+   * Value: [HIGH] Help create an organized and coherent story; players don’t have to rummage through a bunch of emails to understand it. 
+			It should be more appreciated, and easily accessible. 
+   * Confidence: [MEDIUM]
+   * Difficulty: [LOW] Include another tab with this organized info
+   * Priority: [SH] Lots of value to the players that they currently don’t have a convenient way to access. Not very difficult to implement.
+20. [USERS] Players can easily access current mission information from the home screen, such as a summary of the mission (story and tasks),
+	    a map of the mission path, and the number of zombies and humans at the mission.
+   * Value: [MEDIUM] This was mentioned as a cool feature by users, but the game has functioned in the past without it. 
+		     Would add a lot of value in accessing things for missions.
+   * Confidence: [MEDIUM]
+   * Difficulty: [MEDIUM] Click (countdown?) to page with mission info, must be regularly updated. Might be variable based on mission type.
+   * Priority: [SH] Players expressed that this would be valuable for missions, although it isn’t the easiest thing to implement.
+21. If the players choose to allow locations services, which will be marked clearly when on, 
+    their current location will be marked on the map to allow them to navigate easily to a specific location.
+   * Value: [MEDIUM] Help new players not get lost, but they could still use Google Maps, etc.  
+   * Confidence: [MEDIUM]
+   * Difficulty: [MEDIUM] Making our own accurate location system/interfacing with an existing map application could be difficult,
+		          but tools probably exist to get location.
+   * Priority: [SH] This is dynamic, which is more difficult and less critical.
+22. Mods should also be able to send out notifications, reminders, and information on the missions. 
+   * Value: [HIGH] This will assist gameplay and organize the players
+   * Confidence: [HIGH]
+   * Difficulty: [MEDIUM] Send out quick notifications to all players 
+   * Priority: [MH] Mods must be able to contact their players in a easy way
+23. The app should provide helpful notifications to players. (The notifications will provide updates, announcements, 
+    and reminders for missions, as well as helpful information, and reminders from Mods.)
+   * Value: [HIGH] Players should receive up-to-date info from the mods. 
+   * Confidence: [MEDIUM]
+   * Difficulty: [MEDIUM] Interface with phone system and should be quick. 
+   * Priority: [SH] Would accelerate communication between mods and players.
+24. The notifications should be customizable to avoid spamming players. 
+    (Including mission-specific notifications and notifications for when humans turn to zombies.)
+   * Value: [HIGH] Some players do not want to be spammed with notifications.
+   * Confidence: [HIGH]
+   * Difficulty: [MEDIUM] Each notification will have to be able to be grouped by a definable category.  
+   * Priority: [SH] The players would be overwhelmed with notifications otherwise. 
+		    The mods can choose to send out only crucial notifications if customization is not implemented.
+25. Players can report that they are attending a mission (perhaps through a QR code scanning).
+   * Value: [MEDIUM] This is a useful feature for the mods, and it can be integrated with players receiving mission-specific notifications
+		     and a special home screen.
+   * Confidence: [HIGH]
+   * Difficulty: [LOW] Just need to track this on the player profiles.
+   * Priority: [SH] The value for the mods and the low cost makes it worthwhile.
+26. The map will show important general information like marked safe zones, missions, and quest locations. 
+   * Value: [HIGH] Players would greatly benefit from being able to view important information related to their tasks on a map.
+   * Confidence: [HIGH]
+   * Difficulty: [HIGH] Will need to dynamically overlay key places on the map based on changing data from the server. 
+		        Must update to all players quickly and accurately.
+   * Priority: [SH] This will assist gameplay
+27. Mods can adjust important locations on the map, such as the spawn location, and players can view these locations.
+   * Value: [HIGH] Creates less confusion gameplay
+   * Confidence: [HIGH]
+   * Difficulty: [HIGH] We must give mods executive authority to change map and update information to all players. 
+   * Priority: [SH] This would assist gameplay, but is very difficult to implement on a first release.
+28. [USERS] Players can access descriptions of active legendary upgrades, with the owner of the upgrade displayed.
+   * Value: [MEDIUM] It is important to understand what the upgrades are.  
+   * Confidence: [MEDIUM]
+   * Difficulty: [LOW] It is just a page with text on it.
+   * Priority: [SH] Easy to implement and the players need to have a way to view legendary upgrades.
+29. Have a list of legendary upgrade holders.
+   * Value: [MEDIUM] It is important to know who is a legendary, but the legendary status could also be included in the main player list.
+   * Confidence: [MEDIUM]
+   * Difficulty: [LOW] It is an easy title or list to make.
+   * Priority: [SH] A separate list of legendaries would be useful, but this information could be shown in the player list.
+30. The human and zombie players should view a slightly different UI upon login, such that a human cannot report a zombie feedcode, etc.
+   * Value: [MEDIUM] There are some things specific to players that it would be nice for other players not to see
+   * Confidence: [MEDIUM]
+   * Difficulty: [LOW] If we can easily access the account’s status, it could be a simple switch.
+   * Priority: [SH] This would make the game run more smoothly and is not too difficult to implement.
+31. [USERS] Automated emails for players without the app.
+   * Value: [MEDIUM] Particularly if the notifications are moved to the app, players without the app need a way to view notifications. 
+		     And an automatic method for doing this would be useful to the mods.
+   * Confidence: [MEDIUM]
+   * Difficulty: [MEDIUM] It could be difficult to implement an automatic email sender. 
+   * Priority: [SH] This is an important feature, but they could write the updates themself.
+32. This email list should be able to opt into for all players (It will include general updates that would have been provided via the
+    notifications on the app.)
+   * Value: [HIGH] Allows for users to not use the app to still play the game.  
+   * Confidence: [HIGH]
+   * Difficulty: [LOW] We just need to record who gets the email, and save their address. 
+   * Priority: [SH] This would be easy, and would likely happen either way.
+33. Mods can save data from the current game.
+   * Value: [LOW] This is probably a useful feature for moderators, but we unfortunately have not been able to interview moderator users yet.
+   * Confidence: [LOW]
+   * Difficulty: [HIGH] Interfacing with the database and saving lots of organized information  
+   * Priority: [NH] We do not know when is a situation where a mod would want to look at previous game’s info
+34. [USERS] If in a hurry, the human who was turned should be able to “self report” that they were turned into a zombie
+            instead of inputting a feedcode, i.e. during the final mission.
+   * Value: [LOW] This would be a helpful feature in a rush for players and for a nice feature during the final mission.  
+   * Confidence: [HIGH]
+   * Difficulty: [MEDIUM] There is a risk if there is a discrepancy when communicating with the server if zombie status is double reported.
+   * Priority: [NH] This is useful for keeping track of numbers, but not super valuable and possibly difficult to implement.
+35. [USERS] Current zombie stun timer length is displayed on home screen for all players.
+   * Value: [MEDIUM] This is an important piece of information, especially if we are reducing the number of emails.
+   * Confidence: [MEDIUM]
+   * Difficulty: [LOW] It would be pretty easy to display and update this information. 
+		       There could be a difficulty if the stun timer differs by area.
+   * Priority: [NH] This would be convenient, but this information could be placed in other locations in or outside of the app.
+36. [USERS] During important and final missions, there should be a clear and active display of the number of human and zombie players.
+   * Value: [LOW] Nice to have, but players can see it with their eyes.
+   * Confidence: [HIGH]
+   * Difficulty: [LOW] A simple counter, but must stay up-to-date quickly
+   * Priority: [NH] Not necessary for game play and does not add substantial value
+37. [USERS] There should be a clear banner with the countdown to the start of the next mission on the home screen.
+   * Value: [LOW] Players can keep track of it in other ways, but they did think it was a cool idea.
+   * Confidence: [HIGH]
+   * Difficulty: [LOW] A timer to a specific time. Could click to reach current mission.  
+   * Priority: [NH] Since the mission time is announced elsewhere, players could keep track of this themselves.
+38. Human players can report that they stunned a zombie at any time, which will be recorded in their human player stats and status.
+   * Value: [LOW] This is not a feature that has been used before, but could be a new cool feature for human players.
+   * Confidence: [HIGH]
+   * Difficulty: [LOW] This would be a simple counter as part of player status.
+   * Priority: [NH] Not very useful, even if it is easy to implement.
+39. Players have their own profile page to view their statistics and status.
+   * Value: [LOW] It would be nice to view your own statistics, or change your personal info. 
+   * Confidence: [MEDIUM]
+   * Difficulty: [LOW] Allowing players to view their own profiles/player point of view won’t be too much work.
+   * Priority: [NH] Allowing a player to view their owns stats is not necessary
+40. [USERS] View location of active moderators, in case of emergency.
+   * Value: [MEDIUM] Good for emergencies, but has not been needed in the past.  
+   * Confidence: [LOW]
+   * Difficulty: [HIGH] Accurately update the location of a specific player and shown to all other players 
+   * Priority: [NH] This is not something that was needed previously. 
+41. If they wish, players can pin locations of zombies or humans to report if they see any large groups of other players. 
+   * Value: [LOW] Players liked this feature, but they said that other features of the map should require more importance.
+   * Confidence: [HIGH]
+   * Difficulty: [HIGH] Dynamically include pins in map that all players must see regularly. 
+   * Priority: [NH] Can be done with a substitute messaging app. Required to be dynamic so is a high difficulty feature with low
+                    enhancement to the gameplay.
+42. [USERS] When stunned, the zombie can start a timer in the app, with the up-to-date stun time, which is marked clearly for them to see.
+   * Value: [LOW] Helpful, but most smartphones have a simple timer app already.
+   * Confidence: [HIGH]
+   * Difficulty: [LOW] Start a timer.
+   * Priority: [NH] Adds some fun to the game, but it can easily be done without.
+43. Zombies can send out a custom message when they scan a feed code (maybe to the all-player chat)
+   * Value: [LOW] It is a nice feature of the website, but definitely not necessary or highly valued by the players.
+   * Confidence: [HIGH]
+   * Difficulty: [LOW] We must implement a simple request for a string to send out.
+   * Priority: [NH] Could contribute to jokes between humans and zombies but not necessary and can be easily 
+                    substituted w/ outside messaging apps.
+44. [USERS] Day missions and quests are broken up into specific tasks, and players can pin or claim a particular task.
+   * Value: [LOW] Helpful to organize mission tasks, but humans could also do this on their own without it being a specific feature.
+   * Confidence: [HIGH]
+   * Difficulty: [MEDIUM] A part of the aforementioned mission page, but must be shared in an organized way with the other players
+   * Priority: [NH] This would be useful, but can be done by players on their own and could be difficult to implement.
+45. The players will have the option to share location information privately, will a small selected group, or publicly to all players. 
+   * Value: [LOW] Helpful, but not necessary 
+   * Confidence: [HIGH]
+   * Difficulty: [HIGH] Accurately share current location, as well as privately send it to a group of people, 
+                        which should be displayed on the map. 
+   * Priority: [NH] This dynamic feature will be difficult to implement and not add significant value.  
+46. There will be another chat to communicate directly to the Mods. This chat will feature an anonymous option, 
+    so the players can report anonymous questions or concerns. 
+   * Value: [LOW] This would be a useful feature, but it can be done through a messenger/discord chat or email.
+   * Confidence: [LOW]
+   * Difficulty: [MEDIUM] We would have to implement some sort of communication functionality, although it 
+                          could be simpler than the larger group chats.
+   * Priority: [NH] It is valuable to be able to contact a moderator in the case of an emergency, but it can be done other ways.
+47. View who tagged which zombies through an ancestry tree.
+   * Value: [LOW] Users had not heard of this and it is not vital to the game, but they thought it would be a cool feature.
+   * Confidence: [HIGH]
+   * Difficulty: [MEDIUM] A variant of a tree or linked list possibly, but could be complicated with resurrections,
+                          and presenting in an elegant way.   
+   * Priority: [NH] While this is cool, it is not part of gameplay
+48. [USERS] There will be three large chats: one for the zombies, one for humans, and one for all players.
+   * Value: [LOW] Messenger/Discord already exists, but an automatically created group chat could be helpful.
+   * Confidence: [MEDIUM] 
+   * Difficulty: [HIGH] Something might exist to manage this, but if not this would be difficult to implement. 
+			It would take a lot of work at the very least.
+   * Priority: [NH] It is nice to have a convenient chatting feature, but these things already exist and might not be 
+ 		    worth the effort to create one ourselves.
+49. [USERS] The chat should also support picture and video files. 
+   * Value: [LOW] Just like the basic chat feature, this can be done over other communication channels.
+   * Confidence: [HIGH]
+   * Difficulty: [HIGH] If we had to create a chat feature, it would have to support more than strings. 
+   * Priority: [NH] Has low value and high difficulty. Too much focus on this feature would dedicate too much time 
+		    to chat capabilities when this app is not primarily for chatting.
+50. [USERS] Players get booted from human chat when they get turned into zombies.
+   * Value: [LOW] People can leave chat on their own.
+   * Confidence: [MEDIUM]
+   * Difficulty: [LOW] If we have a chat, it should be easy to remove a player.  
+   * Priority: [NH] Players could leave the chat on their own, and chat itself could be done through other means.
+51. Humans have the option to send one last message to the human chat.
+   * Value: [LOW] Humans can send their message to the all-player chat if this is not implemented.
+   * Confidence: [HIGH]
+   * Difficulty: [LOW] If we have a chat, this could be a simple prompt.  
+   * Priority: [NH] This is a nice feature, but is not necessary.
+52. View other statistics such as meals per hour and dorm representation.
+   * Value: [LOW] None of the users we interviewed cared about this.
+   * Confidence: [HIGH]
+   * Difficulty: [MEDIUM] Annoying to implement, keeping track of lots of data and making clear visualizations for them.
+   * Priority: [NH] This was not highly asked for by the users
+53. [USERS] Website component to mirror the app online.
+   * Value: [MEDIUM] Provides a way for users without smartphones to access the app information.
+   * Confidence: [MEDIUM]
+   * Difficulty: [HIGH] We would have to create a functioning website on top of the app. 
+   * Priority: [NH] A substantial amount of work would be added to the project
