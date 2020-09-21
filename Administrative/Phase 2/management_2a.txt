@@ -1,4 +1,4 @@
-﻿Team: HvZ App
+Team: HvZ App
 
 Members: Santiago Rodriguez, Alex Hadley, Matthew Waddell, Kyra Clark
 
@@ -19,11 +19,9 @@ Saturday night, or the day before each meeting.
 
 Kyra will take notes for each meeting and post them to the Google Drive.
 
-
 We will set up a shared Google Drive
 (https://drive.google.com/drive/u/0/folders/0AMTijIrnYuwvUk9PVA) for all
 planning and management which will be linked to in our GitHub repository.
-
 
 Each task/deliverable will be equally divided up among the team members, which
 will be reviewed each Monday from the schedule. We will work on each of our
