@@ -1,0 +1,34 @@
+﻿Team: HvZ App
+
+
+Members: Santiago Rodriguez, Alex Hadley, Matthew Waddell, Kyra Clark
+
+
+Project 2A.1 — Management Plan
+        Schedule: https://docs.google.com/spreadsheets/d/1NHfnVzkm5ZNi_9HW6zRVt3hSfMJsqipz9blpfE9isns
+Plan: https://github.com/alexhad6/HvZ-app/blob/master/Administrative/Phase%202/management_2a.txt
+        Primary author: Alex
+
+
+Every Monday from 2:30–3:30 (most often) or 3–4 (if necessary) we will meet to review the plan for the week.
+
+
+We will use the lab on Fridays for checking in before we turn in the deliverable on Sunday.
+
+
+We will rotate each week who will make the agenda for the meeting, which can then be edited by the other team members. The agenda should be posted by Saturday night, or the day before each meeting. 
+
+
+Kyra will take notes for each meeting and post them to the Google Drive.
+
+
+We will set up a shared Google Drive (https://drive.google.com/drive/u/0/folders/0AMTijIrnYuwvUk9PVA) for all planning and management which will be linked to in our GitHub repository.
+
+
+Each task/deliverable will be equally divided up among the team members, which will be reviewed each Monday from the schedule. We will work on each of our portions throughout the week. At our meeting on Friday, we check in on how we are doing and plan what else needs to be done before we turn it in on Sunday.
+
+
+We are each expected to attend all the meetings on time and follow the expectations laid out in the management plan.
+
+
+If anything goes wrong, notify the team that day through our Facebook Messenger chat.
