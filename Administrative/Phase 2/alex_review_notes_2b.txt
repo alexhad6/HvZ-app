@@ -1,0 +1,109 @@
+﻿Team: HvZ App
+
+Members: Santiago Rodriguez, Alex Hadley, Matthew Waddell, Kyra Clark
+
+Project 2A.2 — Alex’s Review Notes of Breakout Room 5’s Architecture
+
+GitHub: https://github.com/alexhad6/HvZ-app/blob/master/Administrative/Phase%202/alex_review_notes_2b.txt
+
+Primary author: Alex
+
+--------------------------------------------------------------------------------
+
+Breakout Room 5’s Architecture
+• https://docs.google.com/document/d/1X3xKsZtHtATTnzxuSo8FQFOlDxgHKx59OLNfAVCJH6w
+
+App Name
+• It seems like the team has not decided on an app name yet. This is 
+  understandable, but a good name will help identify the app and make it unique.
+
+Product Description
+• This seems like a pretty useful app since it could save people money. Does
+  something like this already exist, and if so, what would this app add? If not,
+  why do you think it doesn’t exist yet?
+
+Components
+• App
+    • I’d like to hear more about how authentication will work.
+    • Preferences section trails off.
+    • Does the user have to input the amount for each transaction? I am worried
+      about this taking too long or being inconvenient at a store.
+    • Why did you choose AWS and React Native over other options?
+        • I personally researched Firebase for our HvZ app, and I believe it can
+          also manage all of this.
+    • Does AWS cost money? If so, how will it be paid for? If not, what usage
+      limits are there?
+        • How many users are you planning to have?
+• Card optimization algorithm
+    • I like the idea of being able to modify the optimization function without
+      needing an app updated. However, I am concerned about people wanting to
+      use the app offline or with a bad connection. (For example, if they have a
+      limited data plan, or if they are shopping somewhere with low cell
+      service.)
+    • Maybe the algorithm could be updated if they open the app with a good
+      connection.
+    • I am a little concerned about the feasibility of the card optimization
+      algorithm. It is mentioned that creating this algorithm is “definitely
+      doable,” but there is no justification.
+• User storage
+    • What information does Plaid return to the app?
+    • Is Plaid able to connect to the user’s credit card account and get their
+      transaction information? Or does it just connect to their bank account?
+    • Is Plaid able to determine credit card statistics, such as APR and
+      rewards?
+    • If not, then what exactly does Plaid do in this context? Why is it needed?
+      This could be explained better.
+    • Why use a NoSQL database as opposed to other common formats (like MySQL)?
+• Card benefits information
+    • I am concerned about how you will ensure that the card benefits
+      information will be complete, accurate, and up to date.
+    • Also, the normalization component seems difficult to implement. Since this
+      is the core feature of the app, this seems like a major feasibility
+      concern.
+• Payment linking component
+    • Is it possible to connect to external wallets? If not, this is a
+      feasibility concern.
+    • If this is not implemented, would the app still be able to automatically
+      track payments from the physical card? Maybe through Plaid?
+• Personal preference survey function
+    • Will the user be able to change their survey answers later?
+
+Interfaces
+• It seems like at least some of these connections should go both ways.
+• Wouldn’t the user database need to be able to send information back to the
+  app?
+• Wouldn’t Plaid need to send information to the app?
+• I think you should add more details about some of the subcomponents of the
+  app, such as authentication.
+• How does Plaid function? Does it communicate with other external services,
+  such as the credit card company? How is this done?
+
+Testing
+• I agree with the importance of usability. I feel like people won’t want to use
+  this app unless it is convenient and provides significant benefits. Otherwise
+  it might be more convenient to just stick with one card.
+• I would also add some tests to see if the optimization function is correct.
+  Otherwise people could lose money.
+
+Architecture diagram
+• Some of the connections do not match the interface descriptions.
+    • For example, Plaid to App is the reverse direction on the diagram.
+• What is “Cloud” that connects to the app? This was not mentioned as a
+  component before. Maybe this is supposed to come from the Card Optimization
+  Function?
+• Again, shouldn’t the user database connect back to the app to provide user
+  profile data?
+• Are there any significant external components, such as the credit card
+  provider (maybe Plaid connects to this) or an authentication server?
+
+Design prototype
+• Why is there an icosahedron in the corner?
+• Is this the logo? If so, what does it mean?
+    • Related to app name/branding
+• The design prototype seems to be on Android. Would it also have iOS support?
+
+Stories?
+• Maybe include some stories for important functions. For example:
+    • For registering and filling out the survey.
+    • For logging in.
+    • For making a payment or determining which card to use.
