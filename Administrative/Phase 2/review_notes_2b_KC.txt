@@ -1,0 +1,75 @@
+Team: HvZ
+
+    Members: Kyra, Alex, Santiago, Matthew
+
+    Project: 2B.1 - Review Notes for team Breakroom 5
+       Product proposal: https://github.com/alexhad6/HvZ-app/blob/master/Administrative/Phase%202/review_notes_2b_KC.txt
+    Primary author: Kyra
+
+    Architecture Review Notes
+
+* Overall
+    - There is a BIG problem of naming consistency. Sometimes things are called databases, 
+      sometimes not. You really need to stick with one name for a component to help the 
+      reader know what is going on. Or you need to get a better understand of what each
+      individual part acutally is. 
+    - You could use some better organization. 
+    - In general, everything felt very vague. I would go into more detail explaining each
+      component and how it connects to everything else. 
+
+* App
+    - built with Reach Native & AWS Amplify suite
+    - I noticed you wrote a little bit about this in terms of feasibility, but I think
+      you should really go into more detail about what it is, exactly how you plan on using
+      it, and how it connects to the rest of the component. 
+    - Authenticiation Page:
+        ~ You should really go into more detail. Authentication can be really complicated and 
+          you should develop a plan. Will you use external authentication? How? Where is it
+          stored? How do you know it is secure? Include some of these details here. 
+
+* Card Optimization
+    - "We do not know how we will go about making the function yet"
+        ~ You proably should at least have a small plan for this now
+        ~ You say this will be locatede in AWS. Again, what is this? how does it connect? 
+    - "Our plan for an initial algorithm is to use a utility function which will run each 
+      card thourh a uility function based on user's preferences."
+        ~ This planning is circular. Do you see the potential problem?
+        ~ What preferences? How do you plan on getting them and implementing the algorithm?
+        ~ You said it yourself, this is the meat of your product. So, this description 
+          shouldn't be vague. Go into more detail on how you will go about perfecting it, 
+          especially since you outlined that as a potential challenge. 
+
+* User Storage
+    - Explain "API, like Plaid". What are these things? How do they work? How do they 
+      connect? How do you know it is secure?
+    - How to the Plaid database and Plaid connect with each other and to the app? 
+
+* Card Benefits Info
+    - "this is where we store..." Where?
+    - This is a crucial part of your architecture, yet I have no idea what it acutally is. 
+        ~ What is it? Software? Code? UI? Algorithm? etc. 
+        ~ How do you get the info from the users or for the updated rewards automatically?
+
+* Payment Linking
+    - much more detail is needed here. It is written very confusing. You need to clarify 
+      what is going on here. 
+    - "if we find an API" -> Now is the time to find one. 
+
+* Personal Preference Survey
+    - You mention a UI profile but you haven't explained what that is yet. 
+    - Is this on the app or the cloud? 
+    - the "cloud" you mention is also only very loosely defined. 
+
+* Interfaces
+    - This title is super unclear. Consider breaking this section up and calling this part
+      "Connections" or something and the other "Testing"
+    - You mention "CRUD Operations," you you haven't described what that is at all yet. 
+    - No card optimizaiton connection or cloud connection explained. 
+    - Your diagram and/or connections sections is missing connections. You should describe
+      every component connection. 
+
+* Design Prototype
+    - This is only a picture. I have so many questions. How? Who? What? What did you learn? 
+      Feasible? 
+    - You've GOT to explain this more. You cannot just include a picture and expect me to 
+      know what you did, its purpose, and what is going on. 
