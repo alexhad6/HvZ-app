@@ -1,0 +1,82 @@
+﻿Team: HvZ App
+
+
+Members: Santiago Rodriguez, Alex Hadley, Matthew Waddell, Kyra Clark
+
+
+Project 2B.3 — Review Report
+GitHub:        https://github.com/alexhad6/HvZ-app/blob/master/Administrative
+        /Phase%202/report_2b.txt
+        Primary author: Kyra
+Review Report for Team TBD
+
+
+PRODUCT DESCRIPTION
+* We were unsure of what it meant that the idea was not feasible. It was described as the direct pay from the app not being feasible, but the card selection algorithm would be feasible. We decided it should be made more clear what they mean in this section.
+   * [QUESTION], [COMMENT]
+
+
+COMPONENTS
+* In general, you should also go into more detail about how the app and its core features will be implemented using AWS and React Native. For example, maybe link to web pages that discuss how to make a basic app using React Native, or how to implement authentication using AWS. This is crucial to evaluating the feasibility of the project.
+   * [ISSUE], [SHOULD-FIX]
+* Authentication should be discussed in greater detail. An authentication page is mentioned within the app component, but there are no details about how authentication itself will be implemented. Identity verification is especially important for this app since personal financial information can be accessed.
+   * [ISSUE], [MUST-FIX]
+* You should go into more detail regarding the implementation of the card optimization algorithm. It makes sense that the exact algorithm is not known yet, but in our review meeting we got a more detailed explanation of the utility function. This more detailed explanation should be included in the architecture. This is an important issue since the algorithm is the app’s core feature, and it must be possible to evaluate its feasibility.
+   * [ISSUE], [SHOULD-FIX]
+* It is mentioned that the card optimization algorithm “will be located in a headless cloud function in AWS.” However, there is no explanation of what a cloud function is or how it will be implemented. AWS Lambda and its features should be discussed explicitly.
+   * [ISSUE], [SHOULD-FIX]
+* It is stated that the card optimization algorithm will be implemented as a single function. However, it sounds like a complex feature. You should discuss why it can be implemented as a single function, or if it will require multiple functions or a more complicated programming structure, such as a class.
+   * [QUESTION / ISSUE], [COMMENT]
+* It is mentioned that the card optimization algorithm is “definitely doable” without justification. You should clarify and explicitly list your justification. 
+   * [QUESTION / ISSUE], [SHOULD-FIX]   
+* Card benefits component is stored in the AWS database, but this is not clear from your description. The method of input is also not made explicit. Is the input going to be manual, done with web scraping or some other undefined method? This issue is important because optimization algorithms depend on this data being valid.
+   * [QUESTION / ISSUE], [SHOULD-FIX]   
+* User Storage depends on what type of information can be extracted from Plaid, which is currently unspecified and unknown. From the document, there is not clear information on Plaid, and its interactions with the rest of the architecture are not clear. 
+   * [QUESTION / ISSUE], [MUST-FIX]   
+* NoSQL Database did not have its type specified. Specifying the type of database needed would give insight into your app interactions needs and how the type of data you are storing relates to each other. The AWS selection is without specific justification giving the impression such selection may be without research. However, since functionality likely does not hinge on type of database this issue is not so severe.
+   * [QUESTION / ISSUE], [COMMENT]   
+
+
+INTERFACES
+* In general, you are only providing information on how information travels through your component in one direction. You should discuss how all the information is passed back and forth between any given component. Furthermore, you should be more clear on the arrows to be more descriptive if it is a one-way or two-way connection. 
+   * [ISSUE], [MUST-FIX]
+* Some connections between components are missing. It is crucial that you understand and describe how every component is connected. For example, you could be more clear on how and where the Card Optimization Algorithm is connected with the other components, or what connects to the Cloud and how.
+   * [ISSUE], [MUST-FIX]
+* You mention “CRUD” operations, however, you do not discuss what they are. You should be more specific into how you are using it for each component.   
+   * [QUESTION], [SHOULD-FIX]
+
+
+TESTS
+* There was a sign-in service mentioned in the testing section, yet it was not included as part of the architecture. This needs to be included either as a component or as part of a component (needs mentioning as part of the architecture somewhere). It was demonstrated that it would not be too difficult to implement a sign-in service with the technology you plan on using, but it is important to keep it in the architecture rather than in your head.
+   * [ISSUE], [SHOULD-FIX]
+* Security was mentioned for the application in a discussion about testing for security. The team expects AWS and Plaid to handle security issues, but it is not listed in the architecture as a component or as part of a component. This needs to be explicit so that they correctly plan around implementing it later on.
+   * [ISSUE], [MUST-FIX]
+
+
+DIAGRAM
+* The arrows and connections between components should be more clear. Consider which connections are one-way and which are two-way. These connections should be described and made clear. 
+   * [ISSUE], [MUST-FIX]
+* It appears that some components, that were listed in the Components or Interface sections, were missing in this diagram. Perhaps this was just confusion caused by the aforementioned naming problem, or you should review your diagram and confirm that every connection and component is included. For example, the Personal Preference Survey is missing. 
+   * [ISSUE], [MUST-FIX]
+* It could be useful to include and clarify which components are internal with the other components. Also, you could mention which are an external tool that you will be implementing into your app. This could make the organization and grouping of the components in the diagram more clear and intuitive. 
+   * [ISSUE / QUESTION], [SHOULD-FIX]
+
+
+PROTOTYPE
+* This is an impressive prototype, however, you must include more detail on how you made this prototype. Describe how you make it in React, why you made it, and what this early prototype can do. You should also describe what you learned about your architecture from making this prototype. Did it affect your decisions about components or architecture in any way?  
+   * [ISSUE / QUESTION], [SHOULD-FIX]
+
+
+OVERALL THOUGHTS
+* We wondered why Plaid would be needed in the architecture if the direct payment from the app were not possible. It turns out that Plaid would provide card information crucial to the card selection algorithm. We felt this was unclear in the architectural description, and we decided there should be a component description of it.
+   * [QUESTION], [MUST-FIX]
+* We felt that there was not enough description of how the components interacted with each other. There should be user stories to outline this process for the functions of the app, and the descriptions of connections should be more detailed. This is important for making the architecture explicit in how it is able to meet your requirements for the project.
+   * [ISSUE], [MUST-FIX]
+* There is very little naming consistency throughout your architecture. This creates a very confusing experience for your readers. You should standardize the names you use, in order to make your overall process and diagram more clear. This will allow readers to look back and find any information throughout your architecture easier. 
+   * [ISSUE], [MUST-FIX]
+
+
+DISPOSITION
+* Approved with Required Changes
+* Through our meeting, we felt like you knew what you were doing and talking about, but what you wrote did not reflect that. In general, your report seemed rushed. There were many important pieces that were missing that it would be very difficult to fully approve this project if we only had the report to understand your architecture. From the meeting, we got a much better sense that you understood your architecture and design, but this must be made clear in the document to be approved. Fundamental reorganization of architecture is not required, but major changes are as important sections of the document were missing.
+* From the perspective of a peer reviewer on this project, we believe that your team knows what they are doing, but they struggled to capture their ideas fully and clearly. But, with enough time, they will definitely be able to adjust their architecture to be completely acceptable, which includes adding the missing sections and making their report overall more clear.
