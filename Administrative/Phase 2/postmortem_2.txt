@@ -1,0 +1,154 @@
+﻿Team: HvZ App
+
+Members: Santiago Rodriguez, Alex Hadley, Matthew Waddell, Kyra Clark
+
+Project 2C.2 — Postmortem Analysis
+    Report: https://github.com/alexhad6/HvZ-app/blob/master/Administrative/Phase%202/postmortem_2.txt
+    Primary author: Alex
+
+--------------------------------------------------------------------------------
+
+                               Phase 2 Postmortem
+
+In this phase of the project, we created a preliminary architecture proposal for
+our project, and had it reviewed by multiple sources in order to create a final
+and fully comprehensive architecture proposal and plan.
+
+Phase 2 Minutes and Agendas
+    https://drive.google.com/drive/folders/1cjti_b-r1bfP7NxNs9LsHhyE_mLDYTRw
+
+Phase 2 Management Plan
+    https://docs.google.com/spreadsheets/d/1NHfnVzkm5ZNi_9HW6zRVt3hSfMJsqipz9blpfE9isns
+
+Below is a list of the things we learned, what worked well and what has room for
+growth in our process.
+
+Creation of the Initial Architecture
+• This is the very first initial brainstorming of what our architecture is.
+• We did this via a google jamboard, which allowed for better collaboration.
+• From our architecture, we came up with initial questions to ask.
+• In retrospect, it is possible that this is the meeting we should’ve had
+  earlier, in order to give us more time for the large amount of work that this
+  part of the project would entail. 
+• However, for the most part, this meeting served its purpose well, which was to
+  get us started on thinking about our architecture to prepare for a future
+  meeting with the professor.
+
+Initial Refinement of the Architecture
+• The refinement involved making decisions based on initial brainstorming and
+  professor’s notes. 
+• We organized the questions we wanted to ask the professor, then scheduled a
+  brief meeting to pitch our ideas and receive initial feedback.
+• Because we were prepared when we reached out to the professor, we were able to
+  get the most out of that short meeting. 
+• This meeting was helpful because the professor gave us insight on the next
+  steps to take to develop our architecture. 
+• From here, we revised our previous ideas and sketches and were able to divide
+  up work for future development. 
+• Looking back on this part of the project, we learned that we need to improve
+  the dates and organization of our documents. While we did get better at taking
+  notes on every meeting, some of these notes were difficult to find. 
+
+
+Component Design Analyses
+• We constructed a list of components, then met with the professor to get
+  further clarification on what to expect in an architecture proposal. We
+  learned that this involved much more than we were expecting, including
+  Stories, Connections, and a Diagram.  
+• Even though we did not know until this point exactly what our expectations
+  were, we did what we could to prepare ourselves for each meeting. This set us
+  up well when we did understand what to do. 
+• Once we knew what to do, we were able to put it together from all of our
+  initial brainstorming and documents. 
+• From here, we outlined questions for each component, and then divided up
+  research for everyone to work on separately and write up in the draft. 
+
+Creating Draft Architectural Description
+• This took a lot of time and work.
+• We worked very hard to write thorough and well-thought out architecture, but
+  because of the quantity of work, we were forced to use a slip day to make sure
+  everything was turned in on time.
+• Not only was it a lot of work, but we also wanted to be sure that everyone
+  understood each component well and everyone had a chance to fully review the
+  draft. 
+• In retrospect, we are happy with the quality of the work that we did turn in.
+  Because of the amount of time and effort we put in at the beginning, future
+  phases of the project were less work. 
+
+Studying for Your Design Review
+• To prepare for the design review, we did most of this work completely
+  individually. There was a lot of stress in the beginning because we nearly did
+  not receive their architecture in time for the meeting on Friday. 
+• We each read and reviewed the architecture on our own. 
+• We met before the review to divide up the roles of the meeting and set
+  expectations for what each of us should be thinking about during the meeting.  
+• We were careful not to share any thoughts about their architecture before the
+  meeting, in order not to create biased opinions before the meeting. 
+
+The Design Review Meeting (as a Reviewer)
+• We did not record each issue as a must-fix, should-fix, or comment during the
+  meeting. This was in part because we did not see an example in class.
+• We could have more thoroughly read each requirement of the meeting. This meant
+  that we did not know that we were supposed to put a date, and attendees at the
+  beginning of the notes. 
+• We did not summarize the meeting at the end. We should keep this in mind for
+  future reviews.
+
+The Design Review Meeting (as a Reviewee)
+• We tried to answer their questions without spending too much time justifying
+  our original approach. Particularly when the comment was a criticism, we tried
+  to simply take what they said into account rather than defending our decisions.
+  This was a little tricky in the beginning, but we did a pretty good job.
+• We took some notes in the form of Google Doc comments on our architecture
+  during the meeting, just to help process what they were saying. This could
+  have also been a helpful resource if we want to look back on exactly what was
+  said at the meeting in addition to the meeting report. 
+
+Writing up the Review Report and Working the Issues
+• We divided up the work of the meeting using the scribe’s notes from the review
+  meeting. 
+• This part of the project went very smoothly. 
+• We were all very engaged with the review meeting, which allowed for everyone
+  to have the ideas fresh in their minds. This means that we came to a consensus
+  easily and wrote up our work effectively. 
+
+Revising your Architecture to Address the Issues
+• Because we did so well in our initial architecture, there was very little
+  pointed out to us that we needed to change.
+• This allowed us to focus our time less on issues and more on optimizing our
+  architecture through more in-depth research that we did not have time to do
+  during the preliminary draft. So, even though we did not need to, we still
+  created fundamental change in our architecture that greatly improved its
+  performance. 
+• Because this week of work aligned with midterms season, it was very difficult
+  for everyone to find the time to work on this project. However, through
+  collaboration, we created shared expectations for how much work we should try
+  to get done before each meeting. Despite the stressful time, we were still
+  able to productively improve our architecture from the revisions. 
+
+The Planning and Ongoing Management of these Activities
+• After looking at the preliminary architecture assignment, we found that we had
+  questions about what we were supposed to do.
+    • Add a task to the management plan that we need to read the assignment by a
+      certain date for the next week.
+    • If we have questions, we can ask them much earlier. This will allow a more
+      productive Monday meeting.
+• We should update our management plan more regularly throughout the phase. We
+  tried to update it more this time, but we often scheduled meetings or assigned
+  tasks without immediately updating the plan.
+• Although we improved on our notetaking from the previous phase, we can still
+  improve on the amount of notes we take and dating them to find later. 
+• We made new plans as we went along, according to if we need more time to
+  complete a project or if we have specific questions to ask before moving on. 
+
+The Overall Project as an Educational Exercise
+• We did better in this phase (as opposed to phase 1) of splitting up and
+  parallelizing work where possible.
+    • We also figured out a method where someone would finish up doing a final
+      task on a document, then text the group, and the other members would have
+      an hour or two to review the changes before the primary author submitted.
+    • This eliminated the need for another review meeting.
+• We should improve dating and organization of the files in our shared Drive.
+    • We tried to improve this by labelling the documents by section, although
+      when looking back during the post mortem meeting, we found that a few
+      documents were hard to find.
