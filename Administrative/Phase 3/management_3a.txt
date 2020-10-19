@@ -1,0 +1,48 @@
+Team: HvZ App
+
+
+Members: Santiago Rodriguez, Alex Hadley, Matthew Waddell, Kyra Clark
+
+
+Project 3A.1 — Management Plan
+        Schedule - Kyra: https://docs.google.com/spreadsheets/d/1arkFjyq_3X2i0Vrl5pIBgeLd6ppV3CGlTN1aUQBCbcU/
+	Schedule - Alex: https://docs.google.com/spreadsheets/d/1tN5DVPppLykjm_-medkuCgOxWXX-yqN2-PZUi_ErsgM
+	Schedule - Santiago: https://docs.google.com/spreadsheets/d/1LEIz4CkSQWBag6vEl1UQhM7PP9etTbNBb6IoWO0V24E/edit?usp=sharing
+	Schedule - Matthew:  https://docs.google.com/spreadsheets/d/1hwuyXdE6QdMhO-1Ab2f8ztaeTMtO0_Qim8OH1cpJXiM/
+
+	Plan: https://github.com/alexhad6/HvZ-app/blob/master/Administrative/Phase%203/management_3a.txt
+        Primary author: Kyra
+
+
+Every Monday from 2:30–3:30 (most often) or 3–4 (if necessary) we will meet to review the plan for the week.
+
+
+We will use the lab on Fridays for checking in before we turn in the deliverable on Sunday. This meeting will be used as a 
+time to collaborate on the parts of our component that we want to work on as a group. 
+
+
+We will rotate each week who will make the agenda for the meeting, which can then be edited by the other team members. 
+The agenda should be posted by Saturday night, or the day before each meeting. 
+
+
+Kyra will take notes for each meeting and post them to the Google Drive.
+
+
+We will set up a shared Google Drive (https://drive.google.com/drive/u/0/folders/0AMTijIrnYuwvUk9PVA) for all planning and 
+management which will be linked to in our GitHub repository.
+
+
+Each task/deliverable will be equally divided up among the team members, which will be reviewed each Monday from the schedule. 
+We will work on each of our portions throughout the week. At our meeting on Friday, we check in on how we are doing and plan 
+what else needs to be done before we turn it in on Sunday.
+
+
+We are each expected to attend all the meetings on time and follow the expectations laid out in the management plan.
+
+
+We are now working on individual parts of the assignment, as opposed to always together. However, there is still an expectation 
+\of open team communication, collaboration, and understanding, as we are still a team, and our components are still expected 
+to work and function well together. 
+
+
+If anything goes wrong, notify the team that day through our Facebook Messenger chat.
