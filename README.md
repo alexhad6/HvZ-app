@@ -1,4 +1,4 @@
-# HvZ-app
+# HvZ App
 Mobile application to help run Humans vs. Zombies.
 
 ## Important Links
