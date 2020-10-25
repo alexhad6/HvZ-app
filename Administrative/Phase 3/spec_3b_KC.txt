@@ -107,6 +107,13 @@ FUNCTIONS / METHODS
    * As the game is played, often the moderators need to adjust player statistics from the database. This 
      includes moderators updating legendary status for zombies, and resurrecting human players (changing their 
      status from zombie back to human). Below is listed the various kinds of write functions there will be:
+   * Write info
+      * This function writes in all the ascribed sign in information that is given when the person registers. 
+	This includes the user feed code and a randomized Player ID. 
+      * Called By: Sign in, Registration
+      * Input: all the information needed as an Array of Strings and Integers (name, email, school, 
+	human/zombie status, etc.)
+      * Output: NA (a new user of Player ID is created with their associated information)
    * Change ‘Legendary’ Status
       * Called By: Application, Moderators only (Authentication)
       * Input: Player ID, new status as String
