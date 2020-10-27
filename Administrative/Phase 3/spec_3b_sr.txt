@@ -1,0 +1,146 @@
+﻿Team: HvZ App
+
+
+Members: Kyra Clark, Santiago Rodriguez, Alex Hadley, Matthew Waddell
+Project 3B — Component Specifications
+
+
+Plan: https://github.com/alexhad6/HvZ-app/blob/master/Administrative/Phase%203/spec_3b_sr.txt
+        Primary author: Santiago
+
+
+Slip days: 1 By Santiago
+
+
+File Storage Component Specifications
+
+
+Functionality of the component to be designed:
+
+
+        The file storage will be responsible for storing and retrieving large files. These include files such as images, 
+	files containing large amounts of text, or audio files. This component will have all of the functions related to 
+	storing these files in a way that can be easily accessed as well as functions for retrieving those files. For 
+	the current version of the app, all files will be uploaded to or downloaded from file storage by the app. 
+	Moderators will be able to tell the file storage to reorganize itself for a new game. 
+      	
+	The file storage system itself will be implemented with Cloud Storage from the Firebase suite of app development tools. 
+	The code to access the storage system will be using Flutter, a Google software development tool. The library FlutterFire 
+	has functions that allow Flutter to interface with the Firebase tools.
+
+
+Overall role:
+
+
+	The file storage will be organized into folders for each game hosted and for each mission within each game. Its main purpose 
+	is to supply the images, audio files, and mission texts for each mission that the moderators create. The moderators will be 
+	able to upload these files from their apps, and the players’ apps will automatically download them and format them for viewing.
+
+
+Meeting Requirements:
+
+
+        The moderators will be able to run distinct games by being able to set different folders for each game in the file storage. The 
+	players will be able to access mission information such as images and the associated text through the file storage component. 
+	The app will download the required files and display it to the users when appropriate. The moderators will be able to update 
+	this mission information or add on to it through the app.
+
+
+Architecture Connections and Interfaces:
+        
+        Application ←→ File Storage:
+
+
+        The application will be able to call a function to tell the file storage system to reorganize its folders for a new game. The 
+	application will be able to upload files such as images, text, video, and audio to the file storage. The application can also 
+	download these files from the file storage. Finally, the application will be able to tell the file storage to create a new 
+	folder for a new mission within a game. The images, text files, videos, and audio files would then go into the mission folder. 
+	Only moderators would be able to upload to file storage (as dictated by the security component).
+
+
+	Database ←→ File Storage:
+        
+        The file storage will send a string of the path that an uploaded file can be reached at to the database. For example, an image 
+	put in a mission 1 folder will have a path that somewhat resembles this string: “storage/game2021/mission1/image.jpg.” The path 
+	string is then received by the file storage from the database when the application requires the specified files. 
+
+
+Public Methods for Interfaces:
+        
+* Application ←→ File Storage:
+   * Upload image
+      * Function: uploads an image to the file storage in the correct mission folder.
+      * Caller: application
+      * Input: mission number (int), image file path on mobile device (string)
+      * Output: success/failure indicator (int)
+   * Upload text file
+      * Function: uploads a text file to the file storage in the correct mission folder.
+      * Caller: application
+      * Input: mission number (int), text file path on mobile device (string)
+      * Output: success/failure indicator (int)
+   * Upload video file
+      * Function: uploads a video to the file storage in the correct mission folder.
+      * Caller: application
+      * Input: mission number (int), video file path on mobile device (string)
+      * Output: success/failure indicator (int)
+   * Upload audio file
+      * Function: uploads an audio file to the file storage in the correct mission folder.
+      * Caller: application
+      * Input: mission number (int), audio file path on mobile device (string)
+      * Output: success/failure indicator (int)
+   * Download image
+      * Function: downloads an image from file storage onto mobile device
+      * Caller: application
+      * Input: image path (string)
+      * Output: success/failure indicator (int)
+   * Download text file
+      * Function: downloads a text file from file storage onto mobile device
+      * Caller: application
+      * Input: text file path (string)
+      * Output: success/failure indicator (int)
+   * Download video file
+      * Function: downloads a video file from file storage onto mobile device
+      * Caller: application
+      * Input: video file path (string)
+      * Output: success/failure indicator (int)
+   * Download audio file
+      * Function: downloads an audio file from file storage onto mobile device
+      * Caller: application
+      * Input: audio file path (string)
+      * Output: success/failure indicator (int)
+   * Create new game
+      * Function: create a new game folder to be used for the new game’s files
+      * Caller: application
+      * Input: None
+      * Output: success/failure indicator (int)
+   * Create new mission
+      * Function: create a new mission folder in the current game’s directory
+      * Caller: application
+      * Input: mission number (int)
+      * Output: success/failure indicator (int)
+* Database ←→ File Storage:
+   * Store path
+      * Function: database stores the path of a file that has been successfully stored in file storage.
+      * Caller: file storage
+      * Input: path in file storage (string), mission number (int)
+      * Output: None
+   * Retrieve path from database
+      * Function: database retrieves paths of files to be located from the file storage.
+      * Caller: file storage
+      * Input: mission number (int)
+      * Output: file paths (string array)
+
+
+Component Suitability:
+
+        This component fits the size requirement almost immediately as each upload or download function takes about 10 lines
+	of code each. All the public methods put together easily bring the component over 100 lines of code. 
+
+	The complexity in this component comes from properly caching the files. Users want to access their mission information
+	on the go and quickly. The file storage code component needs to implement a cache and check if a file is there before trying 
+	to get it from the file storage. 
+
+	This component is easily testable using Firebase’s testing suite. There is an emulator that allows automatic testing 
+	(https://firebase.google.com/docs/rules/unit-tests). This would allow actions such as testing if something was properly 
+	downloaded from file storage. The elements in the cache could be inspected to make sure they are the most recently accessed 
+	files.
