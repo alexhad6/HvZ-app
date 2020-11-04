@@ -1,0 +1,132 @@
+Team: HvZ App
+
+Members: Kyra Clark, Santiago Rodriguez, Alex Hadley, Matthew Waddell
+Project 3D.1 — Review Notes
+
+
+Plan: https://github.com/alexhad6/HvZ-app/blob/master/Administrative/Phase%203/notes_3d-KC.txt
+        Primary author: Kyra Clark
+
+REVIEW NOTES
+
+
+Authentication Compondent Design
+
+* Can you explain the difference between the two classes more Auth and AuthMessage? Why did you
+choose to have them as separated classes? How do they connect and interact with each other? 
+
+* You list out references to all the different instances Firebaseauth, GoogleSignIn, Connectivity, 
+Database, and User. Are these all classes? How is this defined? In mind, I did not treat users as 
+an object. How do you create the User class? 
+
+* Why is the length of the feed code 5? What is the justification for this? Why are only those 
+characters allowed to make the feedcode? 
+
+* I see we both have feedcode construction as part of our design. This is okay. It is likely just 
+because of a miscommunication. I actually added mine in last minute as I was finalizing my design,
+I realized I wasn't sure how I was supposed to add the feedcode to the user in the database, or if
+it would already be created and passed in. Your approach is likely more thoughtout. 
+
+* So we can create an Auth object after we have initialized a firebaseAuth, GoogleSignIn, 
+Connectivity, and Database? When do you expect this to be called? I would include some explanation 
+into the role here, I am a little confused? 
+
+* So is signedIn called on a User object? Where is that class? Why is it's get signedIn a part of 
+the Authentication class? What's 'get'?
+    * Same question for get uid and get name and get email?
+    * How do you plan on accessing user id? This is actually a problem I've been dealing with and 
+    avoiding in my design. 
+    * I also wrote a sort of get name and get email in the database component. How are you planning 
+    on storing this information in a User object? 
+
+* You wrote get emailVerified would "return their verification status from _user"
+    * What does this mean? You could better explain what you are expecting here.
+
+* "Initializes [Auth] by setting up a listener to update information"
+    * It could be helpful to explain what a 'listener' is, or include a reference to understand it
+
+* "// Retrieve the userChanges stream from FirebaseAuth
+   //   (This stream gives the current User whenever an action to update the
+   //   user occurs.)"
+   * What is this? Is this something that happens when we change the information about the user 
+   in the database? Should I know about this? We set this up very differently.
+
+* I do not understand the setName() function. Does this change their name in the database? Or 
+just somehow their stusus in the Auth object? 
+    * Is there one Auth object per user signed in? Or one initialized overall?
+
+* Is there a specific Firebase Authentication tool to sign out auser? You sjould say so or describe 
+the approach / method.
+
+* We should both describe when to use your registerWithEmail function and my addUser function? How
+and when do these work together? 
+
+* What does the _claremontEmail do? Does it return their email? Should should better descibe what this 
+is exactly. Is it a function? a method? 
+
+* I do not understand the function _registerUser(). You should explicitly describe its purpose with the
+other registering functions and its specific role and place in the registering process. Why does it 
+save the feedcode as a string? Why is this step part of this function? What part of the process does it 
+serve? How is it connected with the _generateFeedCode function below? You mention an _addUser function 
+here. Is that my function you are referencing? 
+
+* This is a good feedcode generating function. We should use yours and find a way to collaborate our two
+components together to utilize this function. 
+
+* After reading over it, I really liked your AuthMessage class. I think it was a really smart choice to 
+outline all the possible error messages that the user could recieve. How confident are you that this 
+definitely covers all the possible error messages? What happens if an error occurs that does not 
+correspond to one of these error messages? Should there be a catch-all? 
+
+* In general, I think what you could improve on most is creating what feels like an overall cohesive 
+document and component. After studying your component, I still had a difficult time understanding how all 
+the moving parts interact together. I did not understand the general process of prupose of each individual 
+piece in the role of the overall component. 
+
+
+
+Authentication Compondent Test Plan
+
+* I think you had a really strong arguemnt outlined in the beginning for using the off-the-shelf serves 
+you chose. It shows that you clearly did your research. 
+
+* I think it's good that you included a breif assesment of your confidence. However, I would've gone into
+a bit more detail as to why you felt that and exactly what areas you feel like you might possibly need to 
+improve upon. 
+
+* I noticed you did not include clean-up for any of these. If none is needed, I might write a breif 
+justification to explain how or why, at least to show that it is fully contianed. 
+
+* In general, I think you could go a bit more into detail on the process and pseudo code of each of 
+your tests. But for the most part, your work was very clear and understandable. I think your tests 
+have a really good coverage of all your code. 
+
+* Auth constuctor tests
+    * Not a lot of details as to the variables you will be passing into the tests, or how you will test 
+    if the "two variables refer to the same object."
+
+* initialize test
+    * "Check if the mock function for creating a listener was called."
+    * What is this function? How will you know it has been called? 
+
+* User attributes - signed in/out tests
+    * How are you planning "Setup" to work? Are all these created in the same test function each time? 
+    Are they done in one function and all these tests are part of the same scope somehow? It is possible
+    that I just don't understand the testing framework you are using. 
+    * You did a very thorough job here. I think it is good that you test each attribute, and when you 
+    are expecting it to be null as well. 
+
+* Registration tests
+    * There are a fair amount of tests here that check if the mock database was given the correct 
+    attribute. How exactly does this work? How are you reaching into the database to perform this. 
+    If you are planning on using database code for this, we should be sure to plan on writing and 
+    testing the database first, so that we know it works properly before testing the other components
+    on it. That said, I think this is irrelevant because you are using some kind of mock database, 
+    which is not attatched to the real one. How do you retrieve info from the mock database?
+
+* Feed Code tests
+    * "There should be an assertion error if the number given to _generateFeedCode is beyond the 
+    allowable range." I'm not sure what this means. You could explain this more in terms of what 
+    exaclty is the acceptable range. 
+    * Do you test to be sure that the feedcode generation is random and unique? Is that something 
+    that you think you should or should not test? 
