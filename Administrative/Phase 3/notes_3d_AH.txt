@@ -1,0 +1,111 @@
+﻿Team: HvZ App
+
+Members: Santiago Rodriguez, Alex Hadley, Matthew Waddell, Kyra Clark
+
+Project 3D — Review Notes: Database (Kyra)
+    Notes: https://github.com/alexhad6/HvZ-app/blob/master/Administrative/Phase%203/notes_3d_AH.txt
+    Primary author: Alex
+
+SPECIFICATIONS
+• Component description seems good.
+• For connections, the registration website will now be part of the application,
+  and the action of registering a new user is covered by authentication. See
+  Authentication component specifications.
+• The functional specifications seems to match the design.
+• Feasibility seems reasonable.
+• Requirements is missing.
+
+DESIGN — GENERAL
+• I really like the division into a player database class and a file database
+  class. This way the two components are more isolated, and it makes sense since
+  each functionality is used in different places.
+• Would it be more efficient to cache player data and use Firestore’s Stream
+  subscriptions to only contact the database when player statistics change?
+• What types of errors can occur from Firestore? How will each type of error be
+  handled?
+    • In particular, what happens if there is no internet?
+• Will data be accessible offline?
+• Emails could potentially be kept just within the Authentication component to
+  be more secure. Then you can only view the email of the currently logged in
+  user, which I think is all we would need. For security purposes, this would
+  prevent malicious users from retrieving all our player’s emails.
+• What do the constructors look like?
+
+DESIGN — PLAYER DATABASE CLASS
+• In Flutter, a StatelessWidget is used to build the UI, not a component like
+  this. Instead, this can just be a class that does not extend anything.
+• The CollectionReference object referencing the user database in Firestore
+  should be an instance variable.
+• I am confused about the instance variables. They seem to be the statistics of
+  a particular user, but the methods seem to be general functions applying to
+  all users in the database. It probably makes more sense to get rid of these
+  variables and implement PlayerDatabase as a singleton class.
+• What happens if you are not connected to the internet?
+    • Will it load forever? Return an error? Cache data?
+• getNumberHZ could use a tuple, which I used for Authentication. I think it’s a
+  cleaner way to return only two numbers.
+• Instead of having so many different functions, another way to organize the
+  data could be to make a custom “User” class. Then getPlayers() could return an
+  array of User objects, which each contain information such as ID, name, email,
+  team, etc. as fields.
+    • If not, I would maybe include functions to get all of certain fields, such
+      as ID, names and human/zombie status, together, since this seems like a
+      common operation. Right now it appears that in order to get a list of the
+      names of all users, I would have to call getPlayers() and then call
+      getNames() for each player, which seems less efficient than using
+      Firestore’s forEach() function just once.
+• From Authentication, I only need the addUser() function to add name, email,
+  and user ID. Also feed code if we decide I am doing that. The other fields
+  would be added by other components, probably directly from the application in
+  the form of a survey for new players.
+    • Also, Authentication will generate the user ID’s, not database.
+• A minor note: Future<void> is just part of Dart, not specific to Firestore.
+• What types of errors are returned by addUser()? How will each of them be
+  handled?
+    • Are there possible errors for the other functions?
+• Private functions in Dart just begin with an underscore, no need for the word
+  private.
+• Transfer brains could technically make use of atomic transactions
+  (https://firebase.google.com/docs/firestore/manage-data/transactions) to be
+  more secure. Although since this is just for a game and not, like, actual money
+  it might be not super important.
+    • This would prevent an error where one person’s brains change but the other
+      does not.
+• deleteUsers() should not delete all the user information. People will keep
+  their accounts from game to game. Instead, it should archive important data
+  (such as final team status and tagged count) and reset other values, but not
+  delete.
+    • For example, all team status would be set back to human and all brain
+      counts to 0. But permanent data like names, emails, school, etc. should be
+      saved for future games.
+
+
+DESIGN — FILE DATABASE CLASS
+• Similarly, I am confused about the instance data. I think you need a
+  CollectionReference to the ‘files’ collection, and not the specific instance
+  data. This class could also be a singleton.
+• Most comments are covered in my previous comments, this class is pretty
+  similar.
+• deleteFiles() makes more sense in this case, since nothing about the missions
+  should be permanent from game to game.
+
+
+TESTING
+• Good choice of testing framework.
+• I like the idea of test databases, so we are not running tests in the same
+  place as our actual data.
+• I’m not sure how the integration testing works, but it seems cool and could
+  be useful.
+• I’m not sure why we are testing for integration between PlayerDatabase and
+  FileDatabase — the two don’t seem to interact.
+• We could potentially mock the database — I was a little confused by Prof.
+  Kampe’s response to this from class. Maybe it doesn’t make sense for the
+  database.
+• For addUser() case C, how would you pass in the number of brains?
+• For addUser() case E, I think that is more testing uniqueness than randomness.
+• I’m not sure how useful passing in the wrong variable type is, since that
+  wouldn’t even compile. Probably more useful to test with weird values, such as
+  the empty string or negative numbers.
+• In general, test cases seem pretty straightforward and cover all of the
+  functions. I wonder if there are ways to test what happens when there is no
+  internet connection.
