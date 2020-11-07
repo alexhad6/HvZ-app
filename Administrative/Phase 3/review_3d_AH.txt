@@ -1,0 +1,163 @@
+﻿Team: HvZ App
+
+Members: Santiago Rodriguez, Alex Hadley, Matthew Waddell, Kyra Clark
+
+Project 3D — Review Report: Database
+        Report: https://github.com/alexhad6/HvZ-app/blob/master/Administrative/Phase%203/review_3d_AH.txt
+        Primary author: Alex
+
+The review meeting took place over Zoom on Friday, November 6, 2020 from 7:00 PM
+PST to 8:00 PM PST and was attended by Kyra Clark and Alex Hadley. The component
+under review was the database, designed by Kyra.
+
+SPECIFICATIONS
+• The registration website component is mentioned under the connections section.
+  The registration website will now be part of the application, and the action
+  of registering a new user is covered by authentication. See Authentication
+  component specifications (https://github.com/alexhad6/HvZ-app/blob/master/Administrative/Phase%203/spec_3b_AH.txt)
+  for more information.
+   • [ISSUE] [SHOULD-FIX]
+• Component requirements are missing. See point 3 of https://www.cs.hmc.edu/courses/2020/fall/cs121s1/projects.html#desc_3b.
+   • [ISSUE] [MUST-FIX]
+
+DESIGN — GENERAL
+• Instead of contacting the database every time we need data, it might be more
+  efficient to store the data in local variables and only update it when changes
+  are made to the database. The component would technically work as it is, but
+  it might not be the best design. See https://firebase.flutter.dev/docs/firestore/usage#realtime-changes
+  for more information.
+   • [ISSUE] [COMMENT]
+• Having no internet connection should be handled. Either the data should be
+  cached or there should be an error message saying there is no internet. I
+  think Firestore actually might cache data automatically if there is a listener
+  for that part of the database. See https://firebase.google.com/docs/firestore/manage-data/enable-offline
+  and https://pub.dev/documentation/cloud_firestore_platform_interface/latest/cloud_firestore_platform_interface/Settings-class.html
+  for more information.
+   • [ISSUE] [MUST-FIX]
+• There should be more information about the types of errors that can occur and
+  how they will be handled. Some might just stop the program if they are never
+  supposed to occur, but maybe mention if any (like no internet or data not in
+  cache) need to be handled without breaking the app.
+   • [ISSUE] [MUST-FIX]
+• Emails will just be stored within the authentication component. This way, it
+  is only possible to access the email of the currently signed-in user, which is
+  all we need and is more secure. (Otherwise, a malicious user could retrieve
+  everyone’s emails from the database.)
+   • [ISSUE] [MUST-FIX]
+• It is not clear how instances of these classes will actually be constructed
+  and used. (One potential design is to make a singleton class that stores a
+  reference to the player or file area of the database, stores relevant
+  information in local variables, and sets up listeners to update the data.)
+   • [ISSUE] [MUST-FIX]
+• Feed code generation will now be handled by authentication and passed to
+  addUser() when registering a new player.
+   • [ISSUE, MUST-FIX]
+
+DESIGN — PLAYER DATABASE CLASS
+• In Flutter, a StatelessWidget is used to build the UI, not a component like
+  this (https://api.flutter.dev/flutter/widgets/StatelessWidget-class.html).
+  Instead, this can just be a class that does not extend anything.
+   • [ISSUE] [MUST-FIX]
+• I am confused about the purpose of the instance variables. They seem to be the
+  statistics of a particular user, but the methods seem to be general functions
+  applying to all users in the database. (It could make sense to get rid of
+  these variables and implement PlayerDatabase as a singleton class.)
+   • [ISSUE] [MUST-FIX]
+• Right now it appears that in order to get a list of the names of all users,
+  I would have to call getPlayers() and then call getNames() for each player.
+  Since this is a common operation, it would make sense to include functions to
+  retrieve particular fields, such as ID, name, and human/zombie status, from
+  all players in one call. (Another possible design is to make a custom “User”
+  class. Then getPlayers() could loop through all the documents in the player
+  collection using forEach() and construct User objects with information such as
+  ID, name, team, etc. as fields. It could then return an array of these User
+  objects.)
+   • [ISSUE] [SHOULD-FIX]
+• For authentication, I only need the addUser() function to add name, user ID,
+  and feed code. The other fields would be added later by other components,
+  probably directly from the application in the form of a survey for new
+  players. (Also, authentication will generate the user IDs, not the database.)
+   • [ISSUE, MUST-FIX]
+• Under addUser(), it says, “the Future<void> class is a FireStore class.” This
+  is a minor note, but Future<void> is just part of asynchronous programming in
+  Dart, it is not specific to Firestore.
+   • [ISSUE] [COMMENT]
+• This is another minor issue since the design is technically in pseudo-code at
+  this point, but in Dart private methods and variables just begin with an
+  underscore. If they begin with an underscore, they are scoped to the current
+  file (library) and cannot be accessed if the file is imported. There is no
+  “private” keyword like there is in Java.
+   • [ISSUE] [COMMENT]
+• Transfer brains could make use of atomic transactions to be more secure. See
+  https://firebase.google.com/docs/firestore/manage-data/transactions and
+  https://pub.dev/documentation/cloud_firestore/latest/cloud_firestore/FirebaseFirestore/runTransaction.html
+  for more information. This would prevent an error where one person’s brain
+  total changes but the other does not. This does not matter too much for our
+  app since we are not dealing with something sensitive like real money, but
+  it could be a cool application of atomic transactions.
+   • [QUESTION] [COMMENT]
+
+DESIGN — FILE DATABASE CLASS
+• This class has some of the same issues as PlayerDatabase. It should not be a
+  StatelessWidget, and it is not clear how to instantiate or use the class.
+  (This class could also be implemented as a singleton with a reference to the
+  files collection, although there might be other ways to design it.)
+   • [ISSUE] [MUST-FIX]
+• This class should also handle errors and explain what happens if the phone is
+  offline. It could have a similar solution to PlayerDatabase. Maybe discuss
+  with Santiago about what is best for the files storage component.
+   • [ISSUE] [MUST-FIX]
+
+TESTING
+• Flutter’s unit testing framework would probably work, but it does not seem
+  like the database component uses any Flutter-specific functionality, so it
+  might be possible to just use Dart’s unit testing framework. (See
+  https://pub.dev/packages/test). I’m still looking into which one of these to
+  use myself, so I’m completely sure which is better.
+   • [QUESTION] [COMMENT]
+• There should be more specifics on how exactly the tests will be run. Currently
+  the tests seem to offer good coverage of the functionality and a testing
+  framework is cited, but it is not clear to me how to actually implement the
+  tests using the testing framework.
+   • [ISSUE] [SHOULD-FIX]
+• I like the idea of using test databases so we are not running tests in the
+  same place as our actual data. For authentication, I considered making mock
+  Firebase components for tests using mockito (https://pub.dev/packages/mockito).
+  I think these work by making fake functions. You can then test whether the
+  functions were called, or what was passed to them. It might make sense to use
+  mocks for some tests to have absolute control over the Firebase components,
+  although this might not be necessary.
+   • [QUESTION] [COMMENT]
+• I’m a little confused about how the integration tests would work, and what
+  their purpose would be. In the session, you mentioned that they are testing
+  that each component edits the correct section of the database when they are
+  both doing things. This should be clarified more.
+   • [QUESTION] [SHOULD-FIX]
+• For addUser() case C, how would you pass in the number of brains? It seems
+  like addUser() just initializes the number of brains to 0, so I am not sure
+  how this test would work.
+   • [ISSUE] [SHOULD-FIX]
+• Some of the tests try to pass in a variable of the wrong type. I believe that
+  the program would simply not compile in this case. It would be more useful to
+  test weird input values of the correct data type, such as the empty string or
+  negative numbers.
+   • [DEFECT] [MUST-FIX]
+• There should be more tests ensuring that possible errors are handled
+  correctly. These should follow from more specific error handling in the
+  design.
+   • [ISSUE] [SHOULD-FIX]
+• In general, test cases seem pretty straightforward and cover all of the
+  functions. If new functionality is added, such as storing data in local
+  variables and setting up listeners to update it, then new tests should be
+  added accordingly.
+   • [ISSUE] [COMMENT]
+
+
+FINAL DISPOSITION
+Overall, I think this component is well designed. It makes sense to have two
+different classes, since player information and file information will be stored
+in different parts of the database and will be accessed by different components.
+There are still some must-fix issues, such as how the classes will actually be
+instantiated and used. Thus, I would approve with required changes (the must-fix
+items above). I would also recommend that the should-fix issues be addressed,
+and the comments should be considered but do not have to be implemented.
