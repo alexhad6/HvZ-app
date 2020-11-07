@@ -1,0 +1,188 @@
+Team: HvZ App
+
+
+Members: Kyra Clark, Santiago Rodriguez, Alex Hadley, Matthew Waddell
+Project 3D.2 — Component Review Report
+
+
+Github Link: https://github.com/alexhad6/HvZ-app/blob/master/Administrative/Phase%203/review_3d_KC.txt
+        Primary author: Kyra
+
+
+Component Review Report 
+
+
+Reviewer (& scribe): Kyra Clark 
+Component Author: Alex Hadley
+Component under review: HvZ app Authentication
+11/6/2020 12:55 - 1:30
+During Friday Zoom Lab 
+
+
+Authentication Component Specifications
+
+
+* In the requirements section, you describe how “the external interfaces of the authentication and 
+registration component must be set up in order to work well with the application component, which it 
+mainly communicates with.” You might want to go into more detail how it works with the application 
+component (which I believe is Matthew’s). Or, (perhaps I am biased), but this might not be true now. 
+It is possible that you also work extensively with the Database component, especially in terms of 
+registration. If you mention the application component here, you should either provide a justification 
+or also include the other components. Possibly, it might simply be more appropriate in the external 
+interfaces section anyway. 
+   * Question; comment
+
+
+* In terms of your external interfaces, I think you cover everything here. Although it is a little out 
+of date with your current design. You might want to consider updating it if that’s something you would 
+find helpful.
+   * Issue; should-fix
+
+
+
+
+Authentication Component Design
+
+
+* In the comments, explain the difference between the two classes, Auth and AuthMessage. Why did you 
+choose to have them as separated classes? How do they connect and interact with each other? 
+   * Question; should-fix
+
+
+* You list out references to all the different instances Firebaseauth, GoogleSignIn, Connectivity, 
+Database, and User. Because there are off-the-shelf Firebase classes, you should explain where you got 
+them from. Perhaps include a link to their documentation.
+   * Question; comment
+
+
+* In the creation of the feedcode, you throw in a lot of ‘magic’ numbers and characters. Because you 
+get these from the original website, you should explain where you got these variables from and your 
+justification for using them. 
+   * Issue; should-fix
+
+
+* We both have feedcode construction as part of our design. Your approach is more thought-out, so we 
+should use yours. However, in your design, consider how we add a user and feedcode to the database in 
+your construction of feedcodes. You also brought up a concern on the randomness of the feedcode. 
+According to your method, there should be a counting tool in the database, (which at the moment there 
+isn’t), but you should describe this interaction with the database. 
+   * Issue (integration); comment
+
+
+* Your comments could use a lot more clarity on the role of the Auth object: when is it called? Who 
+calls it? How does it interact with the User? Describe how there is one Auth object created every time 
+a User logs on into the app, and how the objet stores information about the user currently logged in. 
+   * Question; should-fix
+
+
+* We both have functions for get uid and get name and get email. We might need to consider what 
+information we want to store on the database. How do you plan on accessing user id? You should go into 
+more details in your comments about how the User object stores all these variables. Possibly, initialize 
+could use some more abstract information about its purpose in the comments. Furthermore, you should 
+explain what a listen is, or at least include a link to the Firebase documentation. 
+   * Question/Issue (integration); should-fix
+
+
+* You describe how the user changes via a “stream.” You should explain what this is and it’s connection 
+to the database. Explain how this will or won’t also change information in the Database. In general, I 
+think your comments could use some more clarity about the abstract explanations and intent of each function. 
+   * Issue (integration); should-fix
+
+
+* We discussed possibly removing the setName() function. At least, you should describe how it works with 
+the database or at least a justification for its use.
+   * Question; comment
+
+
+* The specific Firebase Authentication tool for sign out is another instance when you should describe or 
+link to the off-the-shelf functionality you are relying on.
+   * Issue; should-fix
+
+
+* You are missing a header comment for _claremontEmail, so I do not know what it is supposed to do. 
+   * Issue; must-fix 
+
+
+* The _registerUser() function could use a bit more explanation. You should explicitly describe its purpose 
+with the other registering functions and its specific role and place in the registering process. Especially 
+because it is a private function, you need to explain its role, who calls it, when, and why. Why is it private?  
+   * Issue; must-fix
+
+
+
+
+* I really liked your AuthMessage class. I think it was a really smart choice to outline all the possible 
+error messages that the user could receive. How confident are you that this definitely covers all the 
+possible error messages? This should be outlined in the comments. The description of the catch-all error 
+could be more clear.  
+   * Question; comment
+
+
+* In general, I think what you could improve most is creating what feels like an overall cohesive document and 
+component. After studying your component, I still had a difficult time understanding how all the moving parts 
+interact together. I did not understand the general flow of each individual pieces’ role of the overall 
+component. Having a strong understanding of the process of your component would be incredibly important if you 
+were to hand-off your design to an experienced program. 
+   * Issue; must-fix
+
+
+
+
+Authentication Component Test Plan
+
+
+* I think you had a really strong argument outlined in the beginning for using the off-the-shelf serves you 
+chose. It shows that you clearly did your research. I think it's good that you included a brief assessment of 
+your confidence. However, I would've gone into a bit more detail as to why you felt that and exactly what areas 
+you feel like you might possibly need to improve upon. 
+   * Question; Comment 
+
+
+* I noticed you did not include clean-up for any of your tests. If none is needed, I might write a brief 
+justification to explain how or why, at least to show that it is fully contained. This is especially true if 
+your initialize function is “kinda permanent.” Implementing some kind of a reset, could be critical. 
+   * Issue; must-fix
+
+
+* In general, I think you could go a bit more into detail on the process and pseudo code of each of your tests. 
+But for the most part, your work was very clear and understandable. I think your tests have a really good 
+coverage of all your code. 
+   * Question; comment
+
+
+* In your Auth constructor tests, there’s not a lot of details as to the variables you will be passing into the 
+tests, or how you will test if the "two variables refer to the same object."
+   * Issue; should-fix
+
+
+* In your initialize test, you "check if the mock function for creating a listener was called." You do not 
+explain what this function is, or how will you know it has been called. This is part of the mock functionality 
+you mentioned early. But a brief explanation of how mock functions work would help the reader a lot. 
+   * Question; should-fix
+
+
+* In the User attributes signed in/out tests, your plan for how “set up” works is unclear. Are all these created 
+in the same test function each time? Are they done in one function and all these tests are part of the same scope 
+somehow? You should address this in terms of the containment of your functions. However, you did a very thorough 
+job here. I think it is good that you test each attribute, and when you are expecting it to be null as well. 
+   * Question; should-fix
+
+
+* In your Feed Code tests, you say that "there should be an assertion error if the number given to _generateFeedCode 
+is beyond the allowable range." It might be helpful to connect what you mean by this “range” to what you said in the 
+design to jog the reader’s memory. Furthermore, you might want to consider testing if the feedcode generation is 
+unique. This could just mean testing a few numbers to see if they seem to give the expected output based on your 
+algorithm. Then, if it follows the expectation of the algorithm, this would imply that each feedcode will be unique. 
+For further coverage, you could also test specific numbers to make sure nothing odd happens, like testing if the 
+first digit is something other than ‘A’ is one that was brought up in our meeting. 
+   * Question; should-fix
+
+
+
+
+Disposition: APPROVED WITH REQUIRED CHANGES
+For the most part, I think your specifications, design, and test plan are in a really strong place. With a few 
+tweaks here and there, I think these documents would be completely and totally approved. The biggest areas of 
+improvement I think are generally having clearly, more descriptive comments, and formatting or writing your design 
+in a way that reflects the process and flow of your code as a whole. With these changes in mind, if you were to 
+hand these off to an experienced programmer, they would be able to code your component with ease.
