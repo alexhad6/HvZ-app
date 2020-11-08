@@ -1,0 +1,48 @@
+﻿Team: HvZ App
+
+
+Members: Kyra Clark, Santiago Rodriguez, Alex Hadley, Matthew Waddell
+Project 3D.1 — Review notes
+
+
+Github Link: https://github.com/alexhad6/HvZ-app/blob/master/Administrative/Phase%203/notes_3d_sr_A&R.txt
+        Primary author: Santiago
+
+
+Review of Alex’s Authentication and Registration component
+
+
+Specification
+* No mention of the registration component in the overall description, only authentication
+* Get functions such as name, ID, change user name
+   * Where is this information being stored? 
+   * In essence, where or what are these functions operating on?
+* Is moderator status something the authentication needs to handle?
+
+
+Design
+* Everything seems good, but what does the connected function do for the component? It doesn’t 
+	seem to be called anywhere. 
+   * Is it necessary? 
+   * Or should it be called by other functions during their routines?
+
+
+Test Plan
+* For auth returning an instance of auth test (2nd blackbox test), will there have been clean up 
+	from the test before it? 
+   * Will the previous instance of auth be deleted?
+* Listener setup test is unclear
+   * Calling a mock function doesn’t seem to have any purpose
+* Is listener really a black box test? It seems to be something in the background rather than a 
+	part of the specifications
+* Email verified test
+   * If user is signed in with google, do they still get a verification email?
+   * If not, does email verified still need to be held true when signed in for every user?
+* Test valid email and password signs in correctly
+   * Logs out any signed in user
+   * Shouldn’t this be done in another test as part of clean up?
+* Should there be a feedcode already generated test?
+   * Don’t want two people with the same feed code
+* Overall comment
+   * It seems like creating mocks for everything will add on a good amount of work. 
+   * Can you do the same thing without the mocks?

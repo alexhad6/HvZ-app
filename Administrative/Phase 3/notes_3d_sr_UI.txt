@@ -1,0 +1,45 @@
+﻿Team: HvZ App
+
+
+Members: Kyra Clark, Santiago Rodriguez, Alex Hadley, Matthew Waddell
+Project 3D.1 — Review notes
+
+
+Github Link: https://github.com/alexhad6/HvZ-app/blob/master/Administrative/Phase%203/notes_3d_sr_UI.txt
+        Primary author: Santiago
+
+
+Review of Matthew’s UI component
+
+
+Specification
+
+
+* The component role is clear to me
+   * Do you have an idea of which libraries or technologies you will be using for the graphical user
+	 interface?
+* Complexity concern
+   * Is simply displaying the data and using the interface to interact with different parts complex 
+	enough for a whole component? It seems like a lot of work, but is anything complicated going 
+	on?
+* Very detailed QR code connection
+   * Is there complexity to be found in this component?
+   * What are the public methods to be called to transfer the data from the QR code part to the 
+	database?
+* There is no detail on the connection between the UI and the database
+   * Only one function describing the interface with the database
+* There is no detail on the connection between the UI and the file storage
+   * No functions describing interface with the file storage
+* There is no explanation of testing feasibility - is this testable?
+
+
+Design
+
+
+* There is no design document - not ready for review
+
+
+Test plan
+
+
+* There is no test plan - not ready for review
