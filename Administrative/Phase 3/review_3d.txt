@@ -1,0 +1,124 @@
+﻿Team: HvZ App
+
+
+Members: Kyra Clark, Santiago Rodriguez, Alex Hadley, Matthew Waddell
+Project 3D.1 — Review notes
+
+
+Github Link: https://github.com/alexhad6/HvZ-app/blob/master/Administrative/Phase%203/review_3d.txt
+        Primary author: Santiago
+
+
+Time: 9:00 pm 11/8/20
+Place: My room through zoom
+Attendees: Santiago and Alex
+
+
+
+
+Review of Alex’s Authentication and Registration component
+
+
+Specification
+* No mention of the registration component in the overall description section, only authentication
+   * Summary: Should be in here because this is part of the component
+   * Characterizations: issue, should-fix
+* Get functions such as name, ID, change user name
+   * Where is this information being stored? 
+   * In essence, where or what are these functions operating on?
+   * Summary: it is getting it from the authentication database (internal). Could be specified for
+	 clarity (no confusion with getting it from the database component)
+   * Characterizations: question, comment
+* Is moderator status something the authentication needs to handle?
+   * Summary: Database takes care of this, authentication only looks at which players are logging in
+	 and allowing them to access their stuff from database.
+   * Characterization: question
+
+
+Design
+* Everything seems good, but what does the connected function do for the component? It doesn’t seem 
+	to be called anywhere. 
+   * Is it necessary? 
+   * Or should it be called by other functions during their routines?
+   * Summary: It is explicitly called in the design by other functions but was missed in the initial
+	 review. Would be nice to have a description of what it is called by in the function doc string.
+   * Characterization: question, comment
+* What happens if someone tries to sign up with the same email as one that already exists? This could 
+	be the case when not signing in through google sign in.
+   * Summary: Alex’s function needs to handle the case where a user tries to make a new account using 
+	an already registered email.
+   * Characterization: defect, must-fix
+
+
+Test Plan
+* For auth returning an instance of auth test (2nd blackbox test), will there have been clean up from 
+	the test before it? 
+   * Will the previous instance of auth be deleted?
+   * Summary: It is unclear whether or not the testing framework will reset the previous instance - 
+	must be looked into. The test’s nature is different when an auth object has already been 
+	created before the test commences. To get better accuracy with what the test is trying to 
+	achieve, the test needs to be called when an auth object has not been created yet.
+   * Characterization: issue, must-fix
+* Listener setup test is unclear
+   * Calling a mock function doesn’t seem to have any purpose
+   * Summary: It doesn’t make sense to call a mock function and check if it was called, but the test 
+	isn’t doing that. It will instead call a function that will call the mock listener function 
+	as part of it. The test is for making sure that the initialize function gets to the part 
+	where it is supposed to call the listener function and that it actually does call it. This 
+	could be made more explicit in the test description.
+   * Characterization: issue, should-fix
+* Is listener really a black box test? It seems to be something in the background rather than a part
+	 of the specifications
+   * Summary: It seems like a white box test as it is not really part of the specifications. This is 
+	not an issue, but it is incorrectly labeled.
+   * Characterization: question, comment
+* Email verified test
+   * If user is signed in with google, do they still get a verification email?
+   * If not, does email verified still need to be held true when signed in for every user?
+   * Summary: emailVerified is a variable set to true when an email is verified through google sign in
+	 or through the verification email. So, this test will just check that variable and the above
+	 mentioned concerns do not apply.
+   * Characterization: non-issue, misunderstanding
+* Test: valid email and password signs in correctly
+   * Logs out any signed in user
+   * Shouldn’t this be done in another test as part of clean up?
+   * Summary: This should be done as part of other test clean up. There is no need to sign out at the 
+	beginning of every test (the following tests currently have this at the beginning).
+   * Characterization: issue, should-fix
+* Additional sign out test needed
+   * Summary: While inspecting the code during the review, this issue was raised. There should be a 
+	test to make sure that signing out a user who is already signed out throws a proper exception 
+	or does nothing to make sure nothing unexpected happens in the system.
+   * Characterization: issue, should-fix
+* Should there be a feedcode already generated test?
+   * Don’t want two people with the same feed code
+   * Summary: No, but this led to new discussion
+   * Characterization: question, comment
+* Should test that signing in through google only tries to register for a new participant, not every
+	 time one signs in through google.
+   * Summary: This could cause problems if the system interpreted a returning user as a new user and 
+	tried to create a new user object for that person.
+   * Characterization: issue, must-fix
+* Overall comment
+   * It seems like creating mocks for everything will add on a good amount of work. 
+   * Can you do the same thing without the mocks?
+   * Summary: For some things it might be better to use the Firebase suite, but for others, mockito 
+	can generate situations that you will not usually face. Must find out if using Firebase suite
+	 in testing suite is valid for testing.
+   * Characterization: question, should-fix
+
+
+Overall disposition: approved with changes
+
+
+This component specification, design, and test plan are very well written. Only a few changes need to 
+be made for it to be approved. First, the registration aspect of the component should be in the general
+ component description for the specifications. It’s the second term in the Authentication and 
+Registration component, so it must be included in the description. Second, the registration function 
+needs to check if a user has already registered with the same email and handle that case accordingly.
+ This could cause some serious access problems otherwise. Third, the tests need to do clean up work. 
+Otherwise there is a lot of room for error if tests aren’t cleaned up from one test to the next. 
+In one case it changes the nature of the test, so this needs to be added at the end of each test. 
+Lastly, a test needs to be added to make sure that users who sign in through google are only added as
+ new users the first time they sign in. If this is not tested, there is the possibility of complicated
+ and erroneous behavior when signing in through google.
