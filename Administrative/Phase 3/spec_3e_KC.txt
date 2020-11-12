@@ -1,0 +1,310 @@
+Team: HvZ App
+
+
+Members: Kyra Clark, Santiago Rodriguez, Alex Hadley, Matthew Waddell
+Project 3E.1 — Final Component Specifications
+
+
+Plan: https://github.com/alexhad6/HvZ-app/blob/master/Administrative/Phase%203/spec_3e_KC.txt
+        Primary author: Kyra
+
+
+Component Specifications: Database
+
+
+COMPONENT DESCRIPTION AND ROLE IN OVERALL SYSTEM
+
+The database will be responsible for holding all of the relevant player data for each game. This 
+includes player or moderator status, name, human or zombie status, number of brains (zombie currency), 
+legendary status, school, class year, and dorm. Each player will have a unique Player ID so that they 
+can be referenced when needed from the database. The database also stores information for each game 
+such as the number of players and which players are playing. It can store relationships among players 
+such as Player A turned Player B into a zombie. Select information from the database will be accessible 
+by other parts of the architecture. In general, the database serves as the place where player information 
+is stored for each game in order for gameplay interactions to occur successfully between players and 
+the application. 
+
+
+FULFILLED REQUIREMENTS
+
+The database component should fulfill the following requirements from the preliminary version of the HvZ 
+application 
+(as laid out here: https://docs.google.com/document/d/1yQlLDUFesWLfKj190QjKuadZ4DUrU-UD2hT6l73GJxM/edit?usp=sharing).
+
+1. Code is clear, readable, and documented so that mods can maintain and change the app in the future.
+The database design will be done in a clear and organized fashion, with the goal in mind that any experienced 
+programmer will be able to code the database component just from the design. Furthermore, the function names and 
+purpose will be intuitive to use for any moderator to later change and utilize in other ways in future use. 
+
+2. Mods can start, end, and reset an HvZ game.
+There will be functions in this component that clear and reset the database of any files. This will allow new 
+players to register and play in future games.
+
+3. Players can register for the game and create an account.
+When players register for a game and create an account, their account and user information will be stored on 
+the database. 
+
+6. Zombie players can scan Human QR feed codes from their phones. 
+The database will store the feedcode to be used here. The feedcode will be stored under a particular user and 
+will be unique to each player. Furthermore, the database has functions to enable the process of a “zombie eating 
+a human” via the feedcode. These functions will turn the eaten human into a zombie, and increase the brain count 
+of the eater zombie player. 
+
+9. There should be a system in place to transfer the brains (zombie currency) between other zombies.
+The database has a zombie brain transfer function that will allow the brain currency of zombies to be transferred 
+between zombie players. 
+
+10. There is a list of players, displaying names and status as a human or zombie, accessible from the home screen.
+There is a function in the database which returns a list of players. In addition, there are functions which set and 
+get the status and information of each player, including their team as human or zombie. 
+
+11.  The number of humans remaining is displayed on the home screen.
+There are functions which enable the retrieval of information like this from the database. Some functions retrieve 
+the number of players, and others are getter functions which could be used to sort through the database or other 
+lists of players to help with this process. 
+
+15. The Mods will have access to adjust players status. They should be able to update legendary status for zombies, 
+resurrect human players, and update zombie upgrades.
+The database component will have setter functions for every field of information of the players, which allow for the 
+change of specific player information. 
+        
+
+ARCHITECTURE CONNECTIONS AND INTERFACES
+
+The database component serves to provide access to information to enable gameplay. This information will appear on 
+the user interface of the application, as well as the app itself. As much of the player information is critical for 
+gameplay, the database will be working directly with the application to supply information. Additionally, the database 
+will work closely with Authentication because Authentication will determine who is allowed to call and access the 
+information and functions of the database. Authentication will work with logging in a specific user, whose information 
+and user ID will be provided by the database. 
+Below are more thorough descriptions of the interfaces and connections between the database, Authentication, and 
+application. 
+
+Application ↔︎ Database
+The application sends a request to read from or write to the database (e.g. to view the number of humans or zombies 
+or to update mission information, etc.), along with the user’s ID, a signed JSON Web Token. The database can then 
+verify the ID token to get the identity of the user requesting data. We will have permissions set up so that only 
+certain users can perform particular operations. For example, only zombies can transfer brains to other zombies. The 
+database will then send back the requested data or confirmation that data was changed. The application will also 
+reorganize the database when a new game is being created (the database will then handle storing new game information 
+in a different place than the old one). This means that authentication in connection with the application will 
+determine who can call which read/write functions to the database, which is what will be built in this component. 
+
+Registration/Authentication ↔︎ Database
+After a player signs in, is registered for the first time, and goes through the authentication process, the 
+registration/authentication component will add the user information to the database and generate a feed code. The 
+component will also send a confirmation email to the user with their generated feed code and additional game 
+information. The Player ID is generated by the Sign-in functions, which is a random string of letters and numbers 
+that will be passed into many of these database functions to retrieve other player information. Furthermore, other 
+information like name and email will be handled in sign in through their Google account. All of this information is 
+generated in the registration and authentication component and sent to the database, where the information is saved 
+for future use.
+
+File Storage ↔︎ Database
+The database will also store necessary information needed to store, download, and display the objects in file storage. 
+This will entail having a section of the Database used to store URLs as strings to find each object in the file storage 
+component. The files in file storage are retrieved by this URL. Each file will have an associated Mission Number and a 
+unique File ID so that they can be referenced when needed from the database.
+Tagging Component ↔︎ Database
+For the tagging component, the database will store under each zombie player, a list of strings that are the list of 
+players that were tagged by that user, and it will have a single string that stores who tagged that player. This 
+information will need to be stored in the database and written to be retrievable so the tagging component can 
+successfully create the tree of zombie ancestry. 
+
+
+FUNCTIONS / METHODS
+
+* Read Functionality
+   * The database component will include several methods in order to access various information about the players to 
+     enable gameplay. For each player, the database stores their Player ID, player or moderator status, human or zombie 
+     status, number of brains (zombie currency), legendary status, school, class year, and dorm. This information will be 
+     used both from gameplay in terms of keeping track of brains and other relevant statistical information. Below is 
+     listed the various kinds of read functions there will be:
+   * Get list of current users from database
+   	* This will be used for displaying information about who is still alive on the homepage of the application. This 
+          function will likely be used for various methods involving searching through or displaying the full list of players.
+   	* Called By: Application 
+   	* Input: NA
+   	* Output: ArrayList of Player ID stored as Strings
+   * Get number of humans and zombies from database
+   	* This will be used similarly to the function which will get a list of all current users and players. This will be used 
+     	  to display the number of each kind of player. It will be used to display various information about live-game statistics 
+     	  on the front page of the application. 
+   	* Called By: Application
+   	* Input: NA
+   	* Output: Two Integers as a Tuple of the number of humans and zombies
+   * Get specific player information
+   	* This will involve various methods for each kind of info stored (name, school, human/zombie status, etc.) which will 
+	  simply return that stored information for a single player. This will look like many various functions appearing similar 
+	  to, “getSchool([Player ID]).” All stored information of players should be retrievable for statistics and data
+   	* Called By: Application (to display stats), File Storage (to correctly display information as files for each user), 
+     	  Authentication (to determine who can use or call other functions and methods)
+   	* Input: Player ID
+   	* Output: their specific information as a String or Integer (for zombie currency)
+
+
+* Write Functionality
+   * As the game is played, often the moderators need to adjust player statistics from the database. This includes moderators 
+     updating legendary status for zombies, and resurrecting human players (changing their status from zombie back to human). 
+     Below is listed the various kinds of write functions there will be:
+   * Write info
+   	* This function writes in all the ascribed sign in information that is given when the person registers. This includes the 
+     	  user feed code and a randomized Player ID. 
+   	* Called By: Sign in, Registration
+   	* Input: name, user ID, and feed code
+   	* Output: NA (a new user of Player ID is created with their associated information)
+   * Change ‘Legendary’ Status
+   	* Called By: Application, Moderators only (Authentication)
+   	* Input: Player ID, new status as String
+   	* Output: NA (that Player ID’s status was changed to the new given string)
+   * Resurrect Zombie
+  	* Called By: Application, Moderators only (Authentication)
+  	* Input: Player ID
+  	* Output: NA (that Player ID’s player status was changed to human)
+   	* Note: Be sure to check that the Player ID is already a zombie in case of user error (use aforementioned getPlayerStatus())
+   * Change into Zombie (“Eat Human”)
+   	* Called By: Application, during eating process by Zombie (Authentication)
+   	* Input: Player ID A (Zombie), Player ID B (Human)
+   	* Output: NA (Player B’s player status was changed to zombie, Player A’s brain currency increased by 1)
+   	* Note: Be sure to check that the Player A is a human in case of user error (use aforementioned getPlayertStatus())
+   * Increment Brain Currency
+   	* Called By: Application, during Eat Human function
+   	* Input: Player ID (Zombie)
+   	* Output: NA (Player ID’s brain currency increased by 1)
+   * Change Moderator Privileges
+   	* Called By: Application, by Moderators (Authentication)
+   	* Input: Player ID, boolean of moderator privileges
+   	* Output: NA (that Player ID’s Mod status was changed to Moderator)
+   * Set specific player information
+   	* This will involve various methods for each kind of info stored (team, school, class year, dorm, tagged, taggedBy) which 
+	  will simply set that stored information for a single player. This will look like many various functions appearing similar 
+	  to, “setSchool([Player ID]).” This will be collected in a survey prompted by the application, and stored for statistics. 
+   	* Called By: Application (to display stats)
+   	* Input: Player ID, desired variable change as a string
+   	* Output: NA
+
+
+* Zombie Brain Transfer
+   * In the game, it is possible for zombie players to transfer their brain currency to another zombie. This entails changing the 
+     number of brains of Player A by x number of brains, and increasing the specified Player B’s brains by x amount. 
+   	* Called By: Application, Zombie players only (Authentication)
+   	* Input: Player A’s ID (transferring), Player B’s ID (receiving), Integer number of brains
+   	* Output: NA (that Player B’s brains increase by the specified integer amount)
+   	* Note: Be sure to check that Player B ID is a zombie in case of user error (use aforementioned getPlayerStatus()).
+
+
+* Reset game-specific player data
+   * When the week-long game ends, the database should be wiped clear for future games. This would entail completely deleting 
+     all the player information. 
+   	* Called By: Application, Moderators only (Authentication)
+   	* Input: NA
+   	* Output: NA
+
+
+* File Storage 
+   * Write a URL to a File
+   	* The Database will store the URLs as strings of all the objects in file storage. This function will write the file 
+	  urls and create a new object in the database.
+   	* Called By: File Storage
+   	* Input: File URLs as a String, Mission Number, File ID
+   	* Output: NA (the file URL will appear under a new entry in the database associated with the mission number.)
+   * Return a specific File URL
+   	* This function will search through all the URLs to find that one associated with the correct file id, and return its 
+	  associated file URL. 
+   	* Called By: File Storage
+   	* Input: File ID
+   	* Output: File URL as a String
+   * Return a list of File URLs
+   	* This function will search through all the URLs to find that ones associated with the correct mission number, and return 
+	  all the files that are apart of that mission. 
+   	* Called By: File Storage
+   	* Input: Mission Number
+   	* Output: File URLs as List of Strings
+
+
+FEASIBILITY
+
+	This database component is feasible for our project. We will be using the Cloud Firestore Database 
+(https://firebase.google.com/docs/firestore). It is a document-based NoSQL database which allows us to store information in a simple 
+way. Because our data needs are relatively simple, we don’t need to worry about complex database operations. The service is a pay as 
+needed type, and with our limited needs it will be free for a long while. Furthermore, it has libraries to directly interface with ios, 
+android, and web applications. This allows us to consider building a website in the future with very little changes to our architecture. 
+As a Firebase product, it interfaces easily with other Firebase products, such as Cloud Storage, which is the implementation of the file 
+storage system that we are considering. In summary, we plan to use an off-the-shelf product to implement our database, and we know that it 
+will fit our needs and interface nicely with the other components of our architecture.
+	For this part of the project, implementing this specified component will be suitable. Although the coding demands are relatively 
+simple, there are a fair number of them to account for. Furthermore, the complexity of this component will come in by communicating in a 
+clear, and effective way with the other components who want access to this information. As the database accesses information to be used 
+throughout most of the processes of the app, it is one of the more interconnected components of the project. Finally, we will also need to 
+search through, delete, and update data in a time-efficient manner, which will allow users to easily access any information they need without 
+impairing the system. 
+	These functions for the database are also suitable because they are definitely testable. By creating a small prototyped database, 
+with known player information, we can easily and automatically test the functions to be sure they are reading, writing, and deleting the 
+proper data. This will involve writing test cases that search through, access, and write data and comparing it to the expected output.
+Furthermore, later with a more complex prototype that has been incorporated alongside other components like Authentication, and the Applications, 
+we will be able to input much more complex user data. This testing is important, not only because it will allow us to see if the components 
+are communicating together effectively, but also because we will be able to test when the Database functions and successfully called or not 
+by the Application, as specified by the Authentication.   
+
+
+REVISIONS
+
+Specifications
+   * Accepted Changes
+   	* The architecture section was based on outdated information pertaining to the Registration website, which we are not planning to 
+	  implement in this version of the application. I updated the architecture to reflect the correct expectations of the Authentication/
+	  Registration component.
+   	* References to the component’s requirements were missing. I added them along with how this component was expected to fulfill said 
+	  requirement. 
+   	* Overall, I updated all the information in the specifications to better reflect the new design of the component. Therefore, both 
+	  the specifications, design, and test plan, should match up better now. 
+   	* Added connections to the new Tagged Component. 
+   * Rejected Changes
+   	* NA
+
+Design
+   * Accepted Changes
+   	* To be more secure, email should not be stored on the database. I removed the email field, and all references to getting and setting 
+	  that information. 
+   	* Feedcode generation will now be handled by the Authentication/Registration Component. I removed the creation of the feedcode from 
+	  database functionality. 
+   	* I removed the extends on my classes. I misunderstood how this part of Flutter worked. The design is more correct now with how classes 
+	  work in this framework.
+   	* I mislabeled some code as being part of Flutter, as opposed to Dart. I changed these instances in the documentation to be more accurate 
+	  as to where these off-the-shelf functions and formats come from.
+   	* I revised the pseudo code to more accurately reflect the syntax of Dart and Flutter. Instead of explicitly writing public and private 
+	  functions, only private functions have an underscore in the front of their name. 
+   	* From the Authentication component, addUser() should only take in name, user ID, and feedcode. All other fields were set to default 
+	  values. Then, I created setter functions for the remaining fields so they could be created later by a prompted survey in the app. 
+   	* Added the tagged and taggedBy fields to the database. This includes getter and setter functions for both as well as in the declaration 
+	  of the classes. 
+   	* Revised the getter functions for file storage to return a single file based on one File ID, or a group of files that are all under one 
+	  Mission Number. 
+   	* I created a new class DataErrorMessages which provided a custom system for catching errors. I wrote several error messages and where 
+	  they would possibly be thrown in each function. This will provide more clarity on the error handling of the database component. 
+   	* I restructured the whole of how the classes worked. I changed them into singleton objects with local instances of the actual database.
+	  Furthermore, I added a section in the beginning which discussed the process of how each of these objects will be used. This should 
+	  overall create a more optimized system, a more protected system in terms of connectivity issues, and a more clear system to be designed.
+   * Rejected Changes
+   	* It was suggested as a comment to use atomic transactions to be more secure in the brain transfer. This was rejected because this is more 
+	  recommended for sensitive transactions like with real money. 
+   	* There was a question about the getPlayers() function and how it could be further optimized. However, after reviewing their recommended change, 
+	  I found that it is actually no more optimized or faster than the system already in place. This is because both would still require a full 
+	  transverse of the database, however there’s also required more construction of objects, which is less optimized in terms of memory. 
+
+Test Plan
+   * Accepted Changes
+   	* I added more information on specifically how the test file will be structured and run to improve general clarity. 
+   	* I removed addUser() Test Case C, because it is actually impossible to input a user with the incorrect number of brains. 
+   	* I clarified (new) addUser() Test Case C to check for weird variables like inputting an empty string, as opposed to inputting a variable of 
+	  the wrong type. The original test actually wouldn’t allow the program to compile, but this test will now actually check for the correct error 
+	  handling behavior. 
+   	* Removed addUser() tests for feedcode generation. This will be handled by the Authentication component. 
+   	* Added tests for the various Tagging Component functions that were added
+   	* Added tests for various functionality of new file storage component updates
+   	* Added tests to accurately reflect the new structure of the app, as well as explicit tests for the new constructors. 
+   * Rejected Changes
+   	* It was suggested in a comment if I considered using Dart’s unit testing framework as opposed to Flutter’s. However, there is no added benefit 
+	  of using Dart’s as opposed to Flutter’s. 
+   	* It was suggested in a comment if I had considered using a mock database to run the tests as opposed to the actual database. However, I wanted 
+	  to run these tests on the actual database to know for sure that our code will connect and run exactly as we expert.

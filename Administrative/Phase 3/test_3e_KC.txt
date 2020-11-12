@@ -1,0 +1,559 @@
+Team: HvZ App
+
+
+Members: Kyra Clark, Santiago Rodriguez, Alex Hadley, Matthew Waddell
+Project 3C.2 — Component Test Plan
+
+
+Github Link: https://github.com/alexhad6/HvZ-app/blob/master/Administrative/Phase%203/test_3c_KC.txt
+        Primary author: Kyra
+
+
+Component Test Plan: Database
+
+
+TESTING FRAMEWORK
+For testing the database component designs, we will be using Flutter’s own testing framework (as 
+documented here: https://flutter.dev/docs/testing#unit-tests). We will be using the Flutter Unit Testing 
+Framework because of its ability to easily automate testing for a single function, method, or class. 
+This is a very reasonable tool for us to use because it was designed specifically to test Flutter and 
+apps built using Flutter, like our HvZ app. Furthermore, because it is already a fully built system, 
+it is a good trustworthy resource to use for automation and clear pass/fail determination because it 
+is a premade, “off-the-shelf,” widely used tool. In general, most of the Database tests will follow 
+the process of writing and reading known data to the database. Because the data will be saved and 
+known within the tests, it will always clearly know the expected result when writing, changing, or 
+retrieving the data to and from the database. This automated process provides us with clear and 
+unambiguous pass/fail determination. How this testing framework will work is we will write individual 
+tests, and then put those tests into groups of tests. These groups of tests will be in their own .dart 
+file in a void main() function, which can all be run in one instance to test the component’s classes. 
+
+
+Classes
+We will want to confirm that the two separate classes correctly pull from and update the two distinct 
+collections within the one database (‘users’ and ‘files’). We don’t want any user data to end up on or 
+affecting the file collection, etc. We can use the “off-the-shelf” testing framework system made by 
+Flutter to test for integration (https://flutter.dev/docs/testing#integration-tests) to make sure that 
+the two classes were successfully created, work well together, and with the rest of the system. 
+
+
+Test UserData Class and FileData Class Integration  
+* Test Case A: Instance Variables
+   * We want to assert that all the insurance variables are properly initialized for each class. Test 
+     that each variable is present, final, and independent.
+   * This is a white box test to make sure we have the correct tools to perform the methods correctly.
+   * Generate Test: Declare the two databases. Confirm using Flutter Unit Tests that we can access the 
+     UserData instance variables. 
+   * Correct Behavior: Correct Behavior is if no errors are thrown when trying to call the instance 
+     variables and we are returned with the correct types for each variable. 
+   * Clean up: If we reach the end of the test with no errors, delete the object to reset the database. 
+* Test Case B: Test Constructors
+   * We want to make sure that we can accurately construct each of the objects with their desired fields.
+   * This is a white box test because how classes are constructed is not relevant to the specifications. 
+   * Generate Test: Construct both of the objects: UserData and FileData. Test that the instances of the 
+     database collections were called and constructed in the database, by directly checking the instance 
+     variables of the UserData. Next, construct another UserData object incorrectly to purposely throw 
+     an error. 
+   * Correct Behavior: If we can access the instance variables and the expected error is successfully 
+     thrown, we will know that the constructors work as expected and the subclass of DataErrorMessage was 
+     also successfully created. 
+   * Clean Up: If we reach the end of the test with no errors, delete the object to reset the database. 
+
+
+
+
+Write Functionality
+        Now that we know we can successfully make and declare a database class, we need to know if we can 
+add to it. The general process of these tests will consist of adding known dummy documents to the database 
+and testing if we can successfully add the information to the database. 
+
+
+Test addUser()
+* Test Case A: add a given user correctly
+   * We want to assert that the correct values are added to the database when adding a user. 
+   * This is a black box test to make sure we are meeting the specification of storing the proper information 
+     about players on the database.
+   * Generate Test: Declare a new PlayerDatabase object. Declare the proper variables for each aspect of the 
+     user. This includes declaring a known document id, as opposed to a random one (that will be tested later 
+     in the read functionality). Call addUser on all the proper variables. Set the document Id to the known one. 
+     Because we have the document Id, we will not have to rely on the read functions we made. Instead, we can 
+     use the already working read functions from Flutter libraries. Using the document id, retrieve the 
+     information for each field and compare it to the original variable we declared it as. 
+   * Correct Behavior: If all the variables come back matching what we expected them to be. 
+   * Clean up: If we reach the end of the test with no errors, delete the object to reset the database. 
+* Test Case B: add multiple given users correctly
+   * This will test if we can add many users to the database at the same time without running into errors 
+     or database being mixed around unexpectedly. 
+   * This is a black box test to know that we can successfully have multiple players within the database. 
+   * Generate Test: Follow the same procedure as described above to add a user to the database. Once that 
+     user is added. Declare more variables and do it again. Perform this set of operations three times with 
+     different data. Now, retrieve all the information for each player. 
+   * Correct Behavior: If all the variables come back matching what we expect them to be for each player. 
+   * Clean up: If we reach the end of the test with no errors, delete the object to reset the database. 
+* Test Case C: add a user with weird variables
+   * This will test if the database can handle bad data and throw errors correctly, as opposed to adding 
+     bad data, leading to more problems later. 
+   * This is a white box test, because how addUser handles errors is not a part of the specifications. 
+   * Generate Test: Follow the same procedure as Test Case A, but input weird variables, like an empty 
+     string.
+   * Correct Behavior: if an error is thrown by the function and caught in the test case. We should then still 
+     try to retrieve the data. This should also cause an error, because nothing should have been added to the 
+     database. 
+   * Clean up: If we reach the end of the test with all correct behavior, delete the object to reset the database. 
+
+
+Test addFile()
+* Test Case A: add a given file correctly
+   * We want to assert that the correct values are added to the database when adding a file. 
+   * This is a black box test to make sure we are meeting the specification of storing the proper information 
+     about files on the database.
+   * Generate Test: Declare a new FileDatabase object. Declare the proper variables for each aspect of the file. 
+     This includes declaring a known document id, as opposed to a random one (that will be tested later in the 
+     read functionality). Call addFiel on all the proper variables. Set the document Id to the known one. 
+     Because we have the document Id, we will not have to rely on the read functions we made. Instead, we can 
+     use the already working read functions from Flutter libraries. Using the document id, retrieve the 
+     information for each field and compare it to the original variable we declared it as. 
+   * Correct Behavior: If all the variables come back matching what we expected them to be. 
+   * Clean up: If we reach the end of the test with no errors, delete the object to reset the database. 
+* Test Case B: add multiple given files correctly
+   * This will test if we can add many files to the database at the same time without running into errors or 
+     database being mixed around unexpectedly. 
+   * This is a black box test to know that we can successfully have multiple files within the database. 
+   * Generate Test: Follow the same procedure as described above to add a user to the database. Once that user 
+     is added. Declare more variables and do it again. Perform this set of operations three times with different 
+     data. Now, retrieve all the information for each file. 
+   * Correct Behavior: If all the variables come back matching what we expect them to be for each file. 
+   * Clean up: If we reach the end of the test with no errors, delete the object to reset the database. 
+* Test Case C: add a file with incorrect variables
+   * This will test if the database can handle bad data and throw errors correctly, as opposed to adding bad data, 
+     leading to more problems later. 
+   * This is a white box test, because how addFile handles errors is not a part of the specifications. 
+   * Generate Test: Follow the same procedure as Test Case A, but input weird variables like an empty string.
+   * Correct Behavior: if an error is thrown by the function and caught in the test case. We should then still try 
+     to retrieve the data. This should also cause an error, because nothing should have been added to the database. 
+   * Clean up: If we reach the end of the test with all correct behavior, delete the object to reset the database. 
+* Test Case D: add Files and User together
+   * This will test if the two Classes are separate and write to distinct collections in the database. 
+   * This is a white box test as we are testing for successful integration. 
+   * Generate Test: Follow a similar procedure at Test Case B (from both the addFile() test and the addUser() test 
+     sections). We will be declaring the two separate databases and adding multiple files and users to each. Then 
+     retrieving the information for each one. 
+   * Correct Behavior: If every variable and piece of data for each file and user came back correctly and from the 
+     correct database. We will also try to test retrieving one of the given users from the FileDatabase and vice versa 
+     to make sure that each document was only written to its proper class. The correct behavior is if an error is 
+     thrown and caught in the test case. 
+   * Clean up: If we reach the end of the test with all correct behavior, delete the objects to reset the databases. 
+
+
+Test changeLegStatus()
+* Test Case A: make legendary for one player alone
+   * This will show us if we can successfully manipulate the legendary status of a player in the database. 
+   * This is a black box test, as we are making sure we are conforming to the expectations set in the specifications. 
+   * Generate Test: Declare a PlayerDatabase. Using addUser, declare a player with known variables for all its fields, 
+     including document ID. Start with the player’s status as False. Using the document ID and the provided library 
+     read functions, confirm that the legendary status is False. Call changeLegStatus on the player to set it as True. 
+     Use the read function to confirm that it is True. Change it back to False. Confirm that it is False. 
+   * Correct Behavior: all the confirming statements worked and the status was changed from false to true, and from 
+     true to false. 
+   * Clean up: If we reach the end of the test with all correct behavior, delete the object to reset the database. 
+* Test Case B: make legendary for one player with other users in database
+   * This will show us that we can successfully manipulate the status of one player in isolation from changing any data 
+     if there are multiple players in the database. 
+   * This is a white box test, as we are testing for a specific and odd error not listed in specifications. 
+   * Generate Test: Follow the same procedure as described above in Test Case A. However, before manipulating the 
+     status, also add at least three other players to the database with varying known fields. Each time to change the 
+     status of the one player, also use the library read functions to confirm that the other players’ statuses have 
+     remained unchanged. 
+   * Correct Behavior: we should see the same results as Test Case A, except each time, the status of the other 
+     players should remain unchanged. 
+   * Clean up: If we reach the end of the test with all correct behavior, delete the object to reset the database. 
+
+
+Test resurrectZombie()
+* Test Case A: resurrect one player alone
+   * This will show us if we can successfully manipulate the team of a single player in the database. 
+   * This is a black box test, as we are making sure we are conforming to the expectations set in the specifications. 
+   * Generate Test: Declare a PlayerDatabase. Using addUser, declare a player with known variables for all its fields, 
+     including document ID. Start with the player’s team as Zombie. Using the document ID and the provided library read 
+     functions, confirm that their team is Zombie. Call resurrectZombie on the player to set it as Human. Use the read 
+     function to confirm that it is Human. 
+   * Correct Behavior: the confirming statements worked and the team was changed from Zombie to Human
+   * Clean up: If we reach the end of the test with all correct behavior, delete the object to reset the database. 
+* Test Case B: resurrect one player with other users in database
+   * This will show us that we can successfully manipulate the team of one player in isolation from changing any data 
+     if there are multiple players in the database. 
+   * This is a white box test, as we are testing for a specific and odd error not listed in specifications. 
+   * Generate Test: Follow the same procedure as described above in Test Case A. However, before manipulating the team, 
+     also add at least three other players to the database with varying known fields. When we change the team of the 
+     one player, also use the library read functions to confirm that the other players’ teams have remained unchanged. 
+   * Correct Behavior: we should see the same results as Test Case A, except each time, the team of the other players 
+     should remain unchanged. 
+   * Clean up: If we reach the end of the test with all correct behavior, delete the object to reset the database. 
+* Test Case C: resurrect one player incorrectly to cause error
+   * This will show us if we try to resurrect a Human, it will cause an error. 
+   * This is a black box test, as we are making sure we are conforming to the expectations set in the specifications. 
+   * Generate Test: Declare a PlayerDatabase. Using addUser, declare a player with known variables for all its fields, 
+     including document ID. Start with the player’s team as Human. Using the document ID and the provided library read 
+     functions, confirm that their team is Human. Call resurrectZombie on the player to set it as Human. 
+   * Correct Behavior: an error will be thrown and successfully caught by the function as opposed to changing the 
+     database
+   * Clean up: If we reach the end of the test with all correct behavior, delete the object to reset the database. 
+
+
+Test changeModStatus()
+* Test Case A: make one player moderator alone
+   * This will show us if we can successfully manipulate the mod status of a player in the database. 
+   * This is a black box test, as we are making sure we are conforming to the expectations set in the specifications. 
+   * Generate Test: Declare a PlayerDatabase. Using addUser, declare a player with known variables for all its fields, 
+     including document ID. Start with the player’s status as False. Using the document ID and the provided library 
+     read functions, confirm that the legendary status is False. Call changeModStatus on the player to set it as True. 
+     Use the read function to confirm that it is True. Change it back to False. Confirm that it is False. 
+   * Correct Behavior: all the confirming statements worked and the status was changed from false to true, and from 
+     true to false. 
+   * Clean up: If we reach the end of the test with all correct behavior, delete the object to reset the database. 
+* Test Case B: make one player a moderator with other users in database
+   * This will show us that we can successfully manipulate the status of one player in isolation from changing any 
+     data if there are multiple players in the database. 
+   * This is a white box test, as we are testing for a specific and odd error not listed in specifications. 
+   * Generate Test: Follow the same procedure as described above in Test Case A. However, before manipulating the 
+     status, also add at least three other players to the database with varying known fields. Each time to change the 
+     status of the one player, also use the library read functions to confirm that the other players’ statuses have 
+     remained unchanged. 
+   * Correct Behavior: we should see the same results as Test Case A, except each time, the status of the other 
+     players should remain unchanged. 
+   * Clean up: If we reach the end of the test with all correct behavior, delete the object to reset the database. 
+
+
+Test incrementBrains()
+* Test Case A: Change number of brains
+   * Because this function is private, we will have to make the unit testing a friend class so that it can access 
+     the method individually. This will test the ability to change the number of brains in various ways. 
+   * This is a black box test, as we want to be able to meet the specifications of changing the number of brains. 
+     It is also a white box test because I will be giving it inputs that it should not be getting from any of the 
+     functions that will call it, just to be safe. 
+   * Generate Test: Declare a PlayerDatabase. Using addUser, declare a player with known field variables, including 
+     a document ID. We know from previous tests that it should start with 0 brains. Call increment brains on a 
+     various numbers: 0, 1, 2, -1, -2, -1, 1, 4.
+   * Correct Behavior: After every change to brains, confirm that the number is exactly what we would expect, 
+     including if the brain number becomes negative. This should not throw an error. 
+   * Clean up: If we reach the end of the test with all correct behavior, delete the object to reset the database. 
+
+
+Test eatHuman()
+* Test Case A: zombie correctly eating a human
+   * This will test an array of functions working together as well as the function itself. 
+   * This is a black box test because we want to see if it performs in expectations with the specifications. 
+   * Generate Test: Declare a PlayerDatabase. Declare and add two different players to the database, one human and 
+     one zombie. Call eatHuman correctly inputting the zombie and human players. 
+   * Correct Behavior: After calling eatHuman, use their document IDs to perform a series of tests. Check that both 
+     players are now zombies. Test that the original zombie’s brain count successfully went up by exactly 1. 
+   * Clean up: If we reach the end of the test with all correct behavior, delete the object to reset the database. 
+* Test Case B: zombie incorrectly each a zombie
+   * This will test how the function handles bad data. 
+   * This is a white box test because we are testing odd behavior that should not happen naturally in the app. 
+   * Generate Test: Declare a PlayerDatabase. Declare and add two different players to the database, both zombies. 
+     Call eatHuman incorrectly inputting the zombie players. 
+   * Correct Behavior: After calling eatHuman on a zombie, an error should have been thrown and caught by the 
+     function which stopped the operation. After the error was caught, double check that nothing in the database 
+     changed. Confirm that none of their brain counts changes and that they are both still zombies. 
+   * Clean up: If we reach the end of the test with all correct behavior, delete the object to reset the database. 
+* Test Case C: human incorrectly each a human
+   * This will test how the function handles bad data. 
+   * This is a white box test because we are testing odd behavior that should not happen naturally in the app. 
+   * Generate Test: Declare a PlayerDatabase. Declare and add two different players to the database, both humans. 
+     Call eatHuman incorrectly inputting the human players. 
+   * Correct Behavior: After calling eatHuman on a zombie, an error should have been thrown and caught by the function 
+     which stopped the operation. After the error was caught, double check that nothing in the database changed. 
+     Confirm that none of their brain counts changes and that they are both still humans. 
+   * Clean up: If we reach the end of the test with all correct behavior, delete the object to reset the database. 
+
+
+Test zombieBrainTransfer()
+* Test Case A: correct brain transfer between two zombies
+   * This will test the increment brain function in action from within another function. 
+   * This is a black box test because we need to confirm that a brain transfer can successfully occur to meet the 
+     specifications. 
+   * Generate Test: Declare a PlayerDatabase and add two distinct players as zombies to the database. Give one of 
+     them two brains and the other zero, directly using the incrementBrains function. Then, call the 
+     zombieBrainTransfer function to move one brain to the other. 
+   * Correct Behavior: use the library read function to check that the first zombie lost exactly one brain and the 
+     second gained exactly one brain. 
+   * Clean up: If we reach the end of the test with all correct behavior, delete the object to reset the database. 
+* Test Case B: incorrect brain transfer to a human
+   * This will test that the function can handle incorrect data and will not add brains to a human player. 
+   * This is a white box test because we are testing its behavior with bad data. 
+   * Generate Test: Declare a PlayerDatabase and add two distinct players to the database, one human and one zombie. 
+     Give the zombie two brains directly using the incrementBrains function. Then, call the zombieBrainTransfer 
+     function to move a brain to the human. 
+   * Correct Behavior: Because we should not be able to transfer a brain to a human, an error should be thrown when 
+     we call this function, trying to give the human a brain. An error should be caught and we should further confirm 
+     that no brain currency numbers changed. 
+   * Clean up: If we reach the end of the test with all correct behavior, delete the object to reset the database. 
+* Test Case C: incorrect brain transfer from a human
+   * This will test that the function can handle incorrect data and will be called on a human player. 
+   * This is a white box test because we are testing its behavior with bad data. 
+   * Generate Test: Declare a PlayerDatabase and add two distinct players to the database, one human and one zombie. 
+     Give the zombie two brains directly using the incrementBrains function. Then, call the zombieBrainTransfer 
+     function on the human. 
+   * Correct Behavior: Because we should not be able to transfer brains from a human, an error should be thrown 
+     when we call this function. An error should be caught and we should further confirm that no brain currency 
+     numbers changed. 
+   * Clean up: If we reach the end of the test with all correct behavior, delete the object to reset the database. 
+* Test Case D: incorrect brain transfer with not enough brains
+   * This will test that the function can handle incorrect data if there are not enough brains to transfer.
+   * This is a white box test because we are testing its behavior with bad data. 
+   * Generate Test: Declare a PlayerDatabase and add two distinct players as zombies to the database. Give one of 
+     them two brains and the other zero, directly using the incrementBrains function. Then, call the 
+     zombieBrainTransfer function to move 3 brains to the other. 
+   * Correct Behavior: an error should be thrown when more brains were being transferred than the first zombie 
+     had to offer. An error should be caught and we should further confirm that no brain currency numbers changed. 
+   * Clean up: If we reach the end of the test with all correct behavior, delete the object to reset the database. 
+* Test Case E: incorrect brain transfer with impossible number of brains
+   * This will test that the function can handle incorrect data if a negative number of brains is asked to be 
+     transferred
+   * This is a white box test because we are testing its behavior with bad data. 
+   * Generate Test: Declare a PlayerDatabase and add two distinct players as zombies to the database. Give one of 
+     them two brains and the other zero, directly using the incrementBrains function. Then, call the 
+     zombieBrainTransfer function to move -1 brains to the other. 
+   * Correct Behavior: an error should be thrown when a negative number of brains were being transferred. An error 
+     should be caught and we should further confirm that no brain currency numbers changed. 
+   * Clean up: If we reach the end of the test with all correct behavior, delete the object to reset the database. 
+
+
+Read Functionality
+        Now that we know we can successfully write and manipulate data in the database, we want to know that we can 
+successfully read data from the database. We will now be using the our own read functions, as opposed to the generic 
+library functions we were using before. This means that we will now be using the randomized document ID that will 
+normally be used when adding a user. Throughout all of these tests, we will go through the general process of adding 
+known data to the database and retrieving it with our read functions and testing if we are retrieving the correct data. 
+
+
+Test getPlayers()
+* Test Case A: correctly obtain list
+   * We need to test to see if we can successfully create a list of players. 
+   * This is a black box test because it will tell us if we can successfully retrieve a list of strings of all the 
+     player IDs, as per the specifications. 
+   * Generate Test: Follow the basic procedure of creating the database and adding a variety of players from addUser 
+     Test Case B. Using the library functionality, individually recollect the ids of each player and create a list of 
+     the players. Call getPlayers on the database and compare the lists. 
+   * Correct Behavior: After collecting the list of Ids from the function, run a series of tests to see if it is 
+     correct. First, test that they are the same length. Then check that every id in one list is also included in the 
+     other list. 
+   * Clean up: If we reach the end of the test with all correct behavior, delete the object to reset the database. 
+
+
+Test getNumberHZ()
+* Test Case A: get correct numbers (1 human; 1 zombie)
+   * We need to test to see if we can successfully get the correct number of players. 
+   * This is a black box test because it will tell us if we can successfully retrieve the number of humans and zombies, 
+     as per the specifications. 
+   * Generate Test: Follow the basic procedure of creating the database and adding a variety of players from addUser 
+     Test Case B. With each player that we add, save in a variable the number of humans and zombies in the total database. 
+     Call getNumberHZ() on the database and compare the retrieved numbers. 
+   * Correct Behavior: Compare the number we know is in the database, with the one we retrieved from the function. They 
+     should be the same numbers. 
+   * Clean up: If we reach the end of the test with all correct behavior, delete the object to reset the database. 
+* Test Case B: get correct numbers (humans > zombies)
+   * This is an identical test as Test Case A, but with a different number of humans and zombies. This time there are several 
+     of each player, with more humans than zombies. 
+* Test Case C: get correct numbers (zombies > humans)
+   * This is an identical test as Test Case A, but with a different number of humans and zombies. This time there are several 
+     of each player, with more zombies than humans. 
+* Test Case D: get correct numbers (empty database)
+   * We need to test to see if we can successfully get the correct number of players, when it is the base case database. 
+   * This is a white box test to test for any odd behavior not planned in the specifications. 
+   * Generate Test: Follow the basic procedure of creating the database Call getNumberHZ() on the database and compare the 
+     retrieved number to zero. 
+   * Correct Behavior: Compare the number we know is in the database, with the one we retrieved from the function. They 
+     should be the same numbers: 0. 
+   * Clean up: If we reach the end of the test with all correct behavior, delete the object to reset the database. 
+
+
+Test get Player Information 
+* Test Case A: get correct player information from a single player
+   * In these tests, we will retrieve all possible information from the fields of a player. 
+   * This is a black box test because we need to know that we can retrieve player information as described in the 
+     specifications. 
+   * Generate Test: Declare a PlayerDatabase. Add one player to the database, with known field values stored in the 
+     test case as variables. Call every get function on this player to retrieve the correct information. This means we 
+     are going to be calling getName(), getTeam(), getModStatus(), getBrains(), getFeedCode(), getLegStatus(), getSchool(), 
+     getClassYear(), and getDorm() on the single player. 
+   * Correct Behavior: Compare the information with the expected value. Each value should match what it was originally 
+     set as. 
+   * Clean up: If we reach the end of the test with all correct behavior, delete the object to reset the database. 
+* Test Case B: get correct player information with multiple players in the database
+   * In these tests, we will retrieve all possible information from the fields of a player. 
+   * This is a black box test because we need to know that we can retrieve player information as described in the 
+     specifications when there are many players like a whole game in the database.
+   * Generate Test: Declare a PlayerDatabase. Add one player to the database, with known field values stored in the test 
+     case as variables. Add additional players to the list. Call every get function on some of the players to retrieve the 
+     correct information. This means we are going to be calling getName(), getTeam(), getModStatus(), getBrains(), 
+     getFeedCode(), getLegStatus(), getSchool(), getClassYear(), getDorm(), getTagged(), and getTaggedBY() on a selection 
+     of the players. 
+   * Correct Behavior: Compare the information with the expected value. Each value should match what it was originally 
+     set as. 
+   * Clean up: If we reach the end of the test with all correct behavior, delete the object to reset the database. 
+* Test Case C: get correct player information after changing it
+   * In these tests, we will retrieve information from the fields of a player after that field has been manipulated. 
+   * This is a black box test because we need to know that the function still works as expected if we ever need to change 
+     the information in the database. It should still successfully access the accurate and most up to date information. 
+   * Generate Test: Declare a PlayerDatabase. Add one player to the database, with known field values stored in the test 
+     case as variables. Change the mod status of the player with changeModStatus(). Use getModStatus() to confirm it 
+     worked. Change the legendary status with changeLegStatus(). Use getLegStatus() to confirm the change. Change the 
+     number of brains of the zombie using incrementBrains(). Use getBrains() to confirm this change. Declare another 
+     human user. Have the original zombie player eat this person using eatHuman(). Using getBrains() and getTeam(), 
+     confirm that the new player became a zombie and the brains of the original zombie went up by one. Change the 
+     team status of the newly converted zombie using resurrectZombie(). Use getTeam() to confirm this change. 
+   * Correct Behavior: Each value of each item we confirmed should match with what we expect. 
+   * Clean up: If we reach the end of the test with all correct behavior, delete the object to reset the database.
+
+
+Test getFile()
+* Test Case A: get correct file URL from a single file ID
+   * In this test, we want to know that we can successfully input a file ID, find that file in the database, and 
+     retrieve the file URL. This will perform differently than the reading functions so far because it does not 
+     rely on the randomized document id to find the information. 
+   * This is a black box test because we need to know that we can retrieve a URL from the file ID as described in 
+     the specifications. 
+   * Generate Test: Declare a FileDatabase. Add one file to the database using addFile(), with known field values 
+     stored in the test case as variables. Call the getFile() function on the known file ID. 
+   * Correct Behavior: Confirm that the function was able to transverse through the database and retrieve the 
+     correct file URL. It should match up with the original variable it was created with. 
+   * Clean up: If we reach the end of the test with all correct behavior, delete the object to reset the database. 
+* Test Case B: get correct file URL with multiple files in the database
+   * In this test, we want to know that we can successfully input a file ID, find that file in the database, and 
+     retrieve the file URL. 
+   * This is a black box test because we need to know that we can retrieve a URL from the file ID as described in 
+     the specifications. 
+   * Generate Test: Declare a FileDatabase. Add files to the database using addFile(), with known field values 
+     stored in the test case as variables. Call the getFile() function on the known file ID. 
+   * Correct Behavior: Confirm that the function was able to transverse through the database and retrieve the 
+     correct file path. It should match up with the original variable it was created with. 
+   * Clean up: If we reach the end of the test with all correct behavior, delete the object to reset the database. 
+* Test Case C: call function on nonexistent file ID
+   * This will test how the function handles bad input. It shouldn’t crash the program. 
+   * This is a white box test because we are testing if the function will loop forever or not and terminate 
+     successfully and throw an error. 
+   * Generate Test: Declare a FileDatabase. Add one file to the database using addFile(), with known field values 
+     stored in the test case as variables. Call the getFile() function on a random file ID. 
+   * Correct Behavior: The function should transverse through the entirety of the database, reach the end and throw 
+     an error saying that the file ID does not exist. This error should be successfully caught by the function. 
+   * Clean up: If we reach the end of the test with all correct behavior, delete the object to reset the database. 
+
+
+Test getMissionFiles()
+* Test Case A: get correct file URLs from mission number
+   * In this test, we want to know that we can successfully input a mission ID, find all the files in the database 
+     associated with that mission, and retrieve all the file URLs.
+   * This is a black box test because we need to know that we can retrieve a list of URLs from the mission number 
+     as described in the specifications. 
+   * Generate Test: Declare a FileDatabase. Add files to the database using addFile(), with known field values stored 
+     in the test case as variables. Call the getMissionFiles() function on the known mission number. 
+   * Correct Behavior: Confirm that the function was able to transverse through the database and retrieve the correct 
+     file URL. It should match up with the original variable it was created with. 
+   * Clean up: If we reach the end of the test with all correct behavior, delete the object to reset the database. 
+* Test Case B: get correct file URL with multiple files (of different missions) in the database
+   * In this test, we want to know that we can successfully input a mission number, find the associated files in the 
+     database, and retrieve their URLs. 
+   * This is a black box test because we need to know that we can retrieve the URLs from the mission number as described 
+     in the specifications. 
+   * Generate Test: Declare a FileDatabase. Add files to the database using addFile(), with known field values stored 
+     in the test case as variables. Call the getMissionFiles() function on the known mission number. 
+   * Correct Behavior: Confirm that the function was able to transverse through the database and retrieve the correct 
+     file URLs. It should match up with the original variable it was created with. 
+   * Clean up: If we reach the end of the test with all correct behavior, delete the object to reset the database. 
+* Test Case C: call function on nonexistent mission number
+   * This will test how the function handles bad input. It shouldn’t crash the program. 
+   * This is a white box test because we are testing if the function will loop forever or not and terminate successfully 
+     and throw an error. 
+   * Generate Test: Declare a FileDatabase. Add one file to the database using addFile(), with known field values stored 
+     in the test case as variables. Call the getMissionNumber() function on a random mission number. 
+   * Correct Behavior: The function should transverse through the entirety of the database, reach the end and throw an error 
+     saying that the mission number does not exist. This error should be successfully caught by the function. 
+   * Clean up: If we reach the end of the test with all correct behavior, delete the object to reset the database. 
+
+
+
+
+Reset Database
+        At the end of each game, we need to be able to fully and completely delete the player and file entries off the 
+database to restart a full game. This should be able to be done without fully deleting the object of the database itself. 
+Instead, we should be able to keep the object and simply remove all its entries. These tests confirm that we can do this 
+behavior. 
+
+
+Test deleteUsers()
+* Test Case A: an already empty database
+   * This is the base case. We should know we can do this successfully before moving onto more complicated tests. 
+   * This is a white box test because we are testing odd behavior that is not described in the specifications. 
+   * Generate Test: Declare a PlayerDatabase object. Before putting any objects on it, call deleteUsers. Then add a file 
+     and return its path using addFile() and getPath(). 
+   * CorrectBehavior: deleteFiles should have done nothing and should not have deleted the object itself, only removed any 
+     entries from the files collection. We’ll know this worked if no errors are thrown and it returns the expected 
+     information, when writing and reading a file. Then we can assume it performed successfully without any odd behavior. 
+   * Clean up: If we reach the end of the test with all correct behavior, delete the object to reset the database. 
+* Test Case B: delete many users
+   * Now that we know the base case works, we want to know that we can delete many users at the end of a game. 
+   * This is a black box test because we need this functionality as declared in the specifications. 
+   * Generate Test: Declare a PlayerDatabase. Add many different users to it. Call getPlayerList() can by checking its 
+     length, confirm that the correct number of players are currently on the database. Now call deleteUsers(). 
+   * CorrectBehavior. Call getPlayerList() again. Confirm that the length is now 0 and there are no more players on the 
+     database. 
+   * Clean up: If we reach the end of the test with all correct behavior, delete the object to reset the database. 
+* Test Case C: perform operations and delete
+   * We want to know that the database will still perform as expected after being reset multiple times and as many 
+     different operations are being performed on it. 
+   * This is a black box test because we are testing the extent of its capabilities as determined by the specifications. 
+   * Generate Test: go through get Player Information Test Case C, expect at the end, deleteUsers instead of delete the 
+     object. Perform the get Player Information Test Case C again but with different information and players. 
+   * Correct Behavior: with each test, we should retrieve the correct behavior. Deleting the database should not affect 
+     the second round of tests. 
+   * Clean up: If we reach the end of the test with all correct behavior, delete the object to reset the database. 
+
+
+Test deleteFiles()
+* Test Case A: an already empty database
+   * This is the base case. We should know we can do this successfully before moving onto more complicated tests. 
+   * This is a white box test because we are testing odd behavior that is not described in the specifications. 
+   * Generate Test: Declare a FileDatabase object. Before putting any objects on it, call deleteFiles. Call getPlayerList(). 
+     Then add a user and read one of its fields. 
+   * CorrectBehavior: DeleteUsers should have done nothing and should not have deleted the object itself, only removed any 
+     entries from the users collection. We’ll know this worked if getPlayerList() successfully returns an empty list and 
+     not an error. We can further confirm this by writing a user and reading one of its fields. If no errors are thrown and 
+     it returns the expected information, then we can assume it performed successfully without any odd behavior. 
+   * Clean up: If we reach the end of the test with all correct behavior, delete the object to reset the database. 
+* Test Case B: delete many files
+   * Now that we know the base case works, we want to know that we can delete many files at the end of a game. 
+   * This is a black box test because we need this functionality as declared in the specifications. 
+   * Generate Test: Declare a FileDatabase. Add many different files to it. Call deleteFiles(). (1) Then add some more 
+     files. (2)
+   * CorrectBehavior. (1) Call getPath() on a mission ID that was on the database. Confirm that the expected 
+     error is thrown because no file with that mission ID should exist. (2) Call getPath() on the new mission ID that 
+     is now in the database. It should return what we expect, which also tells us that we can change and manipulate the 
+     objects on the database after clearing it, without odd behavior or having to declare a new object.
+   * Clean up: If we reach the end of the test with all correct behavior, delete the object to reset the database. 
+* Test Case C: working with PlayerDatabase and FileDatabase together
+   * During the actual game, we will not be working with these two kinds of objects in isolation. We need to know that 
+     we can work with them at the same time without breaking anything. 
+   * This is a white box test as we are testing the integration of the two functions, making sure there is no odd 
+     behavior when they are used together. 
+   * Generate Tests: Declare a FileDatabase object and a PlayerDatabase object. Go through the operations of this Test 
+     Case B and deleteUser’s Test Case C intertwined and simultaneously with many periodic checks that they are behaving 
+     correctly. 
+   * Correct Behavior: With each step, we should always be returning and retrieving the correct behavior. Furthermore, 
+     deleting one database should not affect the other database. We should be able to delete one and have there still 
+     be files on the other. 
+   * Clean up: If we reach the end of the test with all correct behavior, delete the object to reset the database. 
+
+
+
+
+CONFIDENCE
+        Between all of these tests, I believe we will have covered every line of code that is written about the database. 
+This means that these tests present significant coverage of the design. Furthermore, we test for correct behavior as well 
+as looking deeper into the code to test that bad data with not destroy the database and it will be able to throw and catch 
+the proper errors, protecting the database, future operations, and create an opportunity to present the user with an 
+informative error message and retry inputting better data. The tests are relatively efficient, as there is not a lot of 
+repeated testing. However, there is some repetition. But I believe that repeated testing is better than mission something. 
+These tests could be improved by including more white box tests that look deeper into the code and test for more odd behavior. 
+However, for the most part, I think these tests offer a strong start on giving the authors confidence in the effectiveness 
+of the initial code.
