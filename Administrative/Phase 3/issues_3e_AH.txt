@@ -1,0 +1,454 @@
+﻿Team: HvZ App
+
+Members: Santiago Rodriguez, Alex Hadley, Matthew Waddell, Kyra Clark
+
+Project 3E — Issues Addressed: Authentication
+    Notes: https://github.com/alexhad6/HvZ-app/blob/master/Administrative/Phase%203/issues_3e_AH.txt
+    Primary author: Alex
+
+This document is a catalogue of the issues raised by the three people who
+reviewed my component (Professor Mark Kampe, Kyra, and Santiago) and how these
+issues were addressed.
+
+
+SPECIFICATIONS
+
+    PROF KAMPE
+
+    The applicable product requirements are enumerated, but could have been
+    expanded to more fully cover the requirements on the authentication
+    operations.
+    • I added a list of more specific requirements.
+
+    In particular, I would think that the register/signin with email and
+    password would have a requirement not to expose the password in a network
+    message.
+    • A specific requirement related to not exposing user passwords was added.
+
+    The additional requirement is not actually a statement of what is required,
+    but merely a concession that there is additional work to be done in order to
+    agree on the interfaces. This requirement is neither functional nor (as
+    stated) measurable.
+    • The additional requirement (working well with the other components) was
+      removed, since I now recognize that it is not a component requirement.
+
+    None of the external interfaces has been given a name, but parameters and
+    return values are reasonably described.
+    • Interfaces were updated to match the function names from the design. Also,
+      inputs were moved to the function headers to more closely match how the
+      functions need to be called.
+
+
+    KYRA
+
+    In the requirements section, you describe how “the external interfaces of
+    the authentication and registration component must be set up in order to
+    work well with the application component, which it mainly communicates
+    with.” You might want to go into more detail how it works with the
+    application component (which I believe is Matthew’s). Or, (perhaps I am
+    biased), but this might not be true now. It is possible that you also work
+    extensively with the Database component, especially in terms of
+    registration. If you mention the application component here, you should
+    either provide a justification or also include the other components.
+    Possibly, it might simply be more appropriate in the external interfaces
+    section anyway. [Question; comment]
+    • This requirement was removed, since it is not really a requirement. How
+      the authentication component communicates with other components on a
+      higher level is discussed in the architecture addendum
+      (https://github.com/alexhad6/HvZ-app/blob/master/Administrative/Phase%203/arch_3e_AH.txt).
+
+    In terms of your external interfaces, I think you cover everything here.
+    Although it is a little out of date with your current design. You might want
+    to consider updating it if that’s something you would find helpful. [Issue;
+    should-fix]
+    • External interfaces were updated to include more accurate headers, and to
+      more closely match the design.
+
+
+    SANTIAGO
+
+    No mention of the registration component in the overall description section,
+    only authentication. Summary: Should be in here because this is part of the
+    component. Characterization: issue, should-fix.
+    • Registration is now mentioned in the overall description.
+
+    Get functions such as name, ID, change user name. Where is this information
+    being stored? In essence, where or what are these functions operating on?
+    Summary: it is getting it from the authentication database (internal). Could
+    be specified for clarity (no confusion with getting it from the database
+    component) Characterizations: question, comment.
+    • This was discussed a bit in the review meeting. I think this is actually a
+      design detail, not an external specification issue.
+
+    Is moderator status something the authentication needs to handle? Summary:
+    Database takes care of this, authentication only looks at which players are
+    logging in and allowing them to access their stuff from database.
+    Characterization: question.
+    • As discussed in the meeting, moderator status will be stored in the
+      database. Also, as a reminder, the authentication component is just
+      responsible for securely returning a user ID based on credentials. Any
+      other information is stored in the database, and read and write rules are
+      enforced by Firebase Security Rules.
+
+
+DESIGN
+
+    PROF KAMPE
+
+    All instance variables well enough described that you know how to declare,
+    initialize, AND UPDATE THEM CORRECTLY.
+    • Additional descriptions of how non-const instance variables are updated
+      were added.
+
+
+    KYRA
+
+    In the comments, explain the difference between the two classes, Auth and=
+    AuthMessage. Why did you choose to have them as separated classes? How do
+    they connect and interact with each other? [Question; should-fix]
+    • Comment at the beginning explaining the classes Auth and AuthMessage was
+      expanded.
+
+    You list out references to all the different instances Firebaseauth,
+    GoogleSignIn, Connectivity, Database, and User. Because there are
+    off-the-shelf Firebase classes, you should explain where you got them from.
+    Perhaps include a link to their documentation. [Question; comment]
+    • Links to documentation were added above import statements.
+
+    In the creation of the feedcode, you throw in a lot of ‘magic’ numbers and
+    characters. Because you get these from the original website, you should
+    explain where you got these variables from and your justification for using
+    them. [Issue; should-fix]
+    • These aren’t exactly “magic” numbers and characters, since I am defining
+      constant variables, which could presumably be easily changed later. In
+      terms of justification, a link to the GitHub file that I got these values
+      from was added.
+
+    We both have feedcode construction as part of our design. Your approach is
+    more thought-out, so we should use yours. However, in your design, consider
+    how we add a user and feedcode to the database in your construction of
+    feedcodes. You also brought up a concern on the randomness of the feedcode.
+    According to your method, there should be a counting tool in the database,
+    (which at the moment there isn’t), but you should describe this interaction
+    with the database. [Issue (integration); comment]
+    • Since we are only implementing portions of the app components for this
+      class, I think it’s ok to assume that additional database functions could
+      exist beyond those that you implemented, especially something as simple as
+      a counter that is updated when a user is added. But it will be important
+      to keep in mind if we work on this project in the future.
+
+    Your comments could use a lot more clarity on the role of the Auth object:
+    when is it called? Who calls it? How does it interact with the User?
+    Describe how there is one Auth object created every time a User logs on
+    into the app, and how the objet stores information about the user currently
+    logged in. [Question; should-fix]
+    • Some sample code was added at the beginning, which should further clarify
+      how to use the Auth instance. Also, this paragraph directs the reader to
+      the initialize() function to see how a listener is setup to update the
+      _user object. Some clarification in initialize() was also added in order
+      to clarify that the User object is automatically given and populated with
+      information by FirebaseAuth.
+
+    We both have functions for get uid and get name and get email. We might need
+    to consider what information we want to store on the database. How do you
+    plan on accessing user id? You should go into more details in your comments
+    about how the User object stores all these variables. Possibly, initialize 
+    could use some more abstract information about its purpose in the comments.
+    Furthermore, you should explain what a listen is, or at least include a link
+    to the Firebase documentation. [Question/Issue (integration); should-fix]
+    • This is similar to the previous issue. uid and email are properties of the
+      User object, which are given by FirebaseAuth. More information about the
+      User object and how to set up an authentication listener were added and
+      linked in the initialize() function, which should clarify some of the
+      confusion.
+
+    You describe how the user changes via a “stream.” You should explain what
+    this is and it’s connection to the database. Explain how this will or won’t
+    also change information in the Database. In general, I think your comments
+    could use some more clarity about the abstract explanations and intent of
+    each function. [Issue (integration); should-fix]
+    • More information about how the User changes using a listener was added to
+      the initialize() function. Functions that do 
+
+    We discussed possibly removing the setName() function. At least, you should
+    describe how it works with the database or at least a justification for its
+    use. [Question; comment]
+    • Set name could potentially be used if user’s want to change the name for
+      the app. Perhaps signing in with Google automatically populates their full
+      name, but they actually want to use a nickname. Or maybe they want to use
+      a custom name in the game. A comment about updating their name in the
+      database was added, and justification for its use was added in the overall
+      function comment.
+
+    The specific Firebase Authentication tool for sign out is another instance
+    when you should describe or link to the off-the-shelf functionality you are
+    relying on. [Issue; should-fix]
+    • In general, there are now documentation links at the top, above each
+      import statement. A link was also added here to the specific signOut()
+      function from Firebase Auth.
+
+    You are missing a header comment for _claremontEmail, so I do not know what
+    it is supposed to do. [Issue; must-fix]
+    • A comment was added above this function. I also added more about which
+      functions _claremontEmail() is called from.
+
+    The _registerUser() function could use a bit more explanation. You should
+    explicitly describe its purpose with the other registering functions and its
+    specific role and place in the registering process. Especially because it is
+    a private function, you need to explain its role, who calls it, when, and
+    why. Why is it private? [Issue; must-fix]
+    • This was explained more in the function comment. I also explained where
+      this private function is used, and why it is a separate function. This
+      sort of explanation was also added to the other private functions
+      (_connected(), _claremontEmail(), and _generateFeedCode()).
+
+    I really liked your AuthMessage class. I think it was a really smart choice
+    to outline all the possible error messages that the user could receive. How
+    confident are you that this definitely covers all the possible error
+    messages? This should be outlined in the comments. The description of the
+    catch-all error could be more clear. [Question; comment]
+    • As discussed a bit in the review session, this covers errors that I expect
+      to happen, and which would be given as feedback to the user. Things like
+      putting in an incorrect password, or a lack of internet connection. All
+      other errors that occur are not expected, so the program should and will
+      throw an error.
+
+    In general, I think what you could improve most is creating what feels like
+    an overall cohesive document and component. After studying your component,
+    I still had a difficult time understanding how all the moving parts interact
+    together. I did not understand the general flow of each individual pieces’
+    role of the overall component. Having a strong understanding of the process
+    of your component would be incredibly important if you were to hand-off your
+    design to an experienced program. [Issue; must-fix]
+    • Hopefully the combination of an additional example given at the top and
+      comments above private functions to say where they are used will help with
+      a feeling of cohesion. I also reordered some of the functions in what
+      should hopefully be a clearer order. For example, now the properties are
+      right next to the instance variables, and the constructor is right above
+      the initialize function.
+
+
+    SANTIAGO
+
+    Everything seems good, but what does the connected function do for the
+    component? It doesn’t seem to be called anywhere. Is it necessary? Or should
+    it be called by other functions during their routines? Summary: It is
+    explicitly called in the design by other functions but was missed in the
+    initial review. Would be nice to have a description of what it is called by
+    in the function doc string. Characterization: question, comment.
+    • As explained in a previous issue, I have added where each private function
+      is used in its general comment.
+
+    What happens if someone tries to sign up with the same email as one that
+    already exists? This could be the case when not signing in through google
+    sign in. Summary: Alex’s function needs to handle the case where a user tries
+    to make a new account using an already registered email. Characterization:
+    defect, must-fix.
+    • There is already an error for this, “Account for this email address
+      already exists” under “registerWithEmail(),” which is based on an error
+      automatically given by FirebaseAuth when this action is attempted. I might
+      have forgotten about it during the review session. For signing in with
+      Google, if the email already exists the account is automatically merged by
+      Flutter, so there is not a problem.
+
+
+TEST PLAN
+
+    PROF KAMPE
+
+    Is successful return from Auth() really enough, or should you so a few more
+    things to ensure the viability of all of its pieces?
+    • An additional test was added to check that initially, for a new Auth
+      object, no user is signed in.
+
+    I believe the slow internet tests also count as white-box
+    • I agree, I wasn’t quite sure how to categorize the internet tests when
+      making this. On the one hand, I discussed internet related errors in the
+      specifications; however, the tests actually rely on how I use the
+      Connectivity package and how my code checks for these types of errors.
+      Thus, I moved these tests to white box testing.
+
+
+    KYRA
+
+    I think you had a really strong argument outlined in the beginning for using
+    the off-the-shelf serves you chose. It shows that you clearly did your
+    research. I think it's good that you included a brief assessment of your
+    confidence. However, I would've gone into a bit more detail as to why you
+    felt that and exactly what areas you feel like you might possibly need to
+    improve upon. [Question; Comment]
+    • I’m a little confused by what this comment is saying. I think the
+      description I have at the beginning of Mockito is pretty comprehensive.
+      In terms of Dart unit tests, they are pretty simple, and are just a way to
+      run a bunch of test code in an organized format. I added a bit more about
+      what Dart unit tests does.
+
+    I noticed you did not include clean-up for any of your tests. If none is
+    needed, I might write a brief justification to explain how or why, at least
+    to show that it is fully contained. This is especially true if your
+    initialize function is “kinda permanent.” Implementing some kind of a reset,
+    could be critical. [Issue; must-fix]
+    • I added a reset() function to the Auth class. This function simply sets
+      the static singleton instance of the class to null, which uninitializes
+      it. This can now be used between tests where this type of clean up is
+      necessary.
+
+    In general, I think you could go a bit more into detail on the process and
+    pseudo code of each of your tests. But for the most part, your work was very
+    clear and understandable. I think your tests have a really good coverage of
+    all your code. [Question; comment]
+    • I added some additional pseudo-code relating to cleanup. I also expanded
+      some comments at the beginning of the file, and added a paragraph about
+      how cleanup will work. Hopefully that helps clarify how some of the 
+      seudo-code will work.
+
+    In your Auth constructor tests, there’s not a lot of details as to the
+    variables you will be passing into the tests, or how you will test if the
+    "two variables refer to the same object." [Issue; should-fix]
+    • Prof. Kampe brought this up as well. I now test that signedIn starts out
+      as false. This makes sure that at the beginning, before being initialized,
+      no user is signed in. Later tests ensure that when signedIn is false, the
+      other variables are correctly null, so I do not test that here. In terms
+      of testing that the two objects are the same, I will use Dart’s
+      identical() function. I added a link to the documentation for this in the
+      test.
+
+    In your initialize test, you "check if the mock function for creating a
+    listener was called." You do not explain what this function is, or how will
+    you know it has been called. This is part of the mock functionality you
+    mentioned early. But a brief explanation of how mock functions work would
+    help the reader a lot. [Question; should-fix]
+    • Since mocks are used in almost all of the tests, I added a paragraph at
+      the beginning of the file elaborating a bit more on how mocks work.
+
+    In the User attributes signed in/out tests, your plan for how “set up” works
+    is unclear. Are all these created in the same test function each time? Are
+    they done in one function and all these tests are part of the same scope
+    somehow? You should address this in terms of the containment of your
+    functions. However, you did a very thorough job here. I think it is good
+    that you test each attribute, and when you are expecting it to be null as
+    well. [Question; should-fix]
+    • I added a paragraph at the beginning of the file to address more how
+      scoping works. Basically all the tests are just run in order and are not
+      isolated. I think variables are scoped by test, but things that are
+      initialized in a group are accessible by all tests in the group. So for
+      the attribute tests, I create a single Auth instance at the beginning, and
+      it is used throughout the group of tests, as is written.
+
+    In your Feed Code tests, you say that "there should be an assertion error if
+    the number given to _generateFeedCode is beyond the allowable range." It
+    might be helpful to connect what you mean by this “range” to what you said
+    in the design to jog the reader’s memory. Furthermore, you might want to
+    consider testing if the feedcode generation is unique. This could just mean
+    testing a few numbers to see if they seem to give the expected output based
+    on your algorithm. Then, if it follows the expectation of the algorithm,
+    this would imply that each feedcode will be unique. For further coverage,
+    you could also test specific numbers to make sure nothing odd happens, like
+    testing if the first digit is something other than ‘A’ is one that was
+    brought up in our meeting. [Question; should-fix]
+    • I added a description of what the range was from the design. I also added
+      in the feedcode correctness test to test a few cases throughout the range
+      of allowable values, including tests that include all the different
+      letters. In terms of uniqueness, my algorithm simply counts up from 0 to
+      the maximum value and converts a base 10 number into base 12, with the
+      digits being the allowable characters. If this algorithm is correct as
+      tested by the correctness test, then feed codes should be unique.
+
+
+    SANTIAGO
+
+    For auth returning an instance of auth test (2nd blackbox test), will there
+    have been clean up from the test before it? Will the previous instance of
+    auth be deleted? Summary: It is unclear whether or not the testing framework
+    will reset the previous instance - must be looked into. The test’s nature is
+    different when an auth object has already been created before the test
+    commences. To get better accuracy with what the test is trying to achieve,
+    the test needs to be called when an auth object has not been created yet.
+    Characterization: issue, must-fix.
+    • I added a new paragraph at the beginning of the document discussing how
+      clean up will work. I added clean up to all the tests that will have it.
+      This was a particularly useful issue, since I really had not fully
+      considered clean up before.
+
+    Listener setup test is unclear. Calling a mock function doesn’t seem to have
+    any purpose. Summary: It doesn’t make sense to call a mock function and
+    check if it was called, but the test isn’t doing that. It will instead call
+    a function that will call the mock listener function as part of it. The test
+    is for making sure that the initialize function gets to the part where it is
+    aupposed to call the listener function and that it actually does call it.
+    This could be made more explicit in the test description. Characterization:
+    issue, should-fix.
+    • I added a paragraph at the beginning explaining a bit more how mocks work.
+      Hopefully this helps explain how a mock listener would work. It’s a bit
+      more complicated than just calling a function and checking if that function
+      was called. Instead, it is verifying that the correct FirebaseAuth function
+      was called by initialize(), only the FirebaseAuth object is actually a
+      mock. I also specified in this function that I am referring to a mock of
+      FirebaseAuth in particular.
+
+    Is listener really a black box test? It seems to be something in the
+    background rather than a part of the specifications. Summary: It seems like
+    a white box test as it is not really part of the specifications. This is not
+    an issue, but it is incorrectly labeled. Characterization: question,
+    comment.
+    • This makes sense, I moved it to the white box test section.
+
+    Email verified test. If user is signed in with google, do they still get a
+    verification email? If not, does email verified still need to be held true
+    when signed in for every user? Summary: emailVerified is a variable set to
+    true when an email is verified through google sign in or through the
+    verification email. So, this test will just check that variable and the
+    above mentioned concerns do not apply. Characterization: non-issue,
+    misunderstanding
+    • As explained above, this was resolved in the review meeting.
+
+    Test: valid email and password signs in correctly. Logs out any signed in
+    user. Shouldn’t this be done in another test as part of clean up? Summary:
+    This should be done as part of other test clean up. There is no need to sign
+    out at the beginning of every test (the following tests currently have this
+    at the beginning). Characterization: issue, should-fix.
+    • This makes sense — I reordered the sign out phase to be in a clean up
+      section at the end of all tests that sign in.
+
+    Additional sign out test needed. Summary: While inspecting the code during
+    the review, this issue was raised. There should be a test to make sure that
+    signing out a user who is already signed out throws a proper exception or
+    does nothing to make sure nothing unexpected happens in the system.
+    Characterization: issue, should-fix.
+    • There is a test called 'If a user is signed in, signedIn is false after
+      signOut()' which tests that the signOut function works when a user is
+      signed in. I added another test after this one which attempts to sign the
+      user out again and makes sure that nothing weird happens (no errors occur,
+      and signedIn is still false). 
+
+    Should there be a feedcode already generated test? Don’t want two people
+    with the same feed code. Summary: No, but this led to new discussion.
+    Characterization: question, comment.
+    • Resolved in review session.
+
+    Should test that signing in through google only tries to register for a new
+    participant, not every time one signs in through google. Summary: This could
+    cause problems if the system interpreted a returning user as a new user and
+    tried to create a new user object for that person. Characterization: issue,
+    must-fix
+    • This is an important test since signing in with Google should register new
+      users but not existing users. The test 'Google sign in for existing user
+      does not add to database' tests that an existing user signing in with
+      Google is not registered.
+
+    Overall comment. It seems like creating mocks for everything will add on a
+    good amount of work. Can you do the same thing without the mocks? Summary:
+    For some things it might be better to use the Firebase suite, but for
+    others, mockito can generate situations that you will not usually face. Must
+    find out if using Firebase suite in testing suite is valid for testing.
+    Characterization: question, should-fix.
+    • Mocks give me full control over the FirebaseAuth, Database, and
+      Connectivity components so that I can truly test Authentication in
+      isolation. They make it so that I can see if the correct functions were
+      called by these components, but for authentication tests I do not care if
+      the other components work. In terms of difficulty, facilitated by Mockito
+      I actually don’t think it will be that hard to make the mocks. Their
+      examples make it seem like it is pretty easy to make mock classes and
+      “stub” functions, and to verify that particular functions are called.
+      Also, I do not need to mock the entire external components; rather, I can
+      just mock the specific functions needed in each test.

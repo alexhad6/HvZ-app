@@ -1,0 +1,225 @@
+﻿Team: HvZ App
+
+Members: Santiago Rodriguez, Alex Hadley, Matthew Waddell, Kyra Clark
+
+Project 3E — Final Component Specifications: Authentication
+    Specs: https://github.com/alexhad6/HvZ-app/blob/master/Administrative/Phase%203/spec_3e_AH.txt
+    Primary author: Alex
+
+COMPONENT DESCRIPTION AND ROLE IN OVERALL SYSTEM
+
+The authentication component is responsible for registering and securely
+identifying our users based on their credentials and keeping track of who is
+currently logged in. This component generates a unique ID for each user when
+they register, which can be later be accessed by the application and used by the
+database to retrieve additional user information. Knowing who is using the app
+allows us to tailor the app experience to a particular user (e.g. by displaying
+their name and statistics) or to a particular subset of users (human players,
+zombie players, or moderators). Authentication also generates a secure JSON web
+token that is sent along with requests to the database and file storage in order
+to verify the user’s identity to manage read and write permissions. (The
+enforcement of read and write permissions is done separately by Firebase
+Security Rules.)
+
+
+REQUIREMENTS
+
+Full requirements: https://github.com/alexhad6/HvZ-app/blob/master/Administrative/Phase%201/analysis_1c.txt
+
+The authentication and registration component is responsible for complying with
+the following requirements for our 1.0 release:
+
+    1. Code is clear, readable, and documented so that mods can maintain and
+       change the app in the future.
+
+    3. Players can register for the game and create an account.
+
+    4. Players can log into their accounts.
+
+In addition, the authentication component has the following specific
+requirements:
+
+    Players can be securely and uniquely identified by an email address and
+    password (or Google credentials).
+
+    Sensitive information, such as player passwords, are secure and not exposed.
+
+    Only people with verified Claremont College emails can create or log in to
+    accounts.
+
+    Players can reset their passwords so that they are not locked out of the
+    game.
+
+
+EXTERNAL INTERFACES
+
+bool get signedIn
+• Function: Accessed as a property (e.g. Auth().signedIn). Returns a boolean
+  representing whether or not a user is logged in to the app.
+• Caller: application
+
+String get uid
+• Function: Accessed as a property (e.g. Auth().uid). Returns the current user’s
+  unique user ID, or null if no user is signed in.
+• Caller: application=
+
+String get name
+• Function: Accessed as a property (e.g. Auth().name). Returns the current
+  user’s name, or null if no user is signed in.
+• Caller: application
+
+String get email
+• Function: Accessed as a property (e.g. Auth().email). Returns the current
+  user’s email, or null if no user is signed in.
+• Caller: application
+
+bool get emailVerified
+• Function: Accessed as a property (e.g. Auth().emailVerified). Returns a
+  boolean representing whether or not the user has verified their email through
+  a link in the confirmation email, or null if no user is signed in. This comes
+  into play when a user creates an account with an email and password.
+• Caller: application
+
+Auth({FirebaseAuth firebaseAuth, GoogleSignIn googleSignIn, Connectivity connectivity, Database database})
+• Function: A constructor for the Auth class. Auth is a singleton class, so the
+  constructor will always return a reference to the same object. The parameters
+  are optional, and will be used if passed in the first time Auth() is called;
+  if not provided, they will be initialized automatically. The custom parameters
+  are useful for testing.
+• Caller: application
+• Outputs: _instance (Auth)
+
+Future<void> initialize()
+• Function: After calling initialize, the Auth instance will actually start
+  keeping track of who is signed in; before calling initialize, it will appear
+  as if no user is signed in.
+• Caller: application
+• Outputs: none
+
+Future<AuthMessage> registerWithEmail(String email, String password)
+• Function: Creates a new account for the user based on an email and password
+  and signs the user in. The user must use a Claremont Colleges email address.
+  Generates user ID and feed code and adds them to the database. Sends
+  confirmation email with link to verify email ownership. Returns an
+  AuthMessage, an object with properties success (whether the registration was
+  successful) and errorMessage (a string with the relevant error message).
+• Caller: application
+• Outputs: AuthMessage [success (bool), errorMessage (String)]
+   • Possible values of errorMessage:
+      • "" (if successful)
+      • "Use a Claremont Colleges email address"
+      • "No internet connection"
+      • "Poor internet connection"
+      • "Invalid email address"
+      • "Account for this email address already exists"
+      • "Password must have at least 6 characters"
+
+Future<AuthMessage> signInWithEmail(String email, String password)
+• Function: Verifies the identity of a user based on their email and password,
+  and updates the currently signed in user. Returns an AuthMessage, an object
+  with properties success (whether the sign-in was successful) and errorMessage
+  (a string with the relevant error message).
+• Caller: application
+• Outputs: AuthMessage [success (bool), errorMessage (String)]
+   • Possible values of errorMessage:
+      • "" (if successful)
+      • "Use a Claremont Colleges email address"
+      • "No internet connection"
+      • "Poor internet connection"
+      • "Invalid email address"
+      • "Email address doesn't match an existing account"
+      • "Incorrect password"
+      • "Your account is disabled"
+
+Future<AuthMessage> signInWithGoogle()
+• Function: Prompts the user to sign in using Google Sign-In. If their account
+  does not exist yet, an account is created. If a new account is created,
+  generates user ID and feed code and adds them to the database. Returns an
+  AuthMessage, an object with properties success (whether the sign-in was
+  successful) and errorMessage (a string with the relevant error message).
+• Caller: application
+• Outputs: AuthMessage [success (bool), errorMessage (String)]
+   • Possible values of errorMessage:
+      • "" (if successful)
+      • "Use a Claremont Colleges email address"
+      • "No internet connection"
+      • "Poor internet connection"
+      • "Google Sign-In was aborted"
+      • "Your account is disabled"
+
+Future<void> signOut()
+• Function: Signs out the current user.
+• Caller: application
+• Outputs: none
+
+Future<void> setName(String name)
+• Function: Updates a user’s name to the given string. Returns an AuthMessage,
+  an object with properties success (whether the email was sent) and
+  errorMessage (a string with the relevant error message).
+• Caller: application
+• Outputs: AuthMessage [success (bool), errorMessage (String)]
+   • Possible values
+      • "" (if successful)
+      • "No internet connection"
+      • "Poor internet connection"
+
+Future<AuthMessage> resetPassword()
+• Function: Sends a reset password email to the specified email. (Tells the
+  Firebase backend to send the email.) Returns an AuthMessage, an object with
+  properties success (whether the email was sent) and errorMessage (a string
+  with the relevant error message).
+• Caller: application
+• Outputs: AuthMessage [success (bool), errorMessage (String)]
+   • Possible values
+      • "" (if successful)
+      • "No internet connection"
+      • "Poor internet connection"
+
+void reset()
+• Function: Resets the singleton instance of the Auth class. This is useful for
+testing purposes, since we want to reset the Auth instance between certain
+tests.
+• Caller: authentication tests
+• Outputs: none
+
+
+SIZE, COMPLEXITY, AND TESTABILITY
+
+Since we are not using Firebase’s premade authentication UI, the above routines
+will require a reasonable amount of code. There is a range of complexity,
+although none of the functions are too complex for the scope of this project.
+For example, checking if the user is logged in is pretty straightforward: there
+will be a boolean variable keeping track of whether they are signed in, which
+can simply be returned. However, registering a user is a multi-step process
+involving generating a feed code and communicating with both the application and
+the database. There are 13 routines listed under external interfaces, although
+most of the code will be related to the registration and sign-in routines since
+they are the most complex. Their functionality will likely be split into several
+private functions in order to reduce complexity. I expect that the
+authentication and registration component might have closer to 400 lines of code
+than 100 lines, although some of that code will be copied from the documentation
+for FlutterFire (https://firebase.flutter.dev/docs/auth/usage), the package that
+links our application with Firebase.
+
+In terms of testing, Firebase has the ability to run tests using a local
+emulator, which is nice since it does not require a connection to the servers
+(https://firebase.google.com/docs/rules/unit-tests). It can be used to test
+Firebase Security Rules (which enforce read and write permissions) by pretending
+to be signed in as a particular class of user. Unfortunately, the emulator does
+not have support for testing authentication functions in this way. However, we
+can still test the external interfaces of authentication if we run a program
+that does establish a connection to the servers and uses test accounts.
+
+These functions are automatically testable since they only rely on inputs that
+can be passed in programmatically, and their outputs or effects can also be
+tested by a program. They do not rely on code from any other components within
+our project. These functions do rely on the external interfaces of the Firebase
+Authentication and Google Sign-In packages for Flutter.
+
+Google Sign-In would be difficult to write automatic tests for; however, we
+could either sign in once with a Google account and then test programmatically
+using that OAuth token, or we could replace the Google Sign-In functionality
+with email authentication for those tests. Since Google Sign-In is a widely used
+external component, it is less important to write tests that Google Sign-In
+itself works than it is to write tests that the registration process works in
+general, which is possible to do.

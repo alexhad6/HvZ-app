@@ -1,0 +1,122 @@
+Team: HvZ App
+
+Members: Santiago Rodriguez, Alex Hadley, Matthew Waddell, Kyra Clark
+
+Project 3E — Final Architecture Addendum: Authentication
+    Addendum: https://github.com/alexhad6/HvZ-app/blob/master/Administrative/Phase%203/arch_3e_AH.txt
+    Primary author: Alex
+
+Original architecture: https://github.com/alexhad6/HvZ-app/blob/master/Administrative/Phase%202/architecture_2a.pdf
+
+Instead of being a separate component, registration will be closely integrated
+with authentication. Flutter, the application SDK we are using, allows websites
+as well as Android and iOS applications to be created from the same codebase, so
+there is no need to program a separate registration website. Also, the
+authentication API provided by Firebase is used both to sign in and create
+users, so it makes sense to handle both operations in the same component.
+The authentication component will also handle feed code generation, which was
+previously handled by the registration component. Below is a list of the
+sections from our architecture that change as a result, and some additional
+details about authentication.
+
+
+COMPONENT DESCRIPTIONS
+
+    AUTHENTICATION (p. 3)
+
+    In this section, it says that the authentication component is
+    responsible for managing read and write permissions for the database and
+    file storage. In Firebase, read and write permissions are handled
+    through Firebase Security Rules (https://firebase.google.com/docs/rules),
+    which are written in a special language. This is a separate component
+    which integrates directly with the database and file storage components
+    via Firebase’s servers. Thus, it is not part of the main authentication
+    component. Authentication is responsible for identifying users who sign
+    into our app, whereas Firebase Security Rules is responsible for
+    actually managing permissions. We will have to implement Security Rules
+    at some point, but they are out of the scope of the authentication
+    component.
+
+
+    GOOGLE SIGN-IN (p. 4)
+
+    Everything related to Google Sign-In is still accurate. Note that the
+    Google Sign-In component is fully implemented as a package in Flutter
+    (https://pub.dev/packages/google_sign_in).
+
+
+    REGISTRATION WEBSITE (p. 4)
+
+    As explained earlier, registration and authentication will now be
+    handled in the same component. The website aspect will be handled
+    through the application since Flutter allows websites and mobile apps
+    to be built from the same codebase.
+
+
+COMPONENT CONNECTIONS
+
+
+    APPLICATION ↔︎ AUTHENTICATION (pp. 5–6)
+
+    In addition to what is described in this section, the authentication
+    component will also be able to respond to various queries from the
+    application, such as whether the user is signed in, the name/email/user
+    ID of the current user, and whether their email has been verified (to
+    prove that they own the email). Authentication will also tell the app if
+    any sign-in errors occur, such as an invalid email/password combination.
+    The application will also communicate with the authentication component
+    when the app opens to tell it to initialize. (Initialization is needed
+    because the way to track whether a user is signed in using Firebase’s
+    authentication API is to set up a listener that gets notified whenever a
+    user signs in or out.)
+
+
+    REGISTRATION WEBSITE ↔︎ AUTHENTICATION (p. 7)
+
+    The communication described in this section is now handled in the
+    authentication component.
+
+
+    REGISTRATION WEBSITE ↔︎ DATABASE (p. 7)
+
+    This section describes how additional user information (such as class
+    year, school, and dorm) are sent to the database. This will now be sent
+    from the application component, since the registration website will be
+    implemented using Flutter from the same codebase as the app.
+
+
+
+EXAMPLE STORIES: WALKING THROUGH COMPONENTS
+
+
+    REGISTERING THROUGH THE WEBSITE (p. 8)
+
+    This story is mostly the same, but there is no longer a separate
+    registration website component. Instead, authentication and feed code
+    generation are handled by the authentication component, and UI
+    operations are handled by the app component. There will also be an
+    additional verification step during registration where the
+    authentication component checks that the user’s email is from one of the
+    seven Claremont colleges, and returns an error to the app component if
+    the email is invalid.
+
+
+    USER LOGS IN TO THE APP (p. 8)
+
+    This story is mostly the same, except that there will also be an
+    additional check that the user has verified their email by clicking a
+    link in the confirmation email. (The email verification process is all
+    handled by Firebase.) Also, if there is a sign-in error, such as an
+    invalid email/password combination, the authentication component will
+    communicate this to the application.
+
+
+FEASIBILITY
+
+    AUTHENTICATION (p. 12)
+
+    In the “Authentication” under “Feasibility” (p. 12), FirebaseUI is
+    discussed. However, FirebaseUI is not supported for Flutter. Instead the
+    authentication component will have functions to handle everything
+    relating to authentication and registration, and the application
+    component will call these functions.
