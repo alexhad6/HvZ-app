@@ -1,0 +1,132 @@
+Team: HvZ App
+
+
+Members: Santiago Rodriguez, Alex Hadley, Matthew Waddell, Kyra Clark
+
+
+Project 3E.2 — Postmortem Analysis
+        Report: https://github.com/alexhad6/HvZ-app/blob/master/Administrative/Phase%203/postmortem_3.txt
+        Primary author: Kyra
+
+Phase 3 Postmortem
+
+In this phase of the project, we divided up our application into four main components, based on the 
+architecture. From there, we each individually researched, reviewed, and finalized our component’s 
+specifications, design, and test plan. This was all done in preparation and with the expectation of being 
+able to fully and successfully implement the component from these documents. 
+
+Phase 3 Minutes and Agendas: https://drive.google.com/drive/u/1/folders/1QZV9lF9he2Q7HFidkpeMIdmMBRxiKer5 
+Phase 3 Management Plans: https://docs.google.com/document/d/1Aly4D_qPUANxFVVw675NR3bX_NTL5EC-42UjUSaI1zI/
+
+Below is a list of the things we learned, what worked well and what has room for growth in our process:
+
+
+ARCHITECTURAL REFINEMENT AND PRELIMINARY COMPONENT SPECIFICATIONS
+* See preliminary specification notes: 
+https://docs.google.com/document/d/1Q11xWyZkFI70qOUKm1BuQaQVMZva3qla6IKakMRD1pk/edit?usp=sharing 
+* There was some confusion and difficulty at first in figuring out how to divide our components. We made 
+a rough draft of component divisions, but we still had questions for Prof. Kampe. 
+* Alex and Kyra met with Prof. Kampe and took notes on the conversation.
+   * We probably should have done a better job of communicating everything we learned in the meeting to 
+     Santiago and Matthew.
+* Santiago was extremely sick this week which made it impossible to meet as an entire team to decide on 
+  everything relating to component divisions.
+* Alex and Kyra met and decided on preliminary component divisions without Santiago and Matthew. Santiago 
+  and Matthew were unable to attend the meeting, which led to some confusion later in the project on the 
+  exact definitions and the level of complexity of certain components.
+* It was unfortunate that Santiago and Matthew couldn’t attend the meeting, but there was no way around it 
+  for this week.
+* The Friday meeting included a long discussion of the components because there was still some confusion 
+  since not all were able to meet with Prof Kampe.
+* There was a misunderstanding of the amount of flexibility there was to work on the “assigned” components
+   * Components were not fully defined because it was up to the individual to define them. Not everyone 
+     understood this.
+   * There needed to be improved communication in terms of component flexibility - the ability to choose your 
+     own component and define it such that you believed it was sufficient for the project.
+   * Some had the expectations of running this phase like a team phase when it wasn’t a team phase.
+      * People were still in the team mindset.
+      * People should’ve taken more independent responsibilities.
+      * Reading the entire phase explanation instead of just the 3.A description would have helped clarify the 
+        importance of doing things on your own for this phase.
+   * The members who had the chance to meet with Prof Kampe should’ve explained conclusions from the meeting 
+     better to those who were unable to attend.
+   * Non present members of the Prof. Kampe meeting should have had a meeting to  ask Prof. Kampe more 
+     questions on their own.
+
+
+SPECIFICATION DEVELOPMENT
+* In general, we all looked back at the requirements from phase 1 and the architecture from phase 2 in order to 
+  figure out what our components needed to do. The steps from the previous phases were a useful reference here.
+* In this section, there could have been more respect for established group deadlines. Group collaboration was 
+  needed in order to coordinate our specifications and designs. Since we decided that our designs would be done 
+  by Saturday at 5 PM, Kyra finished and turned in her specs and design then, but Santiago and Alex still had 
+  additional database requirements after the deadline. This shouldn’t have happened — Alex and Santiago should 
+  have either rescheduled the deadline beforehand or respected the deadline.
+* Matthew described a snowballing effect that caused him difficulty in this part of the project. The problems 
+  of the first week in terms of clarification blended into this week, which caused some issues developing these 
+  specifications. This class got put on hold, due to workload from other classes. This is okay because this 
+  semester can be very overwhelming, but unfortunately there were consequences for this class. 
+
+
+DEVELOPMENT OF THE COMPONENT DESIGNS
+* For all of us, design was particularly time consuming. Because Dart was a new language and none of had used 
+  Firebase libraries before, we had to both learn enough to know what was feasible and design the functionality 
+  of our components.
+   * In retrospect, it might have been easier to design our components using a language we already knew; however, 
+     we also had to spend time learning about the necessary libraries and APIs (for Flutter and Firebase), so the 
+     time spent on learning was not completely avoidable.
+* Kyra did a lot of research into FlutterFire Cloud Firestore in order to design the database component, as well 
+  as learn enough about Dart and Flutter in order to write accurate pseudo code. This took a lot of time.
+* Alex did some prototyping in Flutter before designing the authentication component, whereas others only read 
+  documentation and examples. Writing working programs using Flutter and Firebase helped a lot with understanding 
+  the language and what was feasible. It took a bit of time to get everything working, but it really helped in 
+  the design and in reviewing other people’s components.
+* Matthew had some more trouble designing his component because the specifications from the previous week were not 
+  complete enough to move into design.
+* If we were on a real software development team (outside of school), it would have been helpful for us to have some 
+  sort of Flutter learning phase or mob programming on prototypes. But as we have other classes and things taking up 
+  our time, this wasn’t possible for all of us.
+
+
+DEVELOPMENT OF THE TEST PLANS
+* We had a brief meeting with Prof. Kampe to discuss the distinction between white box and black box testing.
+   * Kyra found this information particularly helpful in organizing her test plan.
+* Kyra found that the test plan took a lot of work and was time consuming. At least because of the sheer amount of 
+  tests required to feel like she had good coverage. 
+* Santiago definitely pushed this off (for reasons unknown even to himself). He wrote one test case.
+* Alex also found this section to be time consuming. He had to write many test cases to cover all of the cases and 
+  functionality of the authentication component, which was time consuming.
+
+
+THE REVIEW PROCESS AND THE RESULTING DESIGN/PLAN CHANGES
+* Kyra found her review process with Alex granted a lot more insight into how Flutter works and a stronger direction 
+  in which to look towards during solo revisions. There was good communication and organization. While there was one 
+  unavoidable scheduling difficulty for an interview this ended up not being that inconvenient.
+* Alex found his reviews from Kyra and Santiago helpful. From his meetings, he was able to more clearly state his 
+  design and clarify the authentication process to other group members.
+* Santiago and Matthew needed more communication on where the other was at during this point. 
+* Santiago scheduled with Alex to get a review for his component. 
+
+
+THE PLANNING AND ONGOING MANAGEMENT OF THESE ACTIVITIES
+* We still had weekly group check-ins (every Monday and Friday), even though the project was much more individual than 
+  previous phases. We found this helpful because it still helped give us a space to collaborate as a group and see the 
+  bigger picture of the product we are trying to create together. It also gave us a space to ask questions and develop 
+  group expectations each week.
+* Santiago would’ve liked to try daily meetings during this individualistic phase. This would’ve improved communication 
+  between members of the group and created a space to ask smaller, more detailed questions. However, other members of 
+  the team noted that they tend to do all the work in one day, so they wouldn’t have found daily check-ins super helpful. 
+  Perhaps, in an ideal world where we are all only taking this class and it is all our top priority, this would be a 
+  good system to put in place. However, given the current situation, this is not feasible. 
+* Kyra expressed that she used her management plan a lot more with the individualized workload, because she was able to 
+  specialize it more and it was a very useful tool to have around. 
+
+
+THE OVERALL PROJECT AS AN EDUCATIONAL EXERCISE
+* Overall we learned a lot from having to apply new technologies to our components. This was especially challenging 
+  because of the individual nature of our work in this project.
+* Additionally, our project taught us that while at surface level our app may appear simple, but the functionality, 
+  planning, and overall design required intensive work.
+* Lastly, this phase required a lot of time, coordination, and effort; so it was difficult to get the most out of the 
+  assignments while balancing work from other classes. We each found this project incredibly challenging in different 
+  ways. However, nonetheless, we all did our best.
